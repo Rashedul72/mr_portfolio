@@ -19,7 +19,7 @@ import {
   Zap as ZapIcon,
   Shield as ShieldIcon
 } from 'lucide-react';
-import better from '../../../../public/images/smarthrflow.png';
+import better from '../../../../public/images/smartHRflow.png';
 import better2 from '../../../../public/images/smartHRflowV2.png';
 import dashboard from '../../../../public/images/smartHRflow_dashboard.png';
 import Navbar from '../../../components/Navbar';
