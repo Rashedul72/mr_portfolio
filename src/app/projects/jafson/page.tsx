@@ -27,7 +27,7 @@ const JafsonCaseStudy = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none mb-6 text-blue-900">
-                Jafson Marine
+                Jafson Trading & Marine Services
               </h1>
               <p className="text-xl text-gray-700 mb-8 max-w-xl">
                 Quality marine equipment and parts for boating enthusiasts and professionals.

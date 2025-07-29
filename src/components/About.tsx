@@ -43,7 +43,7 @@ export default function About() {
   };
 
   const stats = [
-    { icon: Calendar, label: 'Experience', value: '2+ Years', color: 'text-blue-600', bgColor: 'bg-blue-100' },
+    { icon: Calendar, label: 'Experience', value: '3+ Years', color: 'text-blue-600', bgColor: 'bg-blue-100' },
     { icon: Code, label: 'Projects', value: '15+', color: 'text-green-600', bgColor: 'bg-green-100' },
     { icon: Globe, label: 'Technologies', value: '20+', color: 'text-purple-600', bgColor: 'bg-purple-100' },
     { icon: Award, label: 'Specializations', value: '4', color: 'text-orange-600', bgColor: 'bg-orange-100' }

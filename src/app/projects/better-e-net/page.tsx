@@ -19,7 +19,7 @@ import {
   Zap,
   Shield as ShieldIcon
 } from 'lucide-react';
-import better from '../../../../public/images/better.jpeg';
+import better from '../../../../public/images/betterenet.png';
 import dashboard from '../../../../public/images/enet_dashboard.png';
 import Navbar from '../../../components/Navbar';
 import Contact from '../../../components/Contact';

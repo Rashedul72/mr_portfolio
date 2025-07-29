@@ -43,7 +43,7 @@ const KumiraCaseStudy = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight leading-none mb-6 text-blue-900">
-                Kumira Boat Ticketing
+                Kumira Guptachara Boat Ticketing
               </h1>
               <p className="text-xl text-gray-700 mb-8 max-w-xl">
                 A hassle-free boat ticket booking platform with secure payment integration.
@@ -181,40 +181,7 @@ const KumiraCaseStudy = () => {
           </div>
         </section>
 
-        {/* Technology Stack with improved layout */}
-        <section className="mt-32">
-          <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">
-            <span className="inline-block pb-2 border-b-4 border-blue-300">Technology Stack</span>
-          </h2>
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
-              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
-                <Globe className="text-blue-600 w-12 h-12 mb-3" />
-                <span className="font-medium">Next.js</span>
-              </div>
-              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
-                <Code className="text-green-600 w-12 h-12 mb-3" />
-                <span className="font-medium">TypeScript</span>
-              </div>
-              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
-                <Database className="text-purple-600 w-12 h-12 mb-3" />
-                <span className="font-medium">MongoDB</span>
-              </div>
-              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
-                <Zap className="text-yellow-500 w-12 h-12 mb-3" />
-                <span className="font-medium">Express.js</span>
-              </div>
-              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
-                <Shield className="text-red-600 w-12 h-12 mb-3" />
-                <span className="font-medium">SSL COMMERZ</span>
-              </div>
-              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
-                <Monitor className="text-blue-600 w-12 h-12 mb-3" />
-                <span className="font-medium">POS System</span>
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* Dashboard Section - NEW */}
         <section className="mt-32">
@@ -332,32 +299,36 @@ const KumiraCaseStudy = () => {
           </div>
         </section>
 
-        {/* Screenshots Section */}
+        {/* Technology Stack with improved layout */}
         <section className="mt-32">
           <h2 className="text-3xl font-bold text-blue-900 mb-12 text-center">
-            <span className="inline-block pb-2 border-b-4 border-blue-300">Platform Screenshots</span>
+            <span className="inline-block pb-2 border-b-4 border-blue-300">Technology Stack</span>
           </h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <Image 
-                src={kumira_dashboard} 
-                alt="Kumira Dashboard" 
-                className="w-full h-auto" 
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Counter Dashboard</h3>
-                <p className="text-gray-600">Interface for in-person ticket bookings</p>
+          <div className="bg-white rounded-2xl shadow-xl p-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
+                <Globe className="text-blue-600 w-12 h-12 mb-3" />
+                <span className="font-medium">Next.js</span>
               </div>
-            </div>
-            <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-              <Image 
-                src={kumira_admin} 
-                alt="Kumira Admin Panel" 
-                className="w-full h-auto" 
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Admin Panel</h3>
-                <p className="text-gray-600">Comprehensive management system</p>
+              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
+                <Code className="text-green-600 w-12 h-12 mb-3" />
+                <span className="font-medium">TypeScript</span>
+              </div>
+              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
+                <Database className="text-purple-600 w-12 h-12 mb-3" />
+                <span className="font-medium">MongoDB</span>
+              </div>
+              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
+                <Zap className="text-yellow-500 w-12 h-12 mb-3" />
+                <span className="font-medium">Express.js</span>
+              </div>
+              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
+                <Shield className="text-red-600 w-12 h-12 mb-3" />
+                <span className="font-medium">SSL COMMERZ</span>
+              </div>
+              <div className="flex flex-col items-center p-4 hover:bg-blue-50 rounded-xl transition-colors duration-300">
+                <Monitor className="text-blue-600 w-12 h-12 mb-3" />
+                <span className="font-medium">POS System</span>
               </div>
             </div>
           </div>
