@@ -138,13 +138,13 @@ export default function Navbar({ scrollToSection }: NavbarProps) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden"
+              className="md:hidden bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-200"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="py-4 space-y-2 border-t border-gray-200">
+              <div className="py-4 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.name}
