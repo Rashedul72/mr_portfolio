@@ -24,7 +24,7 @@ export default function Skills() {
         { name: 'React & Next.js', level: 95 },
         { name: 'TypeScript', level: 90 },
         { name: 'Tailwind CSS', level: 95 },
-        { name: 'HTML5 & CSS3', level: 98 },
+        { name: 'Pixel-perfect UI', level: 95 },
         { name: 'JavaScript (ES6+)', level: 92 }
       ]
     },
@@ -39,7 +39,7 @@ export default function Skills() {
         { name: 'RESTful APIs', level: 90 },
         { name: 'PostgreSQL', level: 82 },
         { name: 'MongoDB', level: 80 },        
-        { name: 'Python & Django', level: 70 },
+        { name: 'Supabase', level: 70 },
       ]
     },
     {

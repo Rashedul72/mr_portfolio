@@ -50,14 +50,24 @@ const SmartHRflowCaseStudy = () => {
               <p className="text-xl text-gray-700 mb-8 max-w-xl">
                 An AI-powered HR hiring platform that reduces recruitment steps by 60% through intelligent CV parsing, automated assessments, and streamlined candidate management.
               </p>
-              <a 
-                href="https://smarthrflow.com/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-purple-800 bg-white hover:bg-purple-50 transition-colors duration-300"
-              >
-                Visit Website <ExternalLink className="ml-2 w-4 h-4" />
-              </a>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a 
+                  href="https://smarthrflow.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-purple-800 bg-white hover:bg-purple-50 transition-colors duration-300"
+                >
+                  Visit Website <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+                <a 
+                  href="https://front-delta-seven.vercel.app/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-purple-600 hover:bg-purple-700 transition-colors duration-300"
+                >
+                  Preview V2 (Vercel) <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </div>
             </div>
             <div className="rounded-xl overflow-hidden shadow-2xl transform md:translate-y-4 transition-transform duration-500 hover:translate-y-0">
               <Image 
@@ -295,7 +305,7 @@ const SmartHRflowCaseStudy = () => {
             <span className="inline-block pb-2 border-b-4 border-purple-300">Technology Stack</span>
           </h2>
           <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="grid grid-cols-2 md:grid-cols-7 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-8 gap-6">
               <div className="flex flex-col items-center p-4 hover:bg-purple-50 rounded-xl transition-colors duration-300">
                 <Globe className="text-blue-600 w-12 h-12 mb-3" />
                 <span className="font-medium">Next.js</span>
@@ -323,6 +333,10 @@ const SmartHRflowCaseStudy = () => {
               <div className="flex flex-col items-center p-4 hover:bg-purple-50 rounded-xl transition-colors duration-300">
                 <Bot className="text-emerald-600 w-12 h-12 mb-3" />
                 <span className="font-medium">OpenAI API</span>
+              </div>
+              <div className="flex flex-col items-center p-4 hover:bg-purple-50 rounded-xl transition-colors duration-300">
+                <ZapIcon className="text-pink-600 w-12 h-12 mb-3" />
+                <span className="font-medium">Pixel-perfect UI</span>
               </div>
             </div>
           </div>

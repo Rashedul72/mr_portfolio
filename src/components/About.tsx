@@ -50,9 +50,9 @@ export default function About() {
   ];
 
   const skills = [
-    { name: 'Full Stack Development', percentage: 90 },
-    // { name: 'Mobile App Development', percentage: 85 },
-    { name: 'IoT & AI Solutions', percentage: 80 },
+    { name: 'Full Stack Development', percentage: 95 },
+    { name: 'Pixel-perfect UI', percentage: 95 },
+    { name: 'IoT & AI Solutions', percentage: 85 },
     { name: 'Cloud Computing', percentage: 75 }
   ];
 
@@ -236,6 +236,10 @@ export default function About() {
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3" />
                     <span className="text-gray-700">Full Stack Development</span>
+                  </div>
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 bg-red-500 rounded-full mr-3" />
+                    <span className="text-gray-700">Pixel-perfect UI</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-green-500 rounded-full mr-3" />

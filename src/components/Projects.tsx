@@ -51,19 +51,20 @@ export default function Projects() {
 
   const projects = [
     
+   
+    {
+      title: 'SmartHRflow',
+      description: 'An AI-powered HR hiring platform that reduces recruitment steps by 60% through intelligent CV parsing, automated assessments, and streamlined candidate management.',
+      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Nest.js', 'Vercel', 'OpenAI API'],
+      image: '/images/smartHRflowV2.png',
+      liveUrl: '/projects/smarthrflow'
+    },
     {
       title: 'Better E Net',
       description: 'A comprehensive networking and IT services platform with service management, network monitoring, and technical support.',
       technologies: ['React', 'Next.js', 'TypeScript', 'MongoDB', 'Express.js', 'Node.js'],
       image: '/images/betterenet.png',
       liveUrl: '/projects/better-e-net'
-    },
-    {
-      title: 'SmartHRflow',
-      description: 'An AI-powered HR hiring platform that reduces recruitment steps by 60% through intelligent CV parsing, automated assessments, and streamlined candidate management.',
-      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Nest.js', 'Vercel', 'OpenAI API'],
-      image: '/images/smarthrflow.png',
-      liveUrl: '/projects/smarthrflow'
     },
     {
       title: 'Better E Mart',
@@ -73,18 +74,18 @@ export default function Projects() {
       liveUrl: '/projects/better-emart'
     },
     {
-      title: 'Jafson Trading & Marine Services',
-      description: 'An innovative project showcasing advanced web development skills and modern technology stack implementation.',
-      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB'],
-      image: '/images/jafson.png',
-      liveUrl: '/projects/jafson'
-    },
-    {
       title: 'Kumira Guptachara Boat Ticketing',
       description: 'A cutting-edge application demonstrating expertise in full-stack development and modern web technologies.',
       technologies: ['Next.js', 'SSL COMMERZ', 'MongoDB', 'Tailwind CSS', 'Framer Motion'],
       image: '/images/kumira.png',
       liveUrl: '/projects/kumira'
+    },
+    {
+      title: 'Jafson Trading & Marine Services',
+      description: 'An innovative project showcasing advanced web development skills and modern technology stack implementation.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB'],
+      image: '/images/jafson.png',
+      liveUrl: '/projects/jafson'
     }
   ];
 
@@ -181,13 +182,13 @@ export default function Projects() {
                 whileHover="hover"
               >
                 {/* Project Image */}
-                <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center overflow-hidden border-b border-gray-200">
+                <div className="h-48 sm:h-56 lg:h-64 bg-white flex items-center justify-center overflow-hidden border-b border-gray-200">
                   <Image 
                     src={project.image} 
                     alt={project.title}
                     width={400}
                     height={300}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover p-2 rounded-2xl"
                   />
                 </div>
 
