@@ -22,7 +22,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: 'Location',
-      value: 'Chittagong, Bangladesh',
+      value: 'Dhaka, Bangladesh',
       link: '#',
       color: 'text-purple-600',
       bgColor: 'bg-purple-100'

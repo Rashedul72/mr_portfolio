@@ -206,7 +206,7 @@ export default function About() {
                   <MapPin className="w-6 h-6 mr-3" />
                   <h4 className="text-lg font-semibold">Location</h4>
                 </div>
-                <p className="text-blue-100">Chittagong, Bangladesh</p>
+                <p className="text-blue-100">Dhaka, Bangladesh</p>
                 <p className="text-blue-100 text-sm mt-1">Available for remote work worldwide</p>
               </motion.div>
 
