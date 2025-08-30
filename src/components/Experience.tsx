@@ -7,7 +7,7 @@ export default function Experience() {
       company: 'Better E Mart',
       website: 'https://betteremart.com/',
       location: 'Chittagong, Bangladesh',
-      role: 'Co-Founder & Developer',
+      role: 'Lead Developer',
       period: 'November 2024 – Present',
       description: 'Leading e-commerce platform development with integrated dashboard and mobile solutions.',
       achievements: [

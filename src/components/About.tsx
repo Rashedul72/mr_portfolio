@@ -219,7 +219,7 @@ export default function About() {
                   <Award className="w-6 h-6 text-orange-600 mr-3" />
                   <h4 className="text-lg font-semibold text-gray-900">Current Role</h4>
                 </div>
-                <p className="text-gray-700 font-semibold">Co-Founder & Developer</p>
+                <p className="text-gray-700 font-semibold">Lead Developer</p>
                 <p className="text-gray-600 text-sm mt-1">Leading development at Better Emart</p>
               </motion.div>
 
