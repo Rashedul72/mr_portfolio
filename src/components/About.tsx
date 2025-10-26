@@ -43,7 +43,7 @@ export default function About() {
   };
 
   const stats = [
-    { icon: Calendar, label: 'Experience', value: '3+ Years', color: 'text-blue-600', bgColor: 'bg-blue-100' },
+    { icon: Calendar, label: 'Experience', value: '2+ Years', color: 'text-blue-600', bgColor: 'bg-blue-100' },
     { icon: Code, label: 'Projects', value: '15+', color: 'text-green-600', bgColor: 'bg-green-100' },
     { icon: Globe, label: 'Technologies', value: '20+', color: 'text-purple-600', bgColor: 'bg-purple-100' },
     { icon: Award, label: 'Specializations', value: '4', color: 'text-orange-600', bgColor: 'bg-orange-100' }
@@ -57,7 +57,7 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-gray-50 to-blue-50 scroll-mt-16 sm:scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"

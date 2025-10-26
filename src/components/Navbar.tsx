@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Home, User, Lightbulb, Briefcase, Folder, Mail } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 
 interface NavbarProps {
@@ -26,12 +26,12 @@ export default function Navbar({ scrollToSection }: NavbarProps) {
   }, []);
 
   const navItems = [
-    { name: 'Home', id: 'home' },
-    { name: 'About', id: 'about' },
-    { name: 'Skills', id: 'skills' },
-    { name: 'Experience', id: 'experience' },
-    { name: 'Projects', id: 'projects' },
-    { name: 'Contact', id: 'contact' }
+    { name: 'Home', id: 'home', icon: Home },
+    { name: 'About', id: 'about', icon: User },
+    { name: 'Skills', id: 'skills', icon: Lightbulb },
+    { name: 'Experience', id: 'experience', icon: Briefcase },
+    { name: 'Projects', id: 'projects', icon: Folder },
+    { name: 'Contact', id: 'contact', icon: Mail }
   ];
 
   const handleNavClick = (sectionId: string) => {
@@ -138,27 +138,69 @@ export default function Navbar({ scrollToSection }: NavbarProps) {
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              className="md:hidden bg-white/95 backdrop-blur-md shadow-lg border-t border-gray-200"
+              className="md:hidden bg-gradient-to-br from-white via-blue-50/30 to-blue-50/40 backdrop-blur-md shadow-2xl border-t border-blue-100/50"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="py-4 space-y-2">
+              <div className="py-6 px-4 space-y-2">
                 {navItems.map((item, index) => (
                   <motion.button
                     key={item.name}
                     onClick={() => handleNavClick(item.id)}
-                    className="block w-full text-left px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-colors"
-                    initial={{ opacity: 0, x: -20 }}
+                    className="relative group block w-full text-left overflow-hidden rounded-xl"
+                    initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    whileHover={{ x: 10 }}
+                    transition={{ duration: 0.3, delay: index * 0.08 }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {item.name}
+                    {/* Background gradient on hover */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-blue-400 to-blue-500 opacity-0 group-hover:opacity-5 transition-opacity duration-300"
+                    />
+                    
+                    {/* Content */}
+                    <div className="relative flex items-center gap-4 px-4 py-3 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/50 shadow-sm group-hover:shadow-md group-hover:border-blue-200/50 transition-all duration-300">
+                      {/* Icon container */}
+                      <motion.div
+                        className="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center shadow-sm group-hover:bg-blue-100 transition-colors duration-300"
+                        whileHover={{ rotate: 360, scale: 1.1 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <item.icon className="w-5 h-5 text-blue-500" />
+                      </motion.div>
+                      
+                      {/* Text */}
+                      <div className="flex-1">
+                        <span className="text-base font-semibold text-gray-700 group-hover:text-blue-600 transition-colors duration-300">
+                          {item.name}
+                        </span>
+                      </div>
+                      
+                      {/* Arrow indicator */}
+                      <motion.div
+                        className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={{ x: -10 }}
+                        whileHover={{ x: 0 }}
+                      >
+                        <svg className="w-5 h-5 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </motion.div>
+                    </div>
                   </motion.button>
                 ))}
               </div>
+              
+              {/* Bottom decoration */}
+              <motion.div
+                className="h-1 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              />
             </motion.div>
           )}
         </AnimatePresence>

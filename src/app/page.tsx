@@ -8,6 +8,7 @@ import {
   Skills,
   Experience,
   Projects,
+  NormalProjects,
   Contact,
   Footer,
   ScrollToTop
@@ -162,6 +163,7 @@ export default function Home() {
       <Skills />
       <Experience />
       <Projects />
+      {/* <NormalProjects /> */}
       <Contact />
       <ScrollToTop />
       <Footer />

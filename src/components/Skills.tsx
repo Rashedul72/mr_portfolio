@@ -103,7 +103,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white to-gray-50">
+    <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white to-gray-50 scroll-mt-16 sm:scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div

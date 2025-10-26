@@ -22,7 +22,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
   ];
 
   return (
-    <section id="home" className="pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden">
+    <section id="home" className="pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16 bg-gradient-to-br from-blue-50 to-indigo-100 relative overflow-hidden scroll-mt-16 sm:scroll-mt-20">
       {/* Floating tech icons background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {floatingIcons.map((item, index) => (
