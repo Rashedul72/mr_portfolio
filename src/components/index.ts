@@ -5,6 +5,7 @@ export { default as Skills } from './Skills';
 export { default as Experience } from './Experience';
 export { default as Projects } from './Projects';
 export { default as NormalProjects } from './NormalProjects';
+export { default as LandingPages } from './LandingPages';
 export { default as Contact } from './Contact';
 export { default as Footer } from './Footer';
 export { default as ScrollToTop } from './ScrollToTop'; 

@@ -9,6 +9,7 @@ import {
   Experience,
   Projects,
   NormalProjects,
+  LandingPages,
   Contact,
   Footer,
   ScrollToTop
@@ -36,7 +37,7 @@ export default function Home() {
       const urlParams = new URLSearchParams(window.location.search);
       const section = urlParams.get('section');
       
-      if (section && ['home', 'about', 'skills', 'experience', 'projects', 'contact'].includes(section)) {
+      if (section && ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'].includes(section)) {
         // Clear the URL parameter
         const newUrl = window.location.pathname;
         window.history.replaceState({}, '', newUrl);
@@ -86,7 +87,7 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'contact'];
+      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
       const scrollPosition = window.scrollY + 100;
 
       for (const section of sections) {
@@ -163,6 +164,7 @@ export default function Home() {
       <Skills />
       <Experience />
       <Projects />
+      <LandingPages />
       {/* <NormalProjects /> */}
       <Contact />
       <ScrollToTop />

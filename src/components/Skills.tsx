@@ -55,20 +55,6 @@ export default function Skills() {
         { name: 'Geofencing', level: 78 },
         { name: 'Data Processing', level: 85 }
       ]
-    },
-    {
-      title: 'Mobile & Cloud',
-      icon: Smartphone,
-      iconColor: 'text-orange-600',
-      bgColor: 'bg-orange-100',
-      description: 'Cross-platform development and cloud services',
-      skills: [
-        { name: 'React Native', level: 75 },
-        { name: 'Expo Framework', level: 80 },
-        { name: 'Cloud Computing', level: 78 },
-        { name: 'PHP', level: 75 },
-        { name: 'Mobile UI/UX', level: 82 }
-      ]
     }
   ];
 
@@ -138,7 +124,7 @@ export default function Skills() {
 
         {/* Skills Grid */}
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-10"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

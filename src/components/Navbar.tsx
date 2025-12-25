@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Home, User, Lightbulb, Briefcase, Folder, Mail } from 'lucide-react';
+import { Menu, X, Home, User, Lightbulb, Briefcase, Folder, Layout, Mail } from 'lucide-react';
 import { useRouter, usePathname } from 'next/navigation';
 
 interface NavbarProps {
@@ -31,6 +31,7 @@ export default function Navbar({ scrollToSection }: NavbarProps) {
     { name: 'Skills', id: 'skills', icon: Lightbulb },
     { name: 'Experience', id: 'experience', icon: Briefcase },
     { name: 'Projects', id: 'projects', icon: Folder },
+    { name: 'Landing Pages', id: 'landing-pages', icon: Layout },
     { name: 'Contact', id: 'contact', icon: Mail }
   ];
 
