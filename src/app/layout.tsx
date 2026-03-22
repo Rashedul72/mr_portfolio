@@ -15,6 +15,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MD Rashedul Islam Junayed",
   description: "Professional portfolio showcasing software development projects, skills, and experience",
+  icons: {
+    icon: "/images/Junayed.jpg",
+    apple: "/images/Junayed.jpg",
+  },
 };
 
 export default function RootLayout({

@@ -66,8 +66,8 @@ export default function Hero({ scrollToSection }: HeroProps) {
           >
             <div className="relative">
               {/* Decorative rings */}
-              <div className="absolute -inset-10 border border-dashed border-white/[0.06] rounded-full hidden lg:block" />
-              <div className="absolute -inset-20 border border-dashed border-white/[0.04] rounded-full hidden lg:block" />
+              <div className="absolute -inset-10 border border-dashed border-white/[0.06] rounded-[2rem] hidden lg:block" />
+              <div className="absolute -inset-20 border border-dashed border-white/[0.04] rounded-[2.5rem] hidden lg:block" />
 
               {/* Floating tech badges */}
               <motion.div
@@ -102,16 +102,16 @@ export default function Hero({ scrollToSection }: HeroProps) {
               />
 
               {/* Profile image */}
-              <div className="relative w-48 h-48 sm:w-60 sm:h-60 lg:w-72 lg:h-72 xl:w-80 xl:h-80">
+              <div className="relative w-48 h-64 sm:w-56 sm:h-72 lg:w-64 lg:h-80 xl:w-72 xl:h-96">
                 <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-400 via-violet-500 to-rose-500 rounded-3xl opacity-60" />
                 <Image
-                  src="/me.jpg"
+                  src="/images/Junayed.jpg"
                   alt="MD Rashedul Islam Junayed"
                   fill
-                  className="rounded-3xl object-cover relative z-10 p-[2px]"
+                  className="rounded-3xl object-cover object-top relative z-10 p-[2px]"
                   priority
                   loading="eager"
-                  sizes="(max-width: 640px) 192px, (max-width: 1024px) 240px, 320px"
+                  sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 288px"
                 />
               </div>
             </div>
@@ -218,7 +218,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
       </div>
 
       {/* Scroll indicator */}
-      <motion.div
+      {/* <motion.div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:block"
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -230,7 +230,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
-      </motion.div>
+      </motion.div> */}
     </section>
   );
 }
