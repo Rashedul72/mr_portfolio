@@ -86,6 +86,23 @@ html {
   animation-play-state: paused;
 }
 
+/* Floating — single-axis CSS animations (GPU compositor) */
+@keyframes bobY {
+  0%, 100% { transform: translateY(calc(-1 * var(--y))); }
+  50%      { transform: translateY(var(--y)); }
+}
+@keyframes bobX {
+  0%, 100% { transform: translateX(calc(-1 * var(--x))); }
+  50%      { transform: translateX(var(--x)); }
+}
+@keyframes bobR {
+  0%, 100% { transform: rotate(calc(-1 * var(--r))); }
+  50%      { transform: rotate(var(--r)); }
+}
+.bob-y { animation: bobY var(--dy) ease-in-out infinite; }
+.bob-x { animation: bobX var(--dx) ease-in-out infinite; }
+.bob-r { animation: bobR var(--dr) ease-in-out infinite; }
+
 /* Animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }

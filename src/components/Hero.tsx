@@ -8,18 +8,24 @@ interface HeroProps {
   scrollToSection: (sectionId: string) => void;
 }
 
-export default function Hero({ scrollToSection }: HeroProps) {
-  const floatingIcons = [
-    { icon: Code, delay: 0, x: -20, y: -30 },
-    { icon: Cpu, delay: 0.5, x: 20, y: -20 },
-    { icon: Database, delay: 1, x: -15, y: 25 },
-    { icon: Globe, delay: 1.5, x: 25, y: 15 },
-    { icon: GitBranch, delay: 2, x: -30, y: 10 },
-    { icon: Layers, delay: 2.5, x: 35, y: -35 },
-    { icon: Zap, delay: 3, x: -25, y: -15 },
-    { icon: Smartphone, delay: 3.5, x: 15, y: 30 }
-  ];
+const floatingIcons = [
+  { icon: Code, px: -20, py: -30, y: '10px', x: '5px', r: '3deg', dy: '9s', dx: '12s', dr: '15s', dd: '-0s' },
+  { icon: Cpu, px: 20, py: -20, y: '8px', x: '6px', r: '4deg', dy: '10s', dx: '13s', dr: '16s', dd: '-3s' },
+  { icon: Database, px: -15, py: 25, y: '12px', x: '4px', r: '2deg', dy: '8s', dx: '11s', dr: '14s', dd: '-5s' },
+  { icon: Globe, px: 25, py: 15, y: '9px', x: '7px', r: '3deg', dy: '11s', dx: '14s', dr: '17s', dd: '-2s' },
+  { icon: GitBranch, px: -30, py: 10, y: '11px', x: '5px', r: '4deg', dy: '9.5s', dx: '12.5s', dr: '15.5s', dd: '-7s' },
+  { icon: Layers, px: 35, py: -35, y: '7px', x: '6px', r: '2deg', dy: '10.5s', dx: '13.5s', dr: '16.5s', dd: '-1s' },
+  { icon: Zap, px: -25, py: -15, y: '10px', x: '4px', r: '3deg', dy: '8.5s', dx: '11.5s', dr: '14.5s', dd: '-4s' },
+  { icon: Smartphone, px: 15, py: 30, y: '9px', x: '7px', r: '4deg', dy: '11.5s', dx: '14.5s', dr: '17.5s', dd: '-6s' },
+];
 
+const badges = [
+  { label: 'React', color: 'text-cyan-400', shadow: 'shadow-[0_0_15px_rgba(34,211,238,0.1)]', pos: 'absolute -top-3 -right-6 sm:-right-10 z-20', y: '8px', x: '4px', dy: '7s', dx: '9.5s', dd: '0s' },
+  { label: 'Node.js', color: 'text-violet-400', shadow: 'shadow-[0_0_15px_rgba(139,92,246,0.1)]', pos: 'absolute -bottom-3 -left-6 sm:-left-10 z-20', y: '7px', x: '5px', dy: '8s', dx: '10.5s', dd: '-3s' },
+  { label: 'TypeScript', color: 'text-amber-400', shadow: 'shadow-[0_0_15px_rgba(251,191,36,0.1)]', pos: 'absolute top-1/2 -translate-y-1/2 -right-10 sm:-right-14 z-20 hidden sm:block', y: '6px', x: '5px', dy: '9s', dx: '11.5s', dd: '-5s' },
+];
+
+export default function Hero({ scrollToSection }: HeroProps) {
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-[#030014] scroll-mt-16 sm:scroll-mt-20 pt-20 sm:pt-24 pb-12">
       {/* Ambient orbs */}
@@ -36,24 +42,20 @@ export default function Hero({ scrollToSection }: HeroProps) {
 
       <div className="absolute inset-0 dot-pattern pointer-events-none opacity-50" />
 
-      {/* Subtle floating icons in background */}
+      {/* Floating background icons — pure CSS, nested per-axis */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {floatingIcons.map((item, index) => (
-          <motion.div
-            key={index}
-            className="absolute text-white/[0.04]"
-            style={{ left: `${50 + item.x}%`, top: `${30 + item.y}%` }}
-            animate={{ y: [-10, 10, -10], x: [-5, 5, -5], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: item.delay }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-          >
-            <item.icon className="w-10 h-10 sm:w-14 sm:h-14" />
-          </motion.div>
+        {floatingIcons.map((item, i) => (
+          <div key={i} className="absolute bob-y" style={{ left: `${50 + item.px}%`, top: `${30 + item.py}%`, '--y': item.y, '--dy': item.dy, animationDelay: item.dd } as React.CSSProperties}>
+            <div className="bob-x" style={{ '--x': item.x, '--dx': item.dx, animationDelay: item.dd } as React.CSSProperties}>
+              <div className="bob-r text-white/[0.04]" style={{ '--r': item.r, '--dr': item.dr, animationDelay: item.dd } as React.CSSProperties}>
+                <item.icon className="w-10 h-10 sm:w-14 sm:h-14" />
+              </div>
+            </div>
+          </div>
         ))}
       </div>
 
-      {/* Main content - split layout */}
+      {/* Main content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -65,40 +67,26 @@ export default function Hero({ scrollToSection }: HeroProps) {
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
           >
             <div className="relative">
-              {/* Decorative rings */}
               <div className="absolute -inset-10 border border-dashed border-white/[0.06] rounded-[2rem] hidden lg:block" />
               <div className="absolute -inset-20 border border-dashed border-white/[0.04] rounded-[2.5rem] hidden lg:block" />
 
-              {/* Floating tech badges */}
-              <motion.div
-                className="absolute -top-3 -right-6 sm:-right-10 z-20 bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 shadow-[0_0_15px_rgba(34,211,238,0.1)]"
-                animate={{ y: [-5, 5, -5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-cyan-400 text-xs sm:text-sm font-mono font-medium">React</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute -bottom-3 -left-6 sm:-left-10 z-20 bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 shadow-[0_0_15px_rgba(139,92,246,0.1)]"
-                animate={{ y: [5, -5, 5] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-violet-400 text-xs sm:text-sm font-mono font-medium">Node.js</span>
-              </motion.div>
-
-              <motion.div
-                className="absolute top-1/2 -translate-y-1/2 -right-10 sm:-right-14 z-20 bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 hidden sm:block shadow-[0_0_15px_rgba(251,191,36,0.1)]"
-                animate={{ y: [-3, 3, -3] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="text-amber-400 text-xs sm:text-sm font-mono font-medium">TypeScript</span>
-              </motion.div>
+              {/* Floating tech badges — pure CSS, nested per-axis */}
+              {badges.map((b) => (
+                <div key={b.label} className={`${b.pos} bob-y`} style={{ '--y': b.y, '--dy': b.dy, animationDelay: b.dd } as React.CSSProperties}>
+                  <div className="bob-x" style={{ '--x': b.x, '--dx': b.dx, animationDelay: b.dd } as React.CSSProperties}>
+                    <div className={`bg-white/[0.05] backdrop-blur-md border border-white/10 rounded-lg px-3 py-1.5 ${b.shadow}`}>
+                      <span className={`${b.color} text-xs sm:text-sm font-mono font-medium`}>{b.label}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
 
               {/* Gradient glow behind image */}
               <motion.div
                 className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-rose-500/20 rounded-3xl blur-2xl"
-                animate={{ opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                initial={{ opacity: 0.4 }}
+                animate={{ opacity: 0.65 }}
+                transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
               />
 
               {/* Profile image */}
@@ -119,7 +107,6 @@ export default function Hero({ scrollToSection }: HeroProps) {
 
           {/* Left: Text content */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
-            {/* Code snippet background decoration */}
             <div className="absolute -left-4 top-32 pointer-events-none hidden xl:block">
               <motion.div
                 className="text-xs font-mono opacity-20"
@@ -167,7 +154,6 @@ export default function Hero({ scrollToSection }: HeroProps) {
               Experienced in e-commerce, agricultural technology, and mobile app development.
             </motion.p>
 
-            {/* CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10"
               initial={{ opacity: 0, y: 20 }}
@@ -195,7 +181,6 @@ export default function Hero({ scrollToSection }: HeroProps) {
               </motion.button>
             </motion.div>
 
-            {/* Tech stack indicators */}
             <motion.div
               className="flex gap-6 justify-center lg:justify-start"
               initial={{ opacity: 0, y: 20 }}
@@ -216,21 +201,6 @@ export default function Hero({ scrollToSection }: HeroProps) {
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      {/* <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:block"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-6 h-10 border-2 border-white/15 rounded-full flex justify-center pt-2">
-          <motion.div
-            className="w-1 h-1.5 bg-cyan-400 rounded-full"
-            animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-      </motion.div> */}
     </section>
   );
 }
