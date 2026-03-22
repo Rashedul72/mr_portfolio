@@ -60,62 +60,38 @@ export default function Experience() {
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6
-      }
-    },
-    hover: {
-      y: -8,
-      scale: 1.02,
-      transition: {
-        duration: 0.3
-      }
-    }
-  };
-
   return (
-    <section id="experience" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-white scroll-mt-16 sm:scroll-mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-16 sm:py-20 lg:py-24 bg-[#0a0a1a] relative scroll-mt-16 sm:scroll-mt-20">
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-12 sm:mb-16"
+          className="text-center mb-12 sm:mb-16 lg:mb-20"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <motion.h2
-            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Professional Experience
+            Professional <span className="gradient-text">Experience</span>
           </motion.h2>
           <motion.div
-            className="w-16 sm:w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto rounded-full"
+            className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
             initial={{ width: 0 }}
-            whileInView={{ width: '100%' }}
+            whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           />
           <motion.p
-            className="text-base sm:text-lg text-gray-600 mt-4 sm:mt-6 max-w-2xl mx-auto px-4"
+            className="text-base sm:text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -124,148 +100,91 @@ export default function Experience() {
           </motion.p>
         </motion.div>
 
-        {/* Experience Timeline */}
-        <motion.div
-          className="space-y-6 sm:space-y-8 lg:space-y-12"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-        >
-          {experiences.map((exp, index) => (
-            <motion.div
-              key={exp.company}
-              className="bg-white p-4 sm:p-6 lg:p-8 rounded-xl shadow-sm border border-gray-200 hover:shadow-lg transition-shadow"
-              variants={cardVariants}
-              whileHover="hover"
-            >
-              {/* Company Header */}
-              <motion.div
-                className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4 sm:mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <div className="flex-1 mb-4 lg:mb-0">
-                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-4 mb-2">
-                    <div className="flex items-center gap-2">
-                      <motion.h3
-                        className="text-lg sm:text-xl font-bold text-gray-900"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.5, delay: index * 0.1 + 0.1 }}
-                      >
-                        {exp.company}
-                      </motion.h3>
-                    </div>
-                    
+        {/* Timeline */}
+        <div className="relative">
+          {/* Timeline line */}
+          <div className="absolute left-[7px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-violet-500/30 to-transparent" />
+
+          <div className="space-y-10 lg:space-y-16">
+            {experiences.map((exp, index) => {
+              const isLeft = index % 2 === 0;
+              return (
+                <motion.div
+                  key={exp.company}
+                  className="relative pl-10 lg:pl-0"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  {/* Timeline dot */}
+                  <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-6">
+                    <div className="w-[15px] h-[15px] rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0a0a1a]" />
+                  </div>
+
+                  {/* Card */}
+                  <div className={`lg:w-[calc(50%-2.5rem)] ${isLeft ? 'lg:mr-auto' : 'lg:ml-auto'}`}>
                     <motion.div
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg"
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: index * 0.1 + 0.1 }}
+                      className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] p-5 sm:p-6 lg:p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
+                      whileHover={{ y: -4 }}
                     >
-                      <Award className="w-3 h-3 sm:w-4 sm:h-4" />
-                      <span className="font-semibold text-xs sm:text-sm">{exp.role}</span>
+                      {/* Header */}
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                        <h3 className="text-lg sm:text-xl font-bold text-white">{exp.company}</h3>
+                        <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-[0_0_12px_rgba(34,211,238,0.15)] w-fit">
+                          <Award className="w-3 h-3" />
+                          {exp.role}
+                        </span>
+                      </div>
+
+                      {/* Website */}
+                      <a
+                        href={exp.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-cyan-400 hover:text-cyan-300 transition-colors text-sm mb-2 break-all"
+                      >
+                        <Globe className="w-3.5 h-3.5 flex-shrink-0" />
+                        {exp.website}
+                        <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                      </a>
+
+                      {/* Meta */}
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm text-slate-500 mb-4">
+                        <span className="flex items-center gap-1"><MapPin className="w-3.5 h-3.5" />{exp.location}</span>
+                        <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{exp.period}</span>
+                      </div>
+
+                      <p className="text-slate-400 mb-4 italic text-sm">&quot;{exp.description}&quot;</p>
+
+                      {/* Technologies */}
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {exp.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="bg-white/[0.06] text-cyan-300/80 px-2 py-0.5 rounded-md text-xs font-medium border border-white/[0.04]"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* Achievements */}
+                      <div className="space-y-2">
+                        {exp.achievements.map((achievement, i) => (
+                          <div key={i} className="flex items-start gap-2">
+                            <div className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
+                            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">{achievement}</p>
+                          </div>
+                        ))}
+                      </div>
                     </motion.div>
                   </div>
-                  
-                  {/* Website URL */}
-                  <motion.div
-                    className="flex items-center gap-2 mb-2"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-                  >
-                    <Globe className="w-4 h-4 text-blue-600" />
-                    <motion.a
-                      href={exp.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-700 transition-colors text-sm sm:text-base break-all"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      {exp.website}
-                    </motion.a>
-                    <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 text-blue-600" />
-                  </motion.div>
-                  
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-gray-600">
-                    <div className="flex items-center gap-1">
-                      <MapPin className="w-4 h-4" />
-                      <span>{exp.location}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{exp.period}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Company Description */}
-              <motion.p
-                className="text-gray-700 mb-4 sm:mb-6 italic text-sm sm:text-base"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
-              >
-                "{exp.description}"
-              </motion.p>
-
-              {/* Technologies Used */}
-              <motion.div
-                className="mb-4 sm:mb-6"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
-              >
-                <h4 className="text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Technologies Used:</h4>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                  {exp.technologies.map((tech, techIndex) => (
-                    <motion.span
-                      key={tech}
-                      className="bg-blue-100 text-blue-700 px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 + 0.4 + techIndex * 0.1 }}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.div>
-
-              {/* Achievements */}
-              <motion.div
-                className="space-y-2 sm:space-y-3"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 + 0.4 }}
-              >
-                <h4 className="text-sm font-semibold text-gray-700 mb-2 sm:mb-3">Key Achievements:</h4>
-                {exp.achievements.map((achievement, achievementIndex) => (
-                  <motion.div
-                    key={achievementIndex}
-                    className="flex items-start"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.1 + 0.5 + achievementIndex * 0.1 }}
-                  >
-                    <motion.div
-                      className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full mr-2 sm:mr-3 mt-1.5 sm:mt-2 flex-shrink-0"
-                      whileHover={{ scale: 1.5 }}
-                      transition={{ duration: 0.2 }}
-                    />
-                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{achievement}</p>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
-} 
+}
