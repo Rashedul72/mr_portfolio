@@ -97,7 +97,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#030014] flex items-center justify-center relative overflow-hidden">
+      <div className="min-h-screen bg-[#082c47] flex items-center justify-center relative overflow-hidden">
         <div className="absolute top-1/3 left-1/3 w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/3 right-1/3 w-[500px] h-[500px] bg-violet-500/10 rounded-full blur-[120px]" />
         <div className="absolute inset-0 pointer-events-none">
@@ -120,7 +120,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-[#030014]">
+    <div className="min-h-screen bg-[#082c47]">
       <Navbar scrollToSection={scrollToSection} activeSection={activeSection} />
       <Hero scrollToSection={scrollToSection} />
       <About />

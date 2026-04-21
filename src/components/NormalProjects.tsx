@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function NormalProjects() {
   return (
-    <section id="normal-projects" className="py-16 sm:py-20 lg:py-24 bg-[#0a0a1a]">
+    <section id="normal-projects" className="py-16 sm:py-20 lg:py-24 bg-[#0a3355]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="text-center mb-16"

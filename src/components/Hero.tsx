@@ -25,9 +25,11 @@ const badges = [
   { label: 'TypeScript', color: 'text-amber-400', shadow: 'shadow-[0_0_15px_rgba(251,191,36,0.1)]', pos: 'absolute top-1/2 -translate-y-1/2 -right-10 sm:-right-14 z-20 hidden sm:block', y: '6px', x: '5px', dy: '9s', dx: '11.5s', dd: '-5s' },
 ];
 
+const PROFILE_IMAGE_URL = '/images/Junayed-v2.jpg';
+
 export default function Hero({ scrollToSection }: HeroProps) {
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-[#030014] scroll-mt-16 sm:scroll-mt-20 pt-20 sm:pt-24 pb-12">
+    <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-[#082c47] scroll-mt-16 sm:scroll-mt-20 pt-20 sm:pt-24 pb-12">
       {/* Ambient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-cyan-500/[0.06] rounded-full blur-[150px]"
@@ -90,16 +92,16 @@ export default function Hero({ scrollToSection }: HeroProps) {
               />
 
               {/* Profile image */}
-              <div className="relative w-48 h-64 sm:w-56 sm:h-72 lg:w-64 lg:h-80 xl:w-72 xl:h-96">
+              <div className="relative w-[20rem] h-[15rem] sm:w-[24rem] sm:h-[18rem] lg:w-[28rem] lg:h-[21rem] xl:w-[32rem] xl:h-[24rem]">
                 <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-400 via-violet-500 to-rose-500 rounded-3xl opacity-60" />
                 <Image
-                  src="/images/Junayed.jpg"
+                  src={PROFILE_IMAGE_URL}
                   alt="MD Rashedul Islam Junayed"
-                  fill
-                  className="rounded-3xl object-cover object-top relative z-10 p-[2px]"
+                  width={1056}
+                  height={768}
+                  className="w-full h-full rounded-3xl object-cover relative z-10 p-[2px]"
                   priority
-                  loading="eager"
-                  sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 288px"
+                  sizes="(max-width: 640px) 320px, (max-width: 768px) 384px, (max-width: 1280px) 448px, 512px"
                 />
               </div>
             </div>

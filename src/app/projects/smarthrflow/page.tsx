@@ -36,7 +36,7 @@ const SmartHRflowCaseStudy = () => {
   };
 
   return (
-    <div className="bg-[#030014] min-h-screen text-white">
+    <div className="bg-[#082c47] min-h-screen text-white">
       <Navbar scrollToSection={scrollToSection} />
       
       {/* Hero Section */}
