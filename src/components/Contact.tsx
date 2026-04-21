@@ -38,7 +38,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-[#030014] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
         <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
@@ -53,7 +53,7 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
         >
           <div className="rounded-3xl bg-gradient-to-r from-cyan-500/40 via-violet-500/40 to-rose-500/40 p-px">
-            <div className="rounded-3xl bg-[#0a0a1a] p-6 sm:p-10 lg:p-16">
+            <div className="rounded-3xl bg-[#0a3355] p-6 sm:p-10 lg:p-16">
 
               {/* Header */}
               <div className="text-center mb-10 lg:mb-14">
@@ -89,7 +89,7 @@ export default function Contact() {
                     href={info.link}
                     target={info.link.startsWith('http') ? '_blank' : '_self'}
                     rel={info.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className="group flex items-center gap-4 p-4 sm:p-5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300"
+                    className="group glass flex items-center gap-4 p-4 sm:p-5 rounded-xl hover:bg-white/[0.08] hover:border-white/[0.15] transition-all duration-300"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}

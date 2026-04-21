@@ -16,10 +16,10 @@ export default function About() {
     { name: 'Cloud Computing', percentage: 75 }
   ];
 
-  const cardBase = "bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300";
+  const cardBase = "glass rounded-2xl hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300";
 
   return (
-    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-[#0a0a1a] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="about" className="py-16 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 dot-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -108,7 +108,7 @@ export default function About() {
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-cyan-400 flex-shrink-0" />
               <div>
-                <h4 className="text-white font-semibold text-sm sm:text-base">Baridhara J Block, Dhaka, Bangladesh</h4>
+                <h4 className="text-white font-semibold text-sm sm:text-base">Shewrapara, Dhaka, Bangladesh</h4>
                 <p className="text-slate-400 text-xs sm:text-sm">Available for remote work worldwide</p>
               </div>
             </div>
@@ -125,8 +125,8 @@ export default function About() {
             <div className="flex items-center gap-3">
               <Award className="w-5 h-5 text-amber-400 flex-shrink-0" />
               <div>
-                <h4 className="text-white font-semibold text-sm sm:text-base">Lead Developer</h4>
-                <p className="text-slate-400 text-xs sm:text-sm">Leading development at Better Emart</p>
+                <h4 className="text-white font-semibold text-sm sm:text-base">Software Developer</h4>
+                <p className="text-slate-400 text-xs sm:text-sm">Building scalable products at Riseup Labs</p>
               </div>
             </div>
           </motion.div>

@@ -1,14 +1,48 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, MapPin, Calendar, Award, Globe } from 'lucide-react';
 
+const HIGHLIGHT_PHRASE = 'Neoscoder (Akij Venture Group)';
+
+function generateStars(count: number) {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    x: Math.random() * 100,
+    y: Math.random() * 100,
+    size: Math.random() * 2 + 1,
+    duration: Math.random() * 4 + 3,
+    delay: Math.random() * 5,
+    drift: Math.random() * 40 - 20,
+  }));
+}
+
 export default function Experience() {
+  const stars = useMemo(() => generateStars(600), []);
+
   const experiences = [
+    {
+      company: 'Riseup Labs',
+      website: 'https://riseuplabs.com/',
+      location: 'Dhaka, Bangladesh',
+      role: 'Software Developer',
+      period: 'Jan 04, 2026 - Present',
+      description: 'Building scalable SaaS and backend systems with a focus on billing, performance, and reliability.',
+      achievements: [
+        'Integrated Stripe with dynamic subscriptions and built a full-stack admin panel for billing and user management.',
+        'Optimized AI prompts for an AI SaaS product, improving accuracy and response efficiency.',
+        'Joined Neoscoder (Akij Venture Group) as an augmented resource, contributing to RTM backend systems.',
+        'Optimized trade promotions for 12 lakh+ outlets using efficient data routing, reducing processing time.',
+        'Debugged microservices and resolved production issues to ensure system stability.',
+        'Performed root cause analysis (RCA) to improve reliability and reduce downtime.'
+      ],
+      technologies: ['Stripe', 'Next.js', 'Node.js', 'TypeScript', 'Microservices', 'PostgreSQL', 'REST APIs']
+    },
     {
       company: 'Better E Mart',
       website: 'https://betteremart.com/',
       location: 'Chittagong, Bangladesh',
       role: 'Lead Developer',
-      period: 'November 2024 – Present',
+      period: 'November 2024 – Oct 31, 2025',
       description: 'Leading e-commerce platform development with integrated dashboard and mobile solutions.',
       achievements: [
         'Led the development of an e-commerce website with an integrated dashboard, overseeing both the technical aspects and team coordination.',
@@ -61,11 +95,36 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-16 sm:py-20 lg:py-24 bg-[#0a0a1a] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="experience" className="py-16 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
+        {/* Moving stars */}
+        {stars.map((star) => (
+          <motion.div
+            key={star.id}
+            className="absolute rounded-full bg-white"
+            style={{
+              left: `${star.x}%`,
+              top: `${star.y}%`,
+              width: star.size,
+              height: star.size,
+            }}
+            animate={{
+              y: [0, -60, 0],
+              x: [0, star.drift, 0],
+              opacity: [0, 0.8, 0],
+              scale: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: star.duration,
+              delay: star.delay,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+        ))}
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -118,13 +177,13 @@ export default function Experience() {
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-6">
-                    <div className="w-[15px] h-[15px] rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0a0a1a]" />
+                    <div className="w-[15px] h-[15px] rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0a3355]" />
                   </div>
 
                   {/* Card */}
                   <div className={`lg:w-[calc(50%-2.5rem)] ${isLeft ? 'lg:mr-auto' : 'lg:ml-auto'}`}>
                     <motion.div
-                      className="bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] p-5 sm:p-6 lg:p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
+                      className="glass rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
                       whileHover={{ y: -4 }}
                     >
                       {/* Header */}
@@ -154,7 +213,7 @@ export default function Experience() {
                         <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" />{exp.period}</span>
                       </div>
 
-                      <p className="text-slate-400 mb-4 italic text-sm">&quot;{exp.description}&quot;</p>
+                      <p className="text-white/80 mb-4 italic text-sm">&quot;{exp.description}&quot;</p>
 
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-1.5 mb-4">
@@ -173,7 +232,17 @@ export default function Experience() {
                         {exp.achievements.map((achievement, i) => (
                           <div key={i} className="flex items-start gap-2">
                             <div className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
-                            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">{achievement}</p>
+                            <p className="text-xs sm:text-sm text-white/90 leading-relaxed">
+                              {achievement.includes(HIGHLIGHT_PHRASE)
+                                ? (
+                                    <>
+                                      {achievement.split(HIGHLIGHT_PHRASE)[0]}
+                                      <strong><em>{HIGHLIGHT_PHRASE}</em></strong>
+                                      {achievement.split(HIGHLIGHT_PHRASE)[1]}
+                                    </>
+                                  )
+                                : achievement}
+                            </p>
                           </div>
                         ))}
                       </div>

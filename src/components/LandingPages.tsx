@@ -5,6 +5,21 @@ import Image from 'next/image';
 export default function LandingPages() {
   const landingPages = [
     {
+      name: 'Jakaria Finance',
+      image: '/images/Jakaria finacne.png',
+      url: 'https://www.jakaria.finance/'
+    },
+    {
+      name: 'Instant Funding',
+      image: '/images/instantfunding.png',
+      url: 'https://www.instantfunding.uk/'
+    },
+    {
+      name: 'Kryzotech Solutions',
+      image: '/images/soulton.png',
+      url: 'https://solutions.kryzotechbd.com/'
+    },
+    {
       name: 'BDJHelper',
       image: '/images/bdjhelper.png',
       url: 'https://bdjhelper.netlify.app/'
@@ -27,7 +42,7 @@ export default function LandingPages() {
   ];
 
   return (
-    <section id="landing-pages" className="py-16 sm:py-20 lg:py-24 bg-[#0a0a1a] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="landing-pages" className="py-16 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -62,7 +77,7 @@ export default function LandingPages() {
               href={page.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] overflow-hidden hover:border-white/[0.15] transition-all duration-500"
+              className="group relative glass rounded-2xl overflow-hidden hover:border-white/[0.15] transition-all duration-500"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 + index * 0.15 }}
@@ -77,7 +92,7 @@ export default function LandingPages() {
                   className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
                 {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a1a] via-[#0a0a1a]/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a3355] via-[#0a3355]/30 to-transparent" />
 
                 {/* Hover overlay with icon */}
                 <div className="absolute inset-0 bg-cyan-500/[0.06] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">

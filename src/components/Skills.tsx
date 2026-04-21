@@ -74,7 +74,7 @@ export default function Skills() {
   ];
 
   return (
-    <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-[#030014] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="skills" className="py-16 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -108,7 +108,7 @@ export default function Skills() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              className="relative bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] overflow-hidden hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 group"
+              className="relative glass rounded-2xl overflow-hidden hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 group"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 + index * 0.15 }}
@@ -167,8 +167,8 @@ export default function Skills() {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#030014] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#030014] to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#082c47] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#082c47] to-transparent z-10 pointer-events-none" />
 
           <div className="flex gap-16 animate-marquee w-max">
             {[...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems].map((tech, i) => (

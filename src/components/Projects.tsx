@@ -59,7 +59,7 @@ export default function Projects() {
   };
 
   const FeaturedSkeleton = () => (
-    <div className="bg-white/[0.03] rounded-2xl border border-white/[0.06] overflow-hidden lg:grid lg:grid-cols-5">
+    <div className="glass rounded-2xl overflow-hidden lg:grid lg:grid-cols-5">
       <div className="lg:col-span-3 h-64 lg:h-80 bg-white/[0.04] animate-pulse" />
       <div className="lg:col-span-2 p-8">
         <div className="h-4 w-24 bg-white/[0.06] rounded animate-pulse mb-4" />
@@ -79,7 +79,7 @@ export default function Projects() {
   );
 
   const GridSkeleton = () => (
-    <div className="bg-white/[0.03] rounded-2xl border border-white/[0.06] overflow-hidden">
+    <div className="glass rounded-2xl overflow-hidden">
       <div className="h-48 bg-white/[0.04] animate-pulse" />
       <div className="p-6">
         <div className="h-6 bg-white/[0.06] rounded animate-pulse mb-3" />
@@ -98,7 +98,7 @@ export default function Projects() {
   const rest = projects.slice(1);
 
   return (
-    <section id="projects" className="py-16 sm:py-20 lg:py-24 bg-[#030014] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="projects" className="py-16 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 dot-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -141,7 +141,7 @@ export default function Projects() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="group bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-500 lg:grid lg:grid-cols-5">
+              <div className="group glass rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-500 lg:grid lg:grid-cols-5">
                 {/* Image */}
                 <div className="lg:col-span-3 relative h-64 sm:h-72 lg:h-auto overflow-hidden">
                   <Image
@@ -150,8 +150,8 @@ export default function Projects() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#030014]/80 hidden lg:block" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#030014]/60 to-transparent lg:hidden" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#082c47]/80 hidden lg:block" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#082c47]/60 to-transparent lg:hidden" />
                 </div>
 
                 {/* Content */}
@@ -184,7 +184,7 @@ export default function Projects() {
               {rest.map((project, index) => (
                 <motion.div
                   key={project.title}
-                  className="group bg-white/[0.03] backdrop-blur-sm rounded-2xl border border-white/[0.06] overflow-hidden hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(34,211,238,0.05)] transition-all duration-500"
+                  className="group glass rounded-2xl overflow-hidden hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(34,211,238,0.05)] transition-all duration-500"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
@@ -198,7 +198,7 @@ export default function Projects() {
                       height={300}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030014]/70 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#082c47]/70 via-transparent to-transparent" />
                   </div>
 
                   <div className="p-5 sm:p-6">
