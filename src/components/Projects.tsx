@@ -94,9 +94,6 @@ export default function Projects() {
     </div>
   );
 
-  const featured = projects[0];
-  const rest = projects.slice(1);
-
   return (
     <section id="projects" className="py-16 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 dot-pattern pointer-events-none" />
@@ -113,7 +110,7 @@ export default function Projects() {
           <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Featured <span className="gradient-text">Projects</span>
+            <span className="gradient-text">Projects</span>
           </motion.h2>
           <motion.div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
             initial={{ width: 0 }} whileInView={{ width: 96 }} transition={{ duration: 0.8, delay: 0.2 }}
@@ -126,41 +123,45 @@ export default function Projects() {
         </motion.div>
 
         {isLoading ? (
-          <>
+          <div className="space-y-8">
             <FeaturedSkeleton />
-            <div className="grid sm:grid-cols-2 gap-6 lg:gap-8 mt-8 lg:mt-10">
-              <GridSkeleton /><GridSkeleton /><GridSkeleton /><GridSkeleton />
-            </div>
-          </>
+            <FeaturedSkeleton />
+            <FeaturedSkeleton />
+            <FeaturedSkeleton />
+            <FeaturedSkeleton />
+          </div>
         ) : (
-          <>
-            {/* Featured Project - Spotlight */}
-            <motion.div
-              className="mb-8 lg:mb-10"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <div className="group glass rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-500 lg:grid lg:grid-cols-5">
+          <div className="space-y-8 lg:space-y-10">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                className="group glass rounded-2xl overflow-hidden hover:bg-white/[0.05] hover:border-white/[0.12] transition-all duration-500 lg:grid lg:grid-cols-5"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
+              >
                 {/* Image */}
-                <div className="lg:col-span-3 relative h-64 sm:h-72 lg:h-auto overflow-hidden">
+                <div className={`lg:col-span-3 relative h-64 sm:h-72 lg:h-auto min-h-[280px] overflow-hidden ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
                   <Image
-                    src={featured.image}
-                    alt={featured.title}
+                    src={project.image}
+                    alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#082c47]/80 hidden lg:block" />
+                  <div className={`absolute inset-0 hidden lg:block ${
+                    index % 2 !== 0
+                      ? 'bg-gradient-to-l from-transparent via-transparent to-[#082c47]/80'
+                      : 'bg-gradient-to-r from-transparent via-transparent to-[#082c47]/80'
+                  }`} />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#082c47]/60 to-transparent lg:hidden" />
                 </div>
 
                 {/* Content */}
-                <div className="lg:col-span-2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center">
-                  <span className="text-cyan-400 text-xs font-semibold tracking-widest uppercase mb-3">Featured Project</span>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">{featured.title}</h3>
-                  <p className="text-slate-400 mb-6 leading-relaxed text-sm sm:text-base">{featured.description}</p>
+                <div className={`lg:col-span-2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">{project.title}</h3>
+                  <p className="text-slate-400 mb-6 leading-relaxed text-sm sm:text-base">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
-                    {featured.technologies.map((tech) => (
+                    {project.technologies.map((tech) => (
                       <span key={tech} className="bg-white/[0.06] text-cyan-300/80 px-3 py-1 rounded-full text-xs font-medium border border-white/[0.06]">{tech}</span>
                     ))}
                   </div>
@@ -168,66 +169,17 @@ export default function Projects() {
                     className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-6 py-3 rounded-xl font-medium shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 w-fit"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    onClick={() => handleNavigate(featured.liveUrl, featured.title)}
-                    disabled={loading === featured.title}
+                    onClick={() => handleNavigate(project.liveUrl, project.title)}
+                    disabled={loading === project.title}
                   >
-                    {loading === featured.title ? <Loader2 className="w-4 h-4 animate-spin" /> : (
+                    {loading === project.title ? <Loader2 className="w-4 h-4 animate-spin" /> : (
                       <>View Case Study <ArrowRight className="w-4 h-4" /></>
                     )}
                   </motion.button>
                 </div>
-              </div>
-            </motion.div>
-
-            {/* Grid Projects */}
-            <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
-              {rest.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  className="group glass rounded-2xl overflow-hidden hover:bg-white/[0.06] hover:border-white/[0.15] hover:shadow-[0_0_40px_rgba(34,211,238,0.05)] transition-all duration-500"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                  whileHover={{ y: -6 }}
-                >
-                  <div className="h-48 sm:h-52 relative overflow-hidden">
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width={400}
-                      height={300}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#082c47]/70 via-transparent to-transparent" />
-                  </div>
-
-                  <div className="p-5 sm:p-6">
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2">{project.title}</h3>
-                    <p className="text-slate-400 mb-4 text-sm leading-relaxed line-clamp-2">{project.description}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-5">
-                      {project.technologies.slice(0, 4).map((tech) => (
-                        <span key={tech} className="bg-white/[0.06] text-cyan-300/70 px-2.5 py-0.5 rounded-md text-xs font-medium border border-white/[0.04]">{tech}</span>
-                      ))}
-                      {project.technologies.length > 4 && (
-                        <span className="text-slate-500 text-xs px-1">+{project.technologies.length - 4}</span>
-                      )}
-                    </div>
-                    <motion.button
-                      className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-5 py-2.5 rounded-xl font-medium text-sm shadow-[0_0_15px_rgba(34,211,238,0.1)] hover:shadow-[0_0_25px_rgba(34,211,238,0.25)] transition-all duration-300"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleNavigate(project.liveUrl, project.title)}
-                      disabled={loading === project.title}
-                    >
-                      {loading === project.title ? <Loader2 className="w-4 h-4 animate-spin" /> : (
-                        <>View Case Study <ExternalLink className="w-3.5 h-3.5" /></>
-                      )}
-                    </motion.button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </>
+              </motion.div>
+            ))}
+          </div>
         )}
       </div>
     </section>
