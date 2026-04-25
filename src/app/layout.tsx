@@ -17,7 +17,8 @@ const PROFILE_IMAGE_URL = "/images/Junayed-v2.jpg";
 
 export const metadata: Metadata = {
   title: "MD Rashedul Islam Junayed",
-  description: "Professional portfolio showcasing software development projects, skills, and experience",
+  description:
+    "Professional portfolio showcasing software development projects, skills, and experience",
   icons: {
     icon: PROFILE_IMAGE_URL,
     apple: PROFILE_IMAGE_URL,

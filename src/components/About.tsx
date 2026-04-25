@@ -45,12 +45,12 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-16 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20"
+      className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="absolute inset-0 dot-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
           className="text-center mb-12 lg:mb-16"
@@ -60,7 +60,7 @@ export default function About() {
           viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
@@ -78,22 +78,22 @@ export default function About() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {/* Who I Am - large card */}
           <motion.div
-            className={`col-span-2 lg:row-span-3 ${cardBase} p-6 sm:p-8`}
+            className={`col-span-1 sm:col-span-2 lg:row-span-3 ${cardBase} p-5 sm:p-8`}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true, amount: 0.15 }}
           >
-            <div className="flex items-center gap-4 mb-6">
+            <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.2)]">
                 <User className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-white">Who I Am</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">Who I Am</h3>
             </div>
-            <div className="space-y-4 text-slate-300 leading-relaxed text-sm sm:text-base">
+            <div className="space-y-3 sm:space-y-4 text-slate-300 leading-relaxed text-[13px] sm:text-base">
               <p className="border-l-2 border-cyan-500/40 pl-4">
                 I&apos;m a passionate software developer with expertise in
                 full-stack development, IoT systems, and AI-driven analytics. I
@@ -129,10 +129,10 @@ export default function About() {
               <stat.icon
                 className={`w-7 h-7 ${stat.color} mb-3 group-hover:scale-110 transition-transform`}
               />
-              <span className="text-2xl sm:text-3xl font-bold gradient-text">
+              <span className="text-xl sm:text-3xl font-bold gradient-text">
                 {stat.value}
               </span>
-              <span className="text-xs sm:text-sm text-slate-400 mt-1">
+              <span className="text-[13px] sm:text-sm text-slate-400 mt-1">
                 {stat.label}
               </span>
             </motion.div>
@@ -140,7 +140,7 @@ export default function About() {
 
           {/* Location */}
           <motion.div
-            className={`col-span-2 ${cardBase} p-5 sm:p-6 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.06]`}
+            className={`col-span-1 sm:col-span-2 ${cardBase} p-5 sm:p-6 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.06]`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -150,10 +150,10 @@ export default function About() {
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-cyan-400 flex-shrink-0" />
               <div>
-                <h4 className="text-white font-semibold text-sm sm:text-base">
+                <h4 className="text-white font-semibold text-[14px] sm:text-base">
                   Shewrapara, Dhaka, Bangladesh
                 </h4>
-                <p className="text-slate-400 text-xs sm:text-sm">
+                <p className="text-slate-400 text-[13px] sm:text-sm">
                   Available for remote work worldwide
                 </p>
               </div>
@@ -172,10 +172,10 @@ export default function About() {
             <div className="flex items-center gap-3">
               <Award className="w-5 h-5 text-amber-400 flex-shrink-0" />
               <div>
-                <h4 className="text-white font-semibold text-sm sm:text-base">
+                <h4 className="text-white font-semibold text-[14px] sm:text-base">
                   Software Developer
                 </h4>
-                <p className="text-slate-400 text-xs sm:text-sm">
+                <p className="text-slate-400 text-[13px] sm:text-sm">
                   Building scalable products at Riseup Labs
                 </p>
               </div>
@@ -202,7 +202,7 @@ export default function About() {
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-2">
                     <div className={`w-1.5 h-1.5 ${item.dot} rounded-full`} />
-                    <span className="text-slate-300 text-xs sm:text-sm">
+                    <span className="text-slate-300 text-[13px] sm:text-sm">
                       {item.label}
                     </span>
                   </div>

@@ -52,36 +52,55 @@ export default function Home() {
   }, [isLoading]);
 
   useEffect(() => {
+    if (isLoading) return;
+
     const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
-    const observedElements = sections
-      .map((id) => document.getElementById(id))
-      .filter((element): element is HTMLElement => Boolean(element));
+    let ticking = false;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
-        if (visibleEntries.length === 0) return;
+    const updateActiveSection = () => {
+      const sectionElements = sections
+        .map((id) => ({ id, element: document.getElementById(id) }))
+        .filter((item): item is { id: string; element: HTMLElement } => Boolean(item.element));
 
-        const mostVisible = visibleEntries.reduce((prev, current) => (
-          current.intersectionRatio > prev.intersectionRatio ? current : prev
-        ));
-        const nextSection = mostVisible.target.id;
+      if (sectionElements.length === 0) return;
 
-        if (nextSection && nextSection !== activeSectionRef.current) {
-          setActiveSection(nextSection);
+      const scrollMarker = window.scrollY + window.innerHeight * 0.33;
+      let nextSection = sectionElements[0].id;
+
+      sectionElements.forEach(({ id, element }) => {
+        if (element.offsetTop - 100 <= scrollMarker) {
+          nextSection = id;
         }
-      },
-      {
-        root: null,
-        threshold: [0.25, 0.5, 0.75],
-        rootMargin: '-30% 0px -45% 0px',
+      });
+
+      const atPageBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atPageBottom) {
+        nextSection = sectionElements[sectionElements.length - 1].id;
       }
-    );
 
-    observedElements.forEach((section) => observer.observe(section));
+      if (nextSection !== activeSectionRef.current) {
+        setActiveSection(nextSection);
+      }
+    };
 
-    return () => observer.disconnect();
-  }, []);
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActiveSection();
+        ticking = false;
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isLoading]);
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);

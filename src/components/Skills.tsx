@@ -71,7 +71,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-16 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20"
+      className="py-14 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
@@ -104,7 +104,7 @@ export default function Skills() {
             viewport={{ once: true, amount: 0.2 }}
           />
           <motion.p
-            className="text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
+            className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -115,7 +115,7 @@ export default function Skills() {
         </motion.div>
 
         {/* Skill Category Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
@@ -130,8 +130,8 @@ export default function Skills() {
                 className={`h-1.5 bg-gradient-to-r ${category.accentColor}`}
               />
 
-              <div className="p-6 sm:p-7 lg:p-8">
-                <div className="mb-6 flex items-start gap-3">
+              <div className="p-5 sm:p-7 lg:p-8">
+                <div className="mb-5 sm:mb-6 flex items-start gap-3">
                   <div className="h-11 w-11 shrink-0 rounded-xl border border-white/[0.14] bg-white/[0.06] flex items-center justify-center">
                     <Image
                       src={category.badgeIcon}
@@ -142,10 +142,10 @@ export default function Skills() {
                     />
                   </div>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                    <h3 className="text-base sm:text-xl font-bold text-white tracking-tight">
                       {category.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-400 mt-1 leading-relaxed">
+                    <p className="text-[13px] sm:text-sm text-slate-400 mt-1 leading-relaxed">
                       {category.description}
                     </p>
                   </div>
@@ -173,7 +173,7 @@ export default function Skills() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-sm font-medium text-slate-200 leading-tight tracking-tight">
+                      <span className="text-[13px] sm:text-sm font-medium text-slate-200 leading-tight tracking-tight">
                         {skill.name}
                       </span>
                     </motion.div>
