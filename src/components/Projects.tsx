@@ -95,7 +95,7 @@ export default function Projects() {
   );
 
   return (
-    <section id="projects" className="py-16 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="projects" className="py-14 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 dot-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -106,17 +106,21 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <span className="gradient-text">Projects</span>
           </motion.h2>
           <motion.div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
             initial={{ width: 0 }} whileInView={{ width: 96 }} transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           />
-          <motion.p className="text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
+          <motion.p className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Showcasing innovative solutions across e-commerce, web development, and modern applications
           </motion.p>
@@ -139,6 +143,7 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
+                viewport={{ once: true, amount: 0.15 }}
               >
                 {/* Image */}
                 <div className={`lg:col-span-3 relative h-64 sm:h-72 lg:h-auto min-h-[280px] overflow-hidden ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
@@ -157,16 +162,16 @@ export default function Projects() {
                 </div>
 
                 {/* Content */}
-                <div className={`lg:col-span-2 p-6 sm:p-8 lg:p-10 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4">{project.title}</h3>
-                  <p className="text-slate-400 mb-6 leading-relaxed text-sm sm:text-base">{project.description}</p>
+                <div className={`lg:col-span-2 p-5 sm:p-8 lg:p-10 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <h3 className="text-xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{project.title}</h3>
+                  <p className="text-slate-400 mb-5 sm:mb-6 leading-relaxed text-[13px] sm:text-base">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.technologies.map((tech) => (
                       <span key={tech} className="bg-white/[0.06] text-cyan-300/80 px-3 py-1 rounded-full text-xs font-medium border border-white/[0.06]">{tech}</span>
                     ))}
                   </div>
                   <motion.button
-                    className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-6 py-3 rounded-xl font-medium shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 w-fit"
+                    className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-5 sm:px-6 py-3 rounded-xl text-[13px] sm:text-sm font-medium shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 w-fit"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={() => handleNavigate(project.liveUrl, project.title)}

@@ -42,7 +42,7 @@ export default function LandingPages() {
   ];
 
   return (
-    <section id="landing-pages" className="py-16 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="landing-pages" className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
 
@@ -53,24 +53,28 @@ export default function LandingPages() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Client <span className="gradient-text">Landing Pages</span>
           </motion.h2>
           <motion.div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
             initial={{ width: 0 }} whileInView={{ width: 96 }} transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           />
-          <motion.p className="text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
+          <motion.p className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Professional landing pages delivered to clients worldwide
           </motion.p>
         </motion.div>
 
         {/* 2-column grid with large images */}
-        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {landingPages.map((page, index) => (
             <motion.a
               key={page.name}
@@ -82,6 +86,7 @@ export default function LandingPages() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 + index * 0.15 }}
               whileHover={{ y: -6 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               {/* Large image area */}
               <div className="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
@@ -102,11 +107,11 @@ export default function LandingPages() {
                 </div>
 
                 {/* Title overlay at bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300 mb-1">
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                  <h3 className="text-lg sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors duration-300 mb-1">
                     {page.name}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 truncate">{page.url}</p>
+                  <p className="text-[13px] sm:text-sm text-slate-400 truncate">{page.url}</p>
                 </div>
               </div>
             </motion.a>

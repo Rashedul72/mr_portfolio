@@ -17,8 +17,13 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const nextScrolled = window.scrollY > 50;
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -46,14 +51,14 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
       <motion.nav
         className={`pointer-events-auto mt-4 mx-4 w-full max-w-[76rem] rounded-2xl transition-all duration-500 ${
           scrolled
-            ? 'bg-white/[0.04] backdrop-blur-2xl border border-white/[0.08] shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]'
-            : 'bg-white/[0.02] backdrop-blur-xl border border-white/[0.05] shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
+            ? 'bg-white/[0.05] backdrop-blur-md sm:backdrop-blur-2xl border border-white/[0.08] shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]'
+            : 'bg-white/[0.03] backdrop-blur-sm sm:backdrop-blur-xl border border-white/[0.05] shadow-[0_4px_14px_rgba(0,0,0,0.25)] sm:shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
         }`}
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <div className="px-4 sm:px-6">
+        <div className="px-3 sm:px-6">
           <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Logo */}
             <motion.div
@@ -64,7 +69,7 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
             >
               <button
                 onClick={() => handleNavClick('home')}
-                className="text-xl sm:text-2xl font-bold shimmer-text hover:opacity-80 transition-opacity"
+                className="text-lg sm:text-2xl font-bold shimmer-text hover:opacity-80 transition-opacity"
               >
                 MR
               </button>
@@ -164,7 +169,7 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
                       transition={{ duration: 0.25, delay: index * 0.04 }}
                     >
                       <item.icon className={`w-4 h-4 ${isActive ? 'text-cyan-400' : ''}`} />
-                      <span className="text-sm font-medium">{item.name}</span>
+                      <span className="text-[13px] sm:text-sm font-medium">{item.name}</span>
                       {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />}
                     </motion.button>
                   );

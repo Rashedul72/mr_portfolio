@@ -29,9 +29,9 @@ const PROFILE_IMAGE_URL = '/images/Junayed-v2.jpg';
 
 export default function Hero({ scrollToSection }: HeroProps) {
   return (
-    <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-[#082c47] scroll-mt-16 sm:scroll-mt-20 pt-20 sm:pt-24 pb-12">
+    <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-[#082c47] scroll-mt-16 sm:scroll-mt-20 pt-20 sm:pt-24 pb-10 sm:pb-12">
       {/* Ambient orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
         <motion.div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-cyan-500/[0.06] rounded-full blur-[150px]"
           animate={{ scale: [1, 1.2, 1], opacity: [0.06, 0.1, 0.06] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
@@ -45,7 +45,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
       <div className="absolute inset-0 dot-pattern pointer-events-none opacity-50" />
 
       {/* Floating background icons — pure CSS, nested per-axis */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         {floatingIcons.map((item, i) => (
           <div key={i} className="absolute bob-y" style={{ left: `${50 + item.px}%`, top: `${30 + item.py}%`, '--y': item.y, '--dy': item.dy, animationDelay: item.dd } as React.CSSProperties}>
             <div className="bob-x" style={{ '--x': item.x, '--dx': item.dx, animationDelay: item.dd } as React.CSSProperties}>
@@ -58,8 +58,8 @@ export default function Hero({ scrollToSection }: HeroProps) {
       </div>
 
       {/* Main content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10 w-full">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
 
           {/* Right: Image with decorations */}
           <motion.div
@@ -85,14 +85,14 @@ export default function Hero({ scrollToSection }: HeroProps) {
 
               {/* Gradient glow behind image */}
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-rose-500/20 rounded-3xl blur-2xl"
+                className="absolute -inset-4 bg-gradient-to-r from-cyan-500/20 via-violet-500/20 to-rose-500/20 rounded-3xl blur-2xl hidden sm:block"
                 initial={{ opacity: 0.4 }}
                 animate={{ opacity: 0.65 }}
                 transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
               />
 
               {/* Profile image */}
-              <div className="relative w-[20rem] h-[15rem] sm:w-[24rem] sm:h-[18rem] lg:w-[28rem] lg:h-[21rem] xl:w-[32rem] xl:h-[24rem]">
+              <div className="relative w-full max-w-[20rem] aspect-[4/3] sm:aspect-auto sm:w-[24rem] sm:h-[18rem] lg:w-[28rem] lg:h-[21rem] xl:w-[32rem] xl:h-[24rem]">
                 <div className="absolute -inset-[2px] bg-gradient-to-r from-cyan-400 via-violet-500 to-rose-500 rounded-3xl opacity-60" />
                 <Image
                   src={PROFILE_IMAGE_URL}
@@ -136,7 +136,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             </motion.h1>
 
             <motion.p
-              className="text-lg sm:text-xl lg:text-2xl text-slate-300 mb-4 sm:mb-6 font-medium"
+              className="text-[14px] sm:text-lg lg:text-2xl text-slate-300 mb-4 sm:mb-6 font-medium"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
@@ -147,7 +147,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             </motion.p>
 
             <motion.p
-              className="text-sm sm:text-base lg:text-lg text-slate-400 max-w-xl mb-8 sm:mb-10 leading-relaxed mx-auto lg:mx-0"
+              className="text-[13px] sm:text-[15px] lg:text-lg text-slate-400 max-w-xl mb-7 sm:mb-10 leading-relaxed mx-auto lg:mx-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
@@ -157,7 +157,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-8 sm:mb-10"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-7 sm:mb-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
@@ -184,7 +184,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
             </motion.div>
 
             <motion.div
-              className="flex gap-6 justify-center lg:justify-start"
+              className="flex gap-4 sm:gap-6 justify-center lg:justify-start flex-wrap"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 1.2 }}

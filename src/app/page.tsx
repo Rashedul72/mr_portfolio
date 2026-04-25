@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Navbar,
   Hero,
@@ -8,7 +8,6 @@ import {
   Skills,
   Experience,
   Projects,
-  NormalProjects,
   LandingPages,
   Contact,
   Footer,
@@ -17,11 +16,13 @@ import {
 import { Code, Cpu, Database, Globe, GitBranch, Zap, Smartphone, Layers } from 'lucide-react';
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isLoading, setIsLoading] = useState(true);
-  const [visibleSections, setVisibleSections] = useState(new Set(['home']));
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const activeSectionRef = useRef(activeSection);
+
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,49 +52,60 @@ export default function Home() {
   }, [isLoading]);
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleSections(prev => new Set([...prev, entry.target.id]));
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => {
-      if (observerRef.current) observerRef.current.observe(section);
-    });
-    return () => { if (observerRef.current) observerRef.current.disconnect(); };
-  }, []);
+    if (isLoading) return;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
+    const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
+    let ticking = false;
+
+    const updateActiveSection = () => {
+      const sectionElements = sections
+        .map((id) => ({ id, element: document.getElementById(id) }))
+        .filter((item): item is { id: string; element: HTMLElement } => Boolean(item.element));
+
+      if (sectionElements.length === 0) return;
+
+      const scrollMarker = window.scrollY + window.innerHeight * 0.33;
+      let nextSection = sectionElements[0].id;
+
+      sectionElements.forEach(({ id, element }) => {
+        if (element.offsetTop - 100 <= scrollMarker) {
+          nextSection = id;
         }
+      });
+
+      const atPageBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4;
+      if (atPageBottom) {
+        nextSection = sectionElements[sectionElements.length - 1].id;
+      }
+
+      if (nextSection !== activeSectionRef.current) {
+        setActiveSection(nextSection);
       }
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
-  const scrollToSection = (sectionId: string) => {
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        updateActiveSection();
+        ticking = false;
+      });
+    };
+
+    updateActiveSection();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [isLoading]);
+
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false);
-  };
+  }, []);
 
   if (isLoading) {
     return (
