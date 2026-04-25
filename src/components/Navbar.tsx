@@ -17,8 +17,13 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const nextScrolled = window.scrollY > 50;
+      setScrolled((prev) => (prev === nextScrolled ? prev : nextScrolled));
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

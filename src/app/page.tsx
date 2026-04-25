@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Navbar,
   Hero,
@@ -8,7 +8,6 @@ import {
   Skills,
   Experience,
   Projects,
-  NormalProjects,
   LandingPages,
   Contact,
   Footer,
@@ -17,11 +16,13 @@ import {
 import { Code, Cpu, Database, Globe, GitBranch, Zap, Smartphone, Layers } from 'lucide-react';
 
 export default function Home() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isLoading, setIsLoading] = useState(true);
-  const [visibleSections, setVisibleSections] = useState(new Set(['home']));
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const activeSectionRef = useRef(activeSection);
+
+  useEffect(() => {
+    activeSectionRef.current = activeSection;
+  }, [activeSection]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,49 +52,41 @@ export default function Home() {
   }, [isLoading]);
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
+    const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
+    const observedElements = sections
+      .map((id) => document.getElementById(id))
+      .filter((element): element is HTMLElement => Boolean(element));
+
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleSections(prev => new Set([...prev, entry.target.id]));
-            entry.target.classList.add('animate-fade-in-up');
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-    );
-    const sections = document.querySelectorAll('section[id]');
-    sections.forEach((section) => {
-      if (observerRef.current) observerRef.current.observe(section);
-    });
-    return () => { if (observerRef.current) observerRef.current.disconnect(); };
-  }, []);
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+        if (visibleEntries.length === 0) return;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
-      const scrollPosition = window.scrollY + 100;
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
+        const mostVisible = visibleEntries.reduce((prev, current) => (
+          current.intersectionRatio > prev.intersectionRatio ? current : prev
+        ));
+        const nextSection = mostVisible.target.id;
+
+        if (nextSection && nextSection !== activeSectionRef.current) {
+          setActiveSection(nextSection);
         }
+      },
+      {
+        root: null,
+        threshold: [0.25, 0.5, 0.75],
+        rootMargin: '-30% 0px -45% 0px',
       }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    );
+
+    observedElements.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
+  const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
-    setIsMenuOpen(false);
-  };
+  }, []);
 
   if (isLoading) {
     return (

@@ -85,12 +85,14 @@ export default function Skills() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Skills & <span className="gradient-text">Technologies</span>
           </motion.h2>
@@ -99,12 +101,14 @@ export default function Skills() {
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           />
           <motion.p
             className="text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             A comprehensive toolkit for building modern, scalable applications
           </motion.p>
@@ -120,6 +124,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 + index * 0.15 }}
               whileHover={{ y: -6 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               <div
                 className={`h-1.5 bg-gradient-to-r ${category.accentColor}`}
@@ -157,6 +162,7 @@ export default function Skills() {
                         duration: 0.4,
                         delay: index * 0.1 + skillIndex * 0.06,
                       }}
+                      viewport={{ once: true, amount: 0.15 }}
                     >
                       <div className="relative h-9 w-9 shrink-0 rounded-lg bg-white/10 border border-white/[0.15] flex items-center justify-center overflow-hidden">
                         <Image

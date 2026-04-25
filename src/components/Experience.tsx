@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, MapPin, Calendar, Award, Globe } from 'lucide-react';
 
 const HIGHLIGHT_PHRASE = 'Neoscoder (Akij Venture Group)';
+const STAR_COUNT = 120;
 
 function generateStars(count: number) {
   return Array.from({ length: count }, (_, i) => ({
@@ -17,7 +18,7 @@ function generateStars(count: number) {
 }
 
 export default function Experience() {
-  const stars = useMemo(() => generateStars(600), []);
+  const stars = useMemo(() => generateStars(STAR_COUNT), []);
 
   const experiences = [
     {
@@ -102,26 +103,18 @@ export default function Experience() {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
         {/* Moving stars */}
         {stars.map((star) => (
-          <motion.div
+          <div
             key={star.id}
-            className="absolute rounded-full bg-white"
+            className="absolute rounded-full bg-white star-float"
             style={{
               left: `${star.x}%`,
               top: `${star.y}%`,
               width: star.size,
               height: star.size,
-            }}
-            animate={{
-              y: [0, -60, 0],
-              x: [0, star.drift, 0],
-              opacity: [0, 0.8, 0],
-              scale: [0.5, 1, 0.5],
-            }}
-            transition={{
-              duration: star.duration,
-              delay: star.delay,
-              repeat: Infinity,
-              ease: 'easeInOut',
+              opacity: 0,
+              animationDuration: `${star.duration}s`,
+              animationDelay: `${star.delay}s`,
+              ['--star-drift' as string]: `${star.drift}px`,
             }}
           />
         ))}
@@ -134,12 +127,14 @@ export default function Experience() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Professional <span className="gradient-text">Experience</span>
           </motion.h2>
@@ -148,12 +143,14 @@ export default function Experience() {
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           />
           <motion.p
             className="text-base sm:text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             A journey through diverse roles in software development, IoT solutions, and financial technology
           </motion.p>
@@ -174,6 +171,7 @@ export default function Experience() {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true, amount: 0.15 }}
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-6">

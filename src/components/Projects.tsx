@@ -106,17 +106,21 @@ export default function Projects() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <span className="gradient-text">Projects</span>
           </motion.h2>
           <motion.div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
             initial={{ width: 0 }} whileInView={{ width: 96 }} transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           />
           <motion.p className="text-lg text-slate-400 mt-6 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             Showcasing innovative solutions across e-commerce, web development, and modern applications
           </motion.p>
@@ -139,6 +143,7 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 + index * 0.1 }}
+                viewport={{ once: true, amount: 0.15 }}
               >
                 {/* Image */}
                 <div className={`lg:col-span-3 relative h-64 sm:h-72 lg:h-auto min-h-[280px] overflow-hidden ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>

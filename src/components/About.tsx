@@ -30,12 +30,14 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.2 }}
         >
           <motion.h2
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             About <span className="gradient-text">Me</span>
           </motion.h2>
@@ -44,6 +46,7 @@ export default function About() {
             initial={{ width: 0 }}
             whileInView={{ width: 96 }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true, amount: 0.2 }}
           />
         </motion.div>
 
@@ -56,6 +59,7 @@ export default function About() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.2)]">
@@ -90,6 +94,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               whileHover={{ y: -4, scale: 1.02 }}
+              viewport={{ once: true, amount: 0.15 }}
             >
               <stat.icon className={`w-7 h-7 ${stat.color} mb-3 group-hover:scale-110 transition-transform`} />
               <span className="text-2xl sm:text-3xl font-bold gradient-text">{stat.value}</span>
@@ -104,6 +109,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
             whileHover={{ y: -4 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-cyan-400 flex-shrink-0" />
@@ -121,6 +127,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
             whileHover={{ y: -4 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="flex items-center gap-3">
               <Award className="w-5 h-5 text-amber-400 flex-shrink-0" />
@@ -138,6 +145,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
             whileHover={{ y: -4 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <div className="flex items-start gap-3">
               <Brain className="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5" />
@@ -163,6 +171,7 @@ export default function About() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
+            viewport={{ once: true, amount: 0.15 }}
           >
             <h4 className="text-lg font-semibold text-white mb-5">Core Competencies</h4>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -172,6 +181,7 @@ export default function About() {
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                  viewport={{ once: true, amount: 0.2 }}
                 >
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-slate-300">{skill.name}</span>
@@ -183,6 +193,7 @@ export default function About() {
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.percentage}%` }}
                       transition={{ duration: 1, delay: 1 + index * 0.1 }}
+                      viewport={{ once: true, amount: 0.2 }}
                     />
                   </div>
                 </motion.div>
