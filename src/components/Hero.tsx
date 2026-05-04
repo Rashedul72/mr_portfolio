@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useId } from 'react';
+import { useState, useEffect } from 'react';
 import { Download, Mail, FileText, X, Code, Cpu, Database, Globe, GitBranch, Layers, Zap, Smartphone, ExternalLink, Minus, Plus, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -43,14 +43,6 @@ const portraitTags = [
 /** Portrait asset — `public/images/Junayed-without-bg.png` (1824×2368) */
 const HERO_PORTRAIT_SRC = '/images/Junayed-without-bg.png';
 
-/**
- * Smooth portrait blob — 4 cubic Bézier segments stitched with `S` commands so all
- * tangent vectors are continuous (including across the closing point). Slight
- * asymmetry on the right keeps it organic rather than a perfect oval.
- */
-const HERO_PORTRAIT_CLIP_PATH =
-  'M0.50 0.030 C0.78 0.014, 0.96 0.190, 0.965 0.480 S0.78 0.940, 0.47 0.965 S0.04 0.690, 0.045 0.420 S0.22 0.046, 0.50 0.030 Z';
-
 const RESUME_URL = '/resume/MD_Rashedul_Islam_Junayed.pdf';
 const RESUME_DOWNLOAD_NAME = 'MD_Rashedul_Islam_Junayed.pdf';
 const RESUME_MODAL_SUBTITLE = 'MD Rashedul Islam Junayed - Full Stack Software Developer';
@@ -62,11 +54,6 @@ const RESUME_EMBED_URL = `${RESUME_URL}#navpanes=0&toolbar=0&scrollbar=0`;
 export default function Hero({ scrollToSection }: HeroProps) {
   const [resumeOpen, setResumeOpen] = useState(false);
   const [resumeZoomPct, setResumeZoomPct] = useState(100);
-  const portraitClipId = `hero-portrait-clip-${useId().replace(/:/g, '')}`;
-  const portraitClipStyle: React.CSSProperties = {
-    clipPath: `url(#${portraitClipId})`,
-    WebkitClipPath: `url(#${portraitClipId})`,
-  };
 
   useEffect(() => {
     if (!resumeOpen) return;
@@ -164,22 +151,14 @@ export default function Hero({ scrollToSection }: HeroProps) {
                 </div>
               ))}
 
-              {/* Portrait — smooth SVG blob clip + soft gradient ring */}
-              <div className="relative z-10 mx-auto w-full max-w-[17rem] shrink-0 sm:max-w-[20rem] lg:max-w-[24rem]">
-                <svg width={0} height={0} className="pointer-events-none absolute overflow-visible" aria-hidden>
-                  <defs>
-                    <clipPath id={portraitClipId} clipPathUnits="objectBoundingBox">
-                      <path d={HERO_PORTRAIT_CLIP_PATH} />
-                    </clipPath>
-                  </defs>
-                </svg>
+              {/* Portrait — circle; explicit square w/h so absolute children don’t collapse the box */}
+              <div className="relative z-10 mx-auto h-[min(17rem,85vw)] w-[min(17rem,85vw)] shrink-0 sm:h-[min(20rem,90vw)] sm:w-[min(20rem,90vw)] lg:h-96 lg:w-96">
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-[-6px] z-0 bg-gradient-to-br from-cyan-300/95 via-cyan-400 to-violet-500/95 opacity-[0.92] shadow-[0_0_48px_rgba(34,211,238,0.28),0_0_96px_rgba(139,92,246,0.12)]"
-                  style={portraitClipStyle}
+                  className="pointer-events-none absolute inset-[-6px] z-0 rounded-full bg-gradient-to-br from-cyan-300/95 via-cyan-400 to-violet-500/95 opacity-[0.92] shadow-[0_0_48px_rgba(34,211,238,0.28),0_0_96px_rgba(139,92,246,0.12)]"
                 />
-                <div className="relative z-[1] bg-[#082c47]" style={portraitClipStyle}>
-                  {/* eslint-disable-next-line @next/next/no-img-element -- reliable rendering inside blob clip */}
+                <div className="absolute inset-0 z-[1] overflow-hidden rounded-full bg-[#082c47]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={HERO_PORTRAIT_SRC}
                     alt="MD Rashedul Islam Junayed"
@@ -187,7 +166,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
                     height={2368}
                     decoding="async"
                     fetchPriority="high"
-                    className="block h-auto w-full object-contain object-[center_18%]"
+                    className="pointer-events-none block h-full w-full select-none object-contain object-bottom"
                   />
                 </div>
               </div>
