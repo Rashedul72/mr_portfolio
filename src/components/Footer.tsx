@@ -18,16 +18,13 @@ export default function Footer() {
           viewport={{ once: true, amount: 0.25 }}
         >
           <div className="text-center sm:text-left">
-            <p className="text-lg font-bold shimmer-text tracking-wide">MR Portfolio</p>
             <p className="text-[13px] text-slate-400 mt-1">
               Building delightful, scalable digital products.
             </p>
           </div>
 
           <div className="text-center sm:text-right">
-            <p className="inline-flex items-center justify-center sm:justify-end gap-1.5 text-[13px] text-slate-400">
-              Crafted with <Heart className="w-3.5 h-3.5 text-rose-400" /> by Junayed
-            </p>
+            
             <p className="text-[13px] text-slate-500 mt-1">
               © {new Date().getFullYear()} All rights reserved.
             </p>

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const PROFILE_IMAGE_URL = "/images/Junayed-v2.jpg";
+const PROFILE_IMAGE_URL = "/images/Junayed-without-bg.png";
 
 export const metadata: Metadata = {
   title: "MD Rashedul Islam Junayed",
