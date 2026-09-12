@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Home, User, Lightbulb, Briefcase, Folder, Layout, Mail } from 'lucide-react';
-import { useRouter, usePathname } from 'next/navigation';
 
 interface NavbarProps {
   scrollToSection: (sectionId: string) => void;
@@ -13,8 +12,6 @@ interface NavbarProps {
 export default function Navbar({ scrollToSection, activeSection = '' }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,11 +35,7 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
   ];
 
   const handleNavClick = (sectionId: string) => {
-    if (pathname.startsWith('/projects/')) {
-      router.push(`/?section=${sectionId}`);
-    } else {
-      scrollToSection(sectionId);
-    }
+    scrollToSection(sectionId);
     setIsOpen(false);
   };
 

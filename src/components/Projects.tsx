@@ -1,12 +1,9 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, Loader2, ArrowRight } from 'lucide-react';
+import { Calendar, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 
 export default function Projects() {
-  const router = useRouter();
-  const [loading, setLoading] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,47 +13,86 @@ export default function Projects() {
 
   const projects = [
     {
+      title: 'Tomatungi Resort',
+      description: 'A full rebuild of the resort platform with modern booking, SSLCommerz payments, guest accounts, bilingual experience, and a complete admin dashboard — now live with real guest bookings on the existing domain.',
+      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'SSLCommerz', 'Coolify'],
+      image: '/images/tomatungi.png',
+      liveUrl: 'https://tomatungiresort.com/',
+      delivered: 'August 2026'
+    },
+    {
+      title: 'Hiramix E-Commerce',
+      description: 'Retail and wholesale e-commerce with product search, wishlist, vouchers, loyalty points, payments, delivery integrations, multilingual support, inventory, invoicing, and admin operations.',
+      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'Razorpay', 'Socket.IO', 'Coolify'],
+      image: '/images/hiramix.my.png',
+      liveUrl: 'https://hiramix.my/',
+      delivered: 'July 2026'
+    },
+    {
+      title: 'Hiramix Corporate',
+      description: 'Corporate portfolio platform with product and brand management, careers, candidate management, wholesale information, content management, and a complete admin dashboard.',
+      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'Razorpay', 'Socket.IO', 'Coolify'],
+      image: '/images/hiramix.com.my.png',
+      liveUrl: 'https://hiramix.com.my/',
+      delivered: 'June 2026'
+    },
+    {
+      title: 'Kryzotech Solutions',
+      description: 'Software development company site — a sister concern of Kryzotech BD — showcasing services and company presence on a production-ready Next.js platform.',
+      technologies: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'JWT', 'Cloudflare R2', 'EPS Payment'],
+      image: '/images/solutions_kryzotechbd.png',
+      liveUrl: 'https://solutions.kryzotechbd.com/',
+      delivered: 'April 2026'
+    },
+    {
+      title: 'Kryzotech',
+      description: 'A complete learning platform covering course discovery, workshops, enrollment, payments, learner management, certificates, content operations, and live support in one production-ready system.',
+      technologies: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'JWT', 'Cloudflare R2', 'EPS Payment', 'jsPDF', 'Quill'],
+      image: '/images/kryzotechbd.png',
+      liveUrl: 'https://www.kryzotechbd.com/',
+      delivered: 'February 2026'
+    },
+    {
       title: 'SmartHRflow',
       description: 'An AI-powered HR hiring platform that reduces recruitment steps by 60% through intelligent CV parsing, automated assessments, and streamlined candidate management.',
       technologies: ['Next.js', 'TypeScript', 'Supabase', 'Nest.js', 'Vercel', 'OpenAI API'],
       image: '/images/smartHRflowV2.png',
-      liveUrl: '/projects/smarthrflow'
+      liveUrl: 'https://smarthrflow.com/',
+      delivered: 'December 2025'
     },
     {
       title: 'Better E Net',
       description: 'A comprehensive networking and IT services platform with service management, network monitoring, and technical support.',
       technologies: ['React', 'Next.js', 'TypeScript', 'MongoDB', 'Express.js', 'Node.js'],
       image: '/images/betterenet.png',
-      liveUrl: '/projects/better-e-net'
+      liveUrl: 'https://betternet.com/',
+      delivered: 'April 2025'
     },
     {
       title: 'Better E Mart',
       description: 'A comprehensive e-commerce platform with integrated dashboard, mobile app development, and real-time inventory management.',
       technologies: ['React', 'Next.js', 'Node.js', 'React Native', 'Expo', 'TypeScript'],
       image: '/images/better.jpeg',
-      liveUrl: '/projects/better-emart'
+      liveUrl: 'https://betteremart.com/',
+      delivered: 'February 2025'
     },
     {
       title: 'Kumira Guptachara Boat Ticketing',
       description: 'A cutting-edge application demonstrating expertise in full-stack development and modern web technologies.',
       technologies: ['Next.js', 'SSL COMMERZ', 'MongoDB', 'Tailwind CSS', 'Framer Motion'],
       image: '/images/kumira.png',
-      liveUrl: '/projects/kumira'
+      liveUrl: 'https://kumiraguptachara.com/',
+      delivered: 'November 2024'
     },
     {
       title: 'Jafson Trading & Marine Services',
       description: 'An innovative project showcasing advanced web development skills and modern technology stack implementation.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB'],
       image: '/images/jafson.png',
-      liveUrl: '/projects/jafson'
+      liveUrl: 'https://www.jafsonmarine.com/',
+      delivered: 'December 2023'
     }
   ];
-
-  const handleNavigate = async (url: string, projectTitle: string) => {
-    setLoading(projectTitle);
-    await router.push(url);
-    setLoading(null);
-  };
 
   const FeaturedSkeleton = () => (
     <div className="glass rounded-2xl overflow-hidden lg:grid lg:grid-cols-5">
@@ -74,22 +110,6 @@ export default function Projects() {
           <div className="h-6 w-14 bg-white/[0.06] rounded-full animate-pulse" />
         </div>
         <div className="h-12 bg-white/[0.06] rounded-xl animate-pulse" />
-      </div>
-    </div>
-  );
-
-  const GridSkeleton = () => (
-    <div className="glass rounded-2xl overflow-hidden">
-      <div className="h-48 bg-white/[0.04] animate-pulse" />
-      <div className="p-6">
-        <div className="h-6 bg-white/[0.06] rounded animate-pulse mb-3" />
-        <div className="h-4 bg-white/[0.06] rounded animate-pulse mb-2" />
-        <div className="h-4 bg-white/[0.06] rounded animate-pulse w-2/3 mb-4" />
-        <div className="flex gap-2 mb-5">
-          <div className="h-6 w-16 bg-white/[0.06] rounded-full animate-pulse" />
-          <div className="h-6 w-20 bg-white/[0.06] rounded-full animate-pulse" />
-        </div>
-        <div className="h-11 bg-white/[0.06] rounded-xl animate-pulse" />
       </div>
     </div>
   );
@@ -163,6 +183,10 @@ export default function Projects() {
 
                 {/* Content */}
                 <div className={`lg:col-span-2 p-5 sm:p-8 lg:p-10 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <div className="flex items-center gap-1.5 text-cyan-300/70 text-xs sm:text-sm font-medium mb-2 sm:mb-3">
+                    <Calendar className="w-3.5 h-3.5" />
+                    <span>Delivered {project.delivered}</span>
+                  </div>
                   <h3 className="text-xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">{project.title}</h3>
                   <p className="text-slate-400 mb-5 sm:mb-6 leading-relaxed text-[13px] sm:text-base">{project.description}</p>
                   <div className="flex flex-wrap gap-2 mb-6">
@@ -170,17 +194,16 @@ export default function Projects() {
                       <span key={tech} className="bg-white/[0.06] text-cyan-300/80 px-3 py-1 rounded-full text-xs font-medium border border-white/[0.06]">{tech}</span>
                     ))}
                   </div>
-                  <motion.button
+                  <motion.a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-5 sm:px-6 py-3 rounded-xl text-[13px] sm:text-sm font-medium shadow-[0_0_20px_rgba(34,211,238,0.15)] hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] transition-all duration-300 w-fit"
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    onClick={() => handleNavigate(project.liveUrl, project.title)}
-                    disabled={loading === project.title}
                   >
-                    {loading === project.title ? <Loader2 className="w-4 h-4 animate-spin" /> : (
-                      <>View Case Study <ArrowRight className="w-4 h-4" /></>
-                    )}
-                  </motion.button>
+                    Visit Website <ExternalLink className="w-4 h-4" />
+                  </motion.a>
                 </div>
               </motion.div>
             ))}
