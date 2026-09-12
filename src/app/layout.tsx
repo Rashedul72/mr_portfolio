@@ -15,27 +15,20 @@ const geistMono = Geist_Mono({
 
 const PROFILE_IMAGE_URL = "/images/Junayed-without-bg.png";
 
-function getSiteUrl() {
-  if (process.env.NEXT_PUBLIC_SITE_URL) {
-    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
-  }
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL.replace(/\/$/, "")}`;
-  }
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
-  }
-  return "http://localhost:3000";
-}
+/** Production site — WhatsApp/Open Graph need a public absolute URL */
+const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.URL ||
+  "https://mr-portfolio-developer.netlify.app"
+).replace(/\/$/, "");
 
-const SITE_URL = getSiteUrl();
 const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "MD Rashedul Islam Junayed | Full Stack Software Developer",
   description:
-    "Professional portfolio of MD Rashedul Islam Junayed — Full Stack Software Developer specializing in Next.js, React, Node.js, and modern web applications.",
+    "Professional portfolio of MD Rashedul Islam Junayed - Full Stack Software Developer specializing in Next.js, React, Node.js, and modern web applications.",
   icons: {
     icon: PROFILE_IMAGE_URL,
     apple: PROFILE_IMAGE_URL,
@@ -43,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: SITE_URL,
     siteName: "MD Rashedul Islam Junayed",
     title: "MD Rashedul Islam Junayed | Full Stack Software Developer",
     description:
@@ -54,7 +47,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "MD Rashedul Islam Junayed — Full Stack Software Developer Portfolio",
+        alt: "MD Rashedul Islam Junayed - Full Stack Software Developer Portfolio",
       },
     ],
   },
