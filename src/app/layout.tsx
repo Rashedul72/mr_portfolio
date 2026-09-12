@@ -22,7 +22,7 @@ const SITE_URL = (
   "https://mr-portfolio-developer.netlify.app"
 ).replace(/\/$/, "");
 
-const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg`;
+const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg?v=2`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
