@@ -14,9 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 const PROFILE_IMAGE_URL = "/images/Junayed-without-bg.png";
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
+function getSiteUrl() {
+  if (process.env.NEXT_PUBLIC_SITE_URL) {
+    return process.env.NEXT_PUBLIC_SITE_URL.replace(/\/$/, "");
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL.replace(/\/$/, "")}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
+  }
+  return "http://localhost:3000";
+}
+
+const SITE_URL = getSiteUrl();
+const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -37,9 +50,10 @@ export const metadata: Metadata = {
       "Professional portfolio showcasing software development projects, skills, and experience.",
     images: [
       {
-        url: "/og-portfolio.png",
+        url: OG_IMAGE,
         width: 1200,
-        height: 675,
+        height: 630,
+        type: "image/jpeg",
         alt: "MD Rashedul Islam Junayed — Full Stack Software Developer Portfolio",
       },
     ],
@@ -49,7 +63,7 @@ export const metadata: Metadata = {
     title: "MD Rashedul Islam Junayed | Full Stack Software Developer",
     description:
       "Professional portfolio showcasing software development projects, skills, and experience.",
-    images: ["/og-portfolio.png"],
+    images: [OG_IMAGE],
   },
 };
 
