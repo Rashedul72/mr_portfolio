@@ -14,7 +14,7 @@ export default function About() {
     {
       icon: Calendar,
       label: "Experience",
-      value: "3 Years",
+      value: "3.5 Years",
       color: "text-cyan-400",
     },
     { icon: Code, label: "Projects", value: "15+", color: "text-emerald-400" },

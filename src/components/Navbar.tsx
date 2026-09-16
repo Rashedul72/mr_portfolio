@@ -40,9 +40,9 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
       <motion.nav
-        className={`pointer-events-auto mt-4 mx-4 w-full max-w-[76rem] rounded-2xl transition-all duration-500 ${
+        className={`pointer-events-auto mt-4 w-full max-w-[76rem] rounded-2xl transition-all duration-500 ${
           scrolled
             ? 'bg-white/[0.05] backdrop-blur-md sm:backdrop-blur-2xl border border-white/[0.08] shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]'
             : 'bg-white/[0.03] backdrop-blur-sm sm:backdrop-blur-xl border border-white/[0.05] shadow-[0_4px_14px_rgba(0,0,0,0.25)] sm:shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
