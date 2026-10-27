@@ -1,5 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
+'use client';
+
+import { useEffect, useState } from "react";
+import { anim } from '@/lib/anim';
 import { ExternalLink, MapPin, Calendar, Award, Globe } from "lucide-react";
 
 const HIGHLIGHT_PHRASE = "Neoscoder (Akij Venture Group)";
@@ -23,11 +25,16 @@ function generateStars(count: number) {
 }
 
 export default function Experience() {
-  const [starCount, setStarCount] = useState(72);
-  const stars = useMemo(() => generateStars(starCount), [starCount]);
+  const [stars, setStars] = useState<ReturnType<typeof generateStars>>([]);
 
   useEffect(() => {
-    const updateStarCount = () => setStarCount(getStarCount(window.innerWidth));
+    let current = -1;
+    const updateStarCount = () => {
+      const next = getStarCount(window.innerWidth);
+      if (next === current) return;
+      current = next;
+      setStars(generateStars(next));
+    };
     updateStarCount();
     window.addEventListener("resize", updateStarCount);
     return () => window.removeEventListener("resize", updateStarCount);
@@ -38,7 +45,7 @@ export default function Experience() {
       company: "Riseup Labs",
       website: "https://riseuplabs.com/",
       location: "Dhaka, Bangladesh",
-      role: "Software Developer",
+      role: "Software Engineer",
       period: "Jan 04, 2026 - Present",
       description:
         "Building scalable SaaS and backend systems with a focus on billing, performance, and reliability.",
@@ -159,7 +166,7 @@ export default function Experience() {
       id="experience"
       className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20"
     >
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
@@ -184,77 +191,77 @@ export default function Experience() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          className="text-center mb-12 sm:mb-16 lg:mb-20"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }}
+        <div
+          className="text-center mb-12 sm:mb-16 lg:mb-20" {...anim({"from": {"opacity": 0, "y": 30}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.6})}
+         
+         
+         
+         
         >
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+           
+           
+           
+           
           >
-            Professional <span className="gradient-text">Experience</span>
-          </motion.h2>
-          <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 96 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true, amount: 0.2 }}
+            Professional <span className="text-cyan-400">Experience</span>
+          </h2>
+          <div
+            className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+           
+           
+           
+           
           />
-          <motion.p
-            className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true, amount: 0.2 }}
+          <p
+            className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.3})}
+           
+           
+           
+           
           >
             A journey through diverse roles in software development, IoT
             solutions, and financial technology
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[7px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500/40 via-violet-500/30 to-transparent" />
+          <div className="absolute left-[7px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-cyan-500/30" />
 
           <div className="space-y-10 lg:space-y-16">
             {experiences.map((exp, index) => {
               const isLeft = index % 2 === 0;
               return (
-                <motion.div
+                <div
                   key={exp.company}
-                  className="relative pl-10 lg:pl-0"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true, amount: 0.15 }}
+                  className="relative pl-10 lg:pl-0" {...anim({ from: { opacity: 0, y: 40 }, to: { opacity: 1, y: 0 }, scroll: true, ...{ duration: 0.6, delay: index * 0.1 } })}
+                 
+                 
+                 
+                 
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-6">
-                    <div className="w-[15px] h-[15px] rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0a3355]" />
+                    <div className="w-[15px] h-[15px] rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0a3355]" />
                   </div>
 
                   {/* Card */}
                   <div
                     className={`lg:w-[calc(50%-2.5rem)] ${isLeft ? "lg:mr-auto" : "lg:ml-auto"}`}
                   >
-                    <motion.div
-                      className="glass rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300"
-                      whileHover={{ y: -4 }}
+                    <div
+                      className="glass rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 hover:translate-y-[-4px]"
+                     
                     >
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                         <h3 className="text-base sm:text-xl font-bold text-white">
                           {exp.company}
                         </h3>
-                        <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-[0_0_12px_rgba(34,211,238,0.15)] w-fit whitespace-nowrap">
+                        <span className="inline-flex items-center gap-1.5 bg-cyan-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-[0_0_12px_rgba(34,211,238,0.15)] w-fit whitespace-nowrap">
                           <Award className="w-3 h-3" />
                           {exp.role}
                         </span>
@@ -304,7 +311,7 @@ export default function Experience() {
                       <div className="space-y-2">
                         {exp.achievements.map((achievement, i) => (
                           <div key={i} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
+                            <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
                             <p className="text-[13px] sm:text-sm text-white/90 leading-relaxed">
                               {achievement.includes(HIGHLIGHT_PHRASE) ? (
                                 <>
@@ -321,9 +328,9 @@ export default function Experience() {
                           </div>
                         ))}
                       </div>
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

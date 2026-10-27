@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { anim } from '@/lib/anim';
 import { Menu, X, Home, User, Lightbulb, Briefcase, Folder, Layout, Mail } from 'lucide-react';
 
 interface NavbarProps {
@@ -12,6 +13,20 @@ interface NavbarProps {
 export default function Navbar({ scrollToSection, activeSection = '' }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const menu = menuRef.current;
+    if (!menu) return;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    gsap.to(menu, {
+      height: isOpen ? 'auto' : 0,
+      opacity: isOpen ? 1 : 0,
+      duration: reduced ? 0 : 0.25,
+      ease: 'power3.out',
+      overwrite: true,
+    });
+  }, [isOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,137 +56,91 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
-      <motion.nav
+      <nav
         className={`pointer-events-auto mt-4 w-full max-w-[76rem] rounded-2xl transition-all duration-500 ${
           scrolled
             ? 'bg-white/[0.05] backdrop-blur-md sm:backdrop-blur-2xl border border-white/[0.08] shadow-[0_6px_18px_rgba(0,0,0,0.35)] sm:shadow-[0_8px_32px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)]'
             : 'bg-white/[0.03] backdrop-blur-sm sm:backdrop-blur-xl border border-white/[0.05] shadow-[0_4px_14px_rgba(0,0,0,0.25)] sm:shadow-[0_4px_24px_rgba(0,0,0,0.3)]'
-        }`}
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        }`} {...anim({"from": {"y": -100, "opacity": 0}, "to": {"y": 0, "opacity": 1}, "duration": 0.7})}
       >
         <div className="px-3 sm:px-6">
           <div className="flex items-center justify-between h-14 sm:h-16">
             {/* Logo */}
-            <motion.div
-              className="flex items-center"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
+            <div
+              className="flex items-center" {...anim({"from": {"opacity": 0, "x": -20}, "to": {"opacity": 1, "x": 0}, "duration": 0.6, "delay": 0.2})}
+      >
               <button
                 onClick={() => handleNavClick('home')}
-                className="text-lg sm:text-2xl font-bold shimmer-text hover:opacity-80 transition-opacity"
+                className="text-lg sm:text-2xl font-bold text-cyan-400 hover:opacity-80 transition-opacity"
               >
                 MR
               </button>
-            </motion.div>
+            </div>
 
             {/* Desktop nav items */}
-            <motion.div
-              className="hidden md:flex items-center gap-0.5 bg-white/[0.03] rounded-xl p-1"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
+            <div
+              className="hidden md:flex items-center gap-0.5 bg-white/[0.03] rounded-xl p-1" {...anim({"from": {"opacity": 0, "y": -10}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.3})}
+      >
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.id;
                 return (
-                  <motion.button
+                  <button
                     key={item.name}
                     onClick={() => handleNavClick(item.id)}
-                    className={`relative px-3 py-1.5 rounded-lg font-medium transition-colors duration-300 text-[13px] ${
+                    className={`relative px-3 py-1.5 rounded-lg font-medium transition-all duration-300 text-[13px] hover:scale-[1.04] active:scale-[0.97] ${
                       isActive ? 'text-white' : 'text-slate-400 hover:text-slate-200'
                     }`}
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: 0.35 + index * 0.04 }}
-                    whileHover={{ scale: 1.04 }}
-                    whileTap={{ scale: 0.97 }}
+                    {...anim({ from: { opacity: 0, y: -10 }, to: { opacity: 1, y: 0 }, duration: 0.4, delay: 0.35 + index * 0.04 })}
                   >
                     {isActive && (
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/15 to-violet-500/15 rounded-lg border border-white/[0.08] shadow-[0_0_12px_rgba(34,211,238,0.12)]"
-                        layoutId="activeNav"
-                        transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-                      />
+                      <div className="absolute inset-0 bg-cyan-500/15 rounded-lg border border-white/[0.08] shadow-[0_0_12px_rgba(34,211,238,0.12)]" />
                     )}
                     <span className="relative z-10">{item.name}</span>
                     {isActive && (
-                      <motion.div
-                        className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-3 h-[2px] bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full shadow-[0_0_6px_rgba(34,211,238,0.5)]"
-                        layoutId="activeIndicator"
-                        transition={{ type: 'spring', stiffness: 400, damping: 28 }}
-                      />
+                      <div className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-3 h-[2px] bg-cyan-400 rounded-full shadow-[0_0_6px_rgba(34,211,238,0.5)]" />
                     )}
-                  </motion.button>
+                  </button>
                 );
               })}
-            </motion.div>
+            </div>
 
             {/* Mobile toggle */}
-            <motion.button
-              className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all"
+            <button
+              className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all active:scale-[0.9]"
               onClick={() => setIsOpen(!isOpen)}
-              aria-label={isOpen ? 'Close menu' : 'Open menu'}
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <AnimatePresence mode="wait">
-                {isOpen ? (
-                  <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <X className="w-5 h-5" />
-                  </motion.div>
-                ) : (
-                  <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-                    <Menu className="w-5 h-5" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+              aria-label={isOpen ? 'Close menu' : 'Open menu'} {...anim({"from": {"opacity": 0, "x": 20}, "to": {"opacity": 1, "x": 0}, "duration": 0.6, "delay": 0.4})}
+      >
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
           </div>
         </div>
 
         {/* Mobile menu — floating panel inside the glass bar */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              className="md:hidden mx-2 mb-2 rounded-xl bg-white/[0.03] border border-white/[0.06] overflow-hidden"
-              initial={{ opacity: 0, height: 0, scale: 0.97 }}
-              animate={{ opacity: 1, height: 'auto', scale: 1 }}
-              exit={{ opacity: 0, height: 0, scale: 0.97 }}
-              transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="py-3 px-2 space-y-0.5">
-                {navItems.map((item, index) => {
-                  const isActive = activeSection === item.id;
-                  return (
-                    <motion.button
-                      key={item.name}
-                      onClick={() => handleNavClick(item.id)}
-                      className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-all duration-300 ${
-                        isActive
-                          ? 'bg-gradient-to-r from-cyan-500/10 to-violet-500/10 border border-white/[0.08] text-white'
-                          : 'bg-transparent border border-transparent text-slate-400 hover:bg-white/[0.04] hover:text-white'
-                      }`}
-                      initial={{ opacity: 0, x: -16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.25, delay: index * 0.04 }}
-                    >
-                      <item.icon className={`w-4 h-4 ${isActive ? 'text-cyan-400' : ''}`} />
-                      <span className="text-[13px] sm:text-sm font-medium">{item.name}</span>
-                      {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />}
-                    </motion.button>
-                  );
-                })}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+        <div ref={menuRef} className="md:hidden overflow-hidden" style={{ height: 0, opacity: 0 }} aria-hidden={!isOpen} inert={!isOpen}>
+          <div className="mx-2 mb-2 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+            <div className="py-3 px-2 space-y-0.5">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <button
+                    key={item.name}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-lg transition-all duration-300 ${
+                      isActive
+                        ? 'bg-cyan-500/10 border border-white/[0.08] text-white'
+                        : 'bg-transparent border border-transparent text-slate-400 hover:bg-white/[0.04] hover:text-white'
+                    }`}
+                  >
+                    <item.icon className={`w-4 h-4 ${isActive ? 'text-cyan-400' : ''}`} />
+                    <span className="text-[13px] sm:text-sm font-medium">{item.name}</span>
+                    {isActive && <div className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]" />}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }

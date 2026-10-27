@@ -1,8 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Download, Mail, FileText, X, Code, Cpu, Database, Globe, GitBranch, Layers, Zap, Smartphone, ExternalLink, Minus, Plus, Search } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef, useCallback } from 'react';
+import { Download, Mail, FileText, X, Code, Cpu, Database, Globe, GitBranch, Layers, Zap, Smartphone, ExternalLink } from 'lucide-react';
+import gsap from 'gsap';
+import { anim } from '@/lib/anim';
+import Image from 'next/image';
 
 interface HeroProps {
   scrollToSection: (sectionId: string) => void;
@@ -46,19 +48,29 @@ const HERO_PORTRAIT_SRC = '/images/Junayed-without-bg.png';
 const RESUME_URL = '/resume/MD_Rashedul_Islam_Junayed.pdf';
 const RESUME_DOWNLOAD_NAME = 'MD_Rashedul_Islam_Junayed.pdf';
 const RESUME_MODAL_SUBTITLE = 'MD Rashedul Islam Junayed - Full Stack Software Developer';
-/** Update if your PDF page count changes (toolbar display only). */
-const RESUME_PAGE_COUNT = 2;
 /** Chromium embedded PDF viewer: hides thumbnail sidebar, native toolbar, and scrollbars (iframe only). */
 const RESUME_EMBED_URL = `${RESUME_URL}#navpanes=0&toolbar=0&scrollbar=0`;
 
 export default function Hero({ scrollToSection }: HeroProps) {
   const [resumeOpen, setResumeOpen] = useState(false);
-  const [resumeZoomPct, setResumeZoomPct] = useState(100);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  const closeResume = useCallback(() => {
+    if (!modalRef.current) return setResumeOpen(false);
+    gsap.to(modalRef.current, { opacity: 0, duration: 0.2, onComplete: () => setResumeOpen(false) });
+  }, []);
+
+  useEffect(() => {
+    if (!resumeOpen) return;
+    gsap.fromTo(modalRef.current, { opacity: 0 }, { opacity: 1, duration: 0.2 });
+    gsap.fromTo(panelRef.current, { opacity: 0, scale: 0.96, y: 12 }, { opacity: 1, scale: 1, y: 0, duration: 0.25, ease: 'power2.out' });
+  }, [resumeOpen]);
 
   useEffect(() => {
     if (!resumeOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setResumeOpen(false);
+      if (e.key === 'Escape') closeResume();
     };
     window.addEventListener('keydown', onKey);
     const prevOverflow = document.body.style.overflow;
@@ -67,23 +79,19 @@ export default function Hero({ scrollToSection }: HeroProps) {
       window.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [resumeOpen]);
-
-  useEffect(() => {
-    if (!resumeOpen) setResumeZoomPct(100);
-  }, [resumeOpen]);
+  }, [resumeOpen, closeResume]);
 
   return (
     <section id="home" className="min-h-screen flex items-center relative overflow-hidden bg-[#082c47] scroll-mt-16 sm:scroll-mt-20 pt-20 sm:pt-24 pb-10 sm:pb-12">
       {/* Ambient orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden sm:block">
-        <motion.div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-cyan-500/[0.06] rounded-full blur-[150px]"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.06, 0.1, 0.06] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        <div className="absolute top-1/4 left-0 w-[600px] h-[600px] bg-cyan-500/[0.06] rounded-full blur-[150px]" {...anim({"keyframes": {"scale": [1, 1.2, 1], "opacity": [0.06, 0.1, 0.06], "easeEach": "sine.inOut"}, "duration": 8, "repeat": -1})}
+         
+         
         />
-        <motion.div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-violet-500/[0.06] rounded-full blur-[150px]"
-          animate={{ scale: [1.2, 1, 1.2], opacity: [0.06, 0.1, 0.06] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-violet-500/[0.06] rounded-full blur-[150px]" {...anim({"keyframes": {"scale": [1.2, 1, 1.2], "opacity": [0.06, 0.1, 0.06], "easeEach": "sine.inOut"}, "duration": 10, "repeat": -1})}
+         
+         
         />
       </div>
 
@@ -107,18 +115,18 @@ export default function Hero({ scrollToSection }: HeroProps) {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-16 items-center">
 
           {/* Right: Image with decorations */}
-          <motion.div
-            className="flex justify-center order-1 lg:order-2"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          <div
+            className="flex justify-center order-1 lg:order-2" {...anim({"from": {"opacity": 0, "scale": 0.8}, "to": {"opacity": 1, "scale": 1}, "duration": 0.8, "delay": 0.3, "ease": "power2.out"})}
+           
+           
+           
           >
             <div className="relative flex justify-center px-2 sm:px-4">
               {/* Teal radial glow — matches hero / reference */}
-              <motion.div
-                className="pointer-events-none absolute left-0 top-1/2 z-0 h-[min(22rem,55vw)] w-[min(22rem,55vw)] max-w-[340px] -translate-x-1/4 -translate-y-1/2 rounded-full bg-cyan-400/22 blur-[100px] sm:-translate-x-[18%]"
-                animate={{ opacity: [0.45, 0.7, 0.45], scale: [1, 1.06, 1] }}
-                transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
+              <div
+                className="pointer-events-none absolute left-0 top-1/2 z-0 h-[min(22rem,55vw)] w-[min(22rem,55vw)] max-w-[340px] -translate-x-1/4 -translate-y-1/2 rounded-full bg-cyan-400/22 blur-[100px] sm:-translate-x-[18%]" {...anim({"keyframes": {"opacity": [0.45, 0.7, 0.45], "scale": [1, 1.06, 1], "easeEach": "sine.inOut"}, "duration": 7, "repeat": -1})}
+               
+               
               />
 
               {/* Constellation — cyan / violet (site accents) */}
@@ -155,106 +163,105 @@ export default function Hero({ scrollToSection }: HeroProps) {
               <div className="relative z-10 mx-auto h-[min(17rem,85vw)] w-[min(17rem,85vw)] shrink-0 sm:h-[min(20rem,90vw)] sm:w-[min(20rem,90vw)] lg:h-96 lg:w-96">
                 <div
                   aria-hidden
-                  className="pointer-events-none absolute inset-[-6px] z-0 rounded-full bg-gradient-to-br from-cyan-300/95 via-cyan-400 to-violet-500/95 opacity-[0.92] shadow-[0_0_48px_rgba(34,211,238,0.28),0_0_96px_rgba(139,92,246,0.12)]"
+                  className="pointer-events-none absolute inset-[-6px] z-0 rounded-full bg-cyan-400 opacity-[0.92] shadow-[0_0_48px_rgba(34,211,238,0.28),0_0_96px_rgba(139,92,246,0.12)]"
                 />
                 <div className="absolute inset-0 z-[1] overflow-hidden rounded-full bg-[#082c47]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={HERO_PORTRAIT_SRC}
                     alt="MD Rashedul Islam Junayed"
                     width={1824}
                     height={2368}
-                    decoding="async"
-                    fetchPriority="high"
+                    priority
+                    sizes="(min-width: 1024px) 384px, 320px"
                     className="pointer-events-none block h-full w-full select-none object-contain object-bottom"
                   />
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Left: Text content */}
           <div className="order-2 lg:order-1 text-center lg:text-left">
             <div className="absolute -left-4 top-32 pointer-events-none hidden xl:block">
-              <motion.div
-                className="text-xs font-mono opacity-20"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 0.2, x: 0 }}
-                transition={{ duration: 1, delay: 1.5 }}
+              <div
+                className="text-xs font-mono opacity-20" {...anim({"from": {"opacity": 0, "x": -30}, "to": {"opacity": 0.2, "x": 0}, "duration": 1, "delay": 1.5})}
+               
+               
+               
               >
                 <div className="mb-1"><span className="text-violet-400">const</span> <span className="text-cyan-300">developer</span> = {`{`}</div>
                 <div className="ml-4 mb-0.5"><span className="text-slate-500">name:</span> <span className="text-emerald-400">&quot;Rashedul&quot;</span>,</div>
                 <div className="ml-4 mb-0.5"><span className="text-slate-500">role:</span> <span className="text-emerald-400">&quot;Full Stack&quot;</span>,</div>
                 <div className="ml-4 mb-1"><span className="text-slate-500">passion:</span> <span className="text-emerald-400">&quot;Code&quot;</span></div>
                 <div className="text-slate-400">{`}`};</div>
-              </motion.div>
+              </div>
             </div>
 
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-4 sm:mb-6" {...anim({"from": {"opacity": 0, "y": 30}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.2, "ease": "power2.out"})}
+             
+             
+             
             >
               <span className="text-white">Hi, I&apos;m</span>
               <br />
-              <span className="shimmer-text">MD Rashedul Islam Junayed</span>
-            </motion.h1>
+              <span className="text-cyan-400">MD Rashedul Islam Junayed</span>
+            </h1>
 
-            <motion.p
-              className="text-[14px] sm:text-lg lg:text-2xl text-slate-300 mb-4 sm:mb-6 font-medium"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
+            <p
+              className="text-[14px] sm:text-lg lg:text-2xl text-slate-300 mb-4 sm:mb-6 font-medium" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.4, "ease": "power2.out"})}
+             
+             
+             
             >
-              <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 1.5 }}>
+              <span {...anim({"from": {"opacity": 0}, "to": {"opacity": 1}, "duration": 0.5, "delay": 1.5})}>
                 Full Stack Software Developer
-              </motion.span>
-            </motion.p>
+              </span>
+            </p>
 
-            <motion.p
-              className="text-[13px] sm:text-[15px] lg:text-lg text-slate-400 max-w-xl mb-7 sm:mb-10 leading-relaxed mx-auto lg:mx-0"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
+            <p
+              className="text-[13px] sm:text-[15px] lg:text-lg text-slate-400 max-w-xl mb-7 sm:mb-10 leading-relaxed mx-auto lg:mx-0" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.6, "ease": "power2.out"})}
+             
+             
+             
             >
-              Passionate about creating innovative web applications, IoT solutions, and AI-driven analytics.
-              Experienced in e-commerce, agricultural technology, and mobile app development.
-            </motion.p>
+              Building scalable web platforms, SaaS products, and e-commerce systems.
+              Experienced in payments, billing, admin dashboards, and AI-powered applications.
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-7 sm:mb-10"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}
+            <div
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start mb-7 sm:mb-10" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.8, "ease": "power2.out"})}
+             
+             
+             
             >
-              <motion.button
+              <button
                 type="button"
                 onClick={() => setResumeOpen(true)}
-                className="group bg-gradient-to-r from-cyan-500 to-violet-500 text-white px-6 lg:px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(34,211,238,0.25)] hover:shadow-[0_0_40px_rgba(34,211,238,0.4)] flex items-center justify-center gap-2 text-sm sm:text-base"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group bg-cyan-500 text-white px-6 lg:px-8 py-3 rounded-xl font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(34,211,238,0.25)] hover:shadow-[0_0_40px_rgba(34,211,238,0.4)] flex items-center justify-center gap-2 text-sm sm:text-base hover:scale-[1.05] active:scale-[0.95]"
+               
+               
               >
                 <FileText className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>View Resume</span>
-              </motion.button>
+              </button>
 
-              <motion.button
+              <button
                 onClick={() => scrollToSection('contact')}
-                className="group bg-white/[0.04] backdrop-blur-sm border border-white/10 text-white px-6 lg:px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-white/[0.08] hover:border-cyan-500/30 hover:shadow-[0_0_25px_rgba(34,211,238,0.1)] flex items-center justify-center gap-2 text-sm sm:text-base"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group bg-white/[0.04] backdrop-blur-sm border border-white/10 text-white px-6 lg:px-8 py-3 rounded-xl font-semibold transition-all duration-300 hover:bg-white/[0.08] hover:border-cyan-500/30 hover:shadow-[0_0_25px_rgba(34,211,238,0.1)] flex items-center justify-center gap-2 text-sm sm:text-base hover:scale-[1.05] active:scale-[0.95]"
+               
+               
               >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                 <span>Get In Touch</span>
-              </motion.button>
-            </motion.div>
+              </button>
+            </div>
 
-            <motion.div
-              className="flex gap-4 sm:gap-6 justify-center lg:justify-start flex-wrap"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+            <div
+              className="flex gap-4 sm:gap-6 justify-center lg:justify-start flex-wrap" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 1.2})}
+             
+             
+             
             >
               {[
                 { label: 'React', color: 'bg-cyan-400', glow: 'shadow-[0_0_8px_rgba(34,211,238,0.6)]' },
@@ -266,37 +273,29 @@ export default function Hero({ scrollToSection }: HeroProps) {
                   <span>{tech.label}</span>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
 
-      <AnimatePresence>
         {resumeOpen && (
-          <motion.div
-            key="resume-modal"
+          <div
+            ref={modalRef}
             className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
           >
             <button
               type="button"
               aria-label="Close resume preview"
               className="absolute inset-0 bg-[#041824]/88 backdrop-blur-sm"
-              onClick={() => setResumeOpen(false)}
+              onClick={() => closeResume()}
             />
-            <motion.div
+            <div
+              ref={panelRef}
               role="dialog"
               aria-modal="true"
               aria-labelledby="resume-modal-title"
               aria-describedby="resume-modal-subtitle"
               className="relative z-10 flex w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#082c47] shadow-[0_24px_80px_rgba(0,0,0,0.45)] ring-1 ring-cyan-500/15 max-h-[min(92vh,920px)]"
-              initial={{ opacity: 0, scale: 0.96, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: 12 }}
-              transition={{ duration: 0.25, ease: 'easeOut' }}
             >
               <header className="flex shrink-0 flex-wrap items-start justify-between gap-4 border-b border-white/10 px-5 py-4 sm:px-6 sm:py-5">
                 <div className="min-w-0 space-y-1">
@@ -311,14 +310,14 @@ export default function Hero({ scrollToSection }: HeroProps) {
                   <a
                     href={RESUME_URL}
                     download={RESUME_DOWNLOAD_NAME}
-                    className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-violet-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_25px_rgba(34,211,238,0.25)] transition hover:shadow-[0_0_35px_rgba(34,211,238,0.4)]"
+                    className="inline-flex items-center gap-2 rounded-xl bg-cyan-500 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_0_25px_rgba(34,211,238,0.25)] transition hover:shadow-[0_0_35px_rgba(34,211,238,0.4)]"
                   >
                     Download
                     <Download className="h-4 w-4" strokeWidth={2.5} />
                   </a>
                   <button
                     type="button"
-                    onClick={() => setResumeOpen(false)}
+                    onClick={() => closeResume()}
                     className="rounded-lg p-2 text-white transition hover:bg-white/10"
                     aria-label="Close resume preview"
                   >
@@ -340,10 +339,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
                   </a>
 
                   <div className="relative min-h-[min(52vh,560px)] flex-1 overflow-auto rounded-xl [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-                    <div
-                      className="flex justify-center p-2 pb-16 sm:p-3 sm:pb-20"
-                      style={{ zoom: resumeZoomPct / 100 }}
-                    >
+                    <div className="flex justify-center p-2 sm:p-3">
                       <iframe
                         src={RESUME_EMBED_URL}
                         title="Resume PDF preview"
@@ -351,42 +347,12 @@ export default function Hero({ scrollToSection }: HeroProps) {
                       />
                     </div>
                   </div>
-
-                  <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center sm:bottom-5">
-                    <div
-                      className="pointer-events-auto flex items-center gap-1 rounded-full border border-cyan-500/25 bg-[#082c47]/95 px-4 py-2 text-sm text-white shadow-[0_8px_32px_rgba(0,0,0,0.35)] backdrop-blur-md sm:gap-2 sm:px-5 sm:py-2.5"
-                      role="toolbar"
-                      aria-label="Resume preview controls"
-                    >
-                      <span className="pr-2 text-slate-300 tabular-nums sm:pr-3">
-                        Page 1 / {RESUME_PAGE_COUNT}
-                      </span>
-                      <span className="hidden h-5 w-px bg-white/15 sm:block" aria-hidden />
-                      <button
-                        type="button"
-                        className="rounded-full p-1.5 text-slate-200 transition hover:bg-white/10 hover:text-white"
-                        aria-label="Zoom out"
-                        onClick={() => setResumeZoomPct((z) => Math.max(70, z - 12))}
-                      >
-                        <Minus className="h-4 w-4" />
-                      </button>
-                      <Search className="mx-0.5 h-4 w-4 text-slate-400 sm:mx-1" aria-hidden />
-                      <button
-                        type="button"
-                        className="rounded-full p-1.5 text-slate-200 transition hover:bg-white/10 hover:text-white"
-                        aria-label="Zoom in"
-                        onClick={() => setResumeZoomPct((z) => Math.min(145, z + 12))}
-                      >
-                        <Plus className="h-4 w-4" />
-                      </button>
-                    </div>
-                  </div>
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         )}
-      </AnimatePresence>
+
     </section>
   );
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useGsapAnimations } from '@/lib/useGsapAnimations';
 import {
   Navbar,
   Hero,
@@ -13,27 +14,26 @@ import {
   Footer,
   ScrollToTop
 } from '@/components';
-import InitialLoader from '@/components/InitialLoader';
+
+const SECTIONS = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
-  const [isLoading, setIsLoading] = useState(true);
   const activeSectionRef = useRef(activeSection);
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useGsapAnimations(rootRef);
 
   useEffect(() => {
     activeSectionRef.current = activeSection;
   }, [activeSection]);
 
-  const handleLoadComplete = useCallback(() => {
-    setIsLoading(false);
-  }, []);
-
   useEffect(() => {
-    if (typeof window !== 'undefined' && !isLoading) {
+    if (typeof window !== 'undefined') {
       const urlParams = new URLSearchParams(window.location.search);
       const section = urlParams.get('section');
 
-      if (section && ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'].includes(section)) {
+      if (section && SECTIONS.includes(section)) {
         const newUrl = window.location.pathname;
         window.history.replaceState({}, '', newUrl);
 
@@ -46,16 +46,13 @@ export default function Home() {
         }, 500);
       }
     }
-  }, [isLoading]);
+  }, []);
 
   useEffect(() => {
-    if (isLoading) return;
-
-    const sections = ['home', 'about', 'skills', 'experience', 'projects', 'landing-pages', 'contact'];
     let ticking = false;
 
     const updateActiveSection = () => {
-      const sectionElements = sections
+      const sectionElements = SECTIONS
         .map((id) => ({ id, element: document.getElementById(id) }))
         .filter((item): item is { id: string; element: HTMLElement } => Boolean(item.element));
 
@@ -97,19 +94,15 @@ export default function Home() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, [isLoading]);
+  }, []);
 
   const scrollToSection = useCallback((sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
-  if (isLoading) {
-    return <InitialLoader onComplete={handleLoadComplete} />;
-  }
-
   return (
-    <div className="min-h-screen bg-[#082c47]">
+    <div ref={rootRef} className="min-h-screen bg-[#082c47]">
       <Navbar scrollToSection={scrollToSection} activeSection={activeSection} />
       <Hero scrollToSection={scrollToSection} />
       <About />
@@ -117,7 +110,6 @@ export default function Home() {
       <Experience />
       <Projects />
       <LandingPages />
-      {/* <NormalProjects /> */}
       <Contact />
       <ScrollToTop />
       <Footer />

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function LenisProvider() {
   useEffect(() => {
@@ -14,6 +15,8 @@ export default function LenisProvider() {
       touchMultiplier: 1,
       lerp: 0.08,
     });
+
+    lenis.on("scroll", ScrollTrigger.update);
 
     let rafId = 0;
 
