@@ -1,4 +1,6 @@
-import { motion } from 'framer-motion';
+'use client';
+
+import { anim } from '@/lib/anim';
 import { ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 
@@ -6,18 +8,13 @@ export default function LandingPages() {
   const landingPages = [
     {
       name: 'Jakaria Finance',
-      image: '/images/Jakaria finacne.png',
+      image: '/images/jakaria-finance.png',
       url: 'https://www.jakaria.finance/'
     },
     {
       name: 'Instant Funding',
-      image: '/images/instantfunding.png',
+      image: '/images/instantfunding.webp',
       url: 'https://www.instantfunding.uk/'
-    },
-    {
-      name: 'Kryzotech Solutions',
-      image: '/images/soulton.png',
-      url: 'https://solutions.kryzotechbd.com/'
     },
     {
       name: 'BDJHelper',
@@ -36,7 +33,7 @@ export default function LandingPages() {
     },
     {
       name: 'Cloud Ceiling',
-      image: '/images/cloudcleiling.png',
+      image: '/images/cloud-ceiling.webp',
       url: 'https://wholesalesbd.netlify.app/'
     }
   ];
@@ -44,49 +41,49 @@ export default function LandingPages() {
   return (
     <section id="landing-pages" className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          className="text-center mb-12 lg:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }}
+        <div
+          className="text-center mb-12 lg:mb-16" {...anim({"from": {"opacity": 0, "y": 30}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.6})}
+         
+         
+         
+         
         >
-          <motion.h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4"
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+           
+           
           >
-            Client <span className="gradient-text">Landing Pages</span>
-          </motion.h2>
-          <motion.div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
-            initial={{ width: 0 }} whileInView={{ width: 96 }} transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true, amount: 0.2 }}
+            Client <span className="text-cyan-400">Landing Pages</span>
+          </h2>
+          <div className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+           
+           
           />
-          <motion.p className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true, amount: 0.2 }}
+          <p className="text-[13px] sm:text-base lg:text-lg text-slate-400 mt-5 sm:mt-6 max-w-2xl mx-auto" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.3})}
+           
+           
           >
             Professional landing pages delivered to clients worldwide
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
         {/* 2-column grid with large images */}
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
           {landingPages.map((page, index) => (
-            <motion.a
+            <a
               key={page.name}
               href={page.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative glass rounded-2xl overflow-hidden hover:border-white/[0.15] transition-all duration-500"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 + index * 0.15 }}
-              whileHover={{ y: -6 }}
-              viewport={{ once: true, amount: 0.15 }}
+              className="group relative glass rounded-2xl overflow-hidden hover:border-white/[0.15] transition-all duration-500 hover:translate-y-[-6px] transition-transform duration-200" {...anim({ from: { opacity: 0, y: 30 }, to: { opacity: 1, y: 0 }, scroll: true, ...{ duration: 0.5, delay: 0.1 + index * 0.15 } })}
+             
+             
+             
+             
+             
             >
               {/* Large image area */}
               <div className="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
@@ -96,8 +93,8 @@ export default function LandingPages() {
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a3355] via-[#0a3355]/30 to-transparent" />
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-[#0a3355]/40" />
 
                 {/* Hover overlay with icon */}
                 <div className="absolute inset-0 bg-cyan-500/[0.06] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
@@ -114,7 +111,7 @@ export default function LandingPages() {
                   <p className="text-[13px] sm:text-sm text-slate-400 truncate">{page.url}</p>
                 </div>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
       </div>

@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+'use client';
+
+import { anim } from '@/lib/anim';
 import {
   User,
   MapPin,
@@ -48,47 +50,47 @@ export default function About() {
       className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="absolute inset-0 dot-pattern pointer-events-none" />
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
 
       <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
-        <motion.div
-          className="text-center mb-12 lg:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.2 }}
+        <div
+          className="text-center mb-12 lg:mb-16" {...anim({"from": {"opacity": 0, "y": 30}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.6})}
+         
+         
+         
+         
         >
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+           
+           
+           
+           
           >
-            About <span className="gradient-text">Me</span>
-          </motion.h2>
-          <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-violet-500 mx-auto rounded-full"
-            initial={{ width: 0 }}
-            whileInView={{ width: 96 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true, amount: 0.2 }}
+            About <span className="text-cyan-400">Me</span>
+          </h2>
+          <div
+            className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+           
+           
+           
+           
           />
-        </motion.div>
+        </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
           {/* Who I Am - large card */}
-          <motion.div
-            className={`col-span-1 sm:col-span-2 lg:row-span-3 ${cardBase} p-5 sm:p-8`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.15 }}
+          <div
+            className={`col-span-1 sm:col-span-2 lg:row-span-3 ${cardBase} p-5 sm:p-8`} {...anim({"from": {"opacity": 0, "y": 30}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.6, "delay": 0.1})}
+           
+           
+           
+           
           >
             <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
-              <div className="w-12 h-12 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.2)]">
+              <div className="w-12 h-12 bg-cyan-500 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.2)]">
                 <User className="w-6 h-6 text-white" />
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-white">Who I Am</h3>
@@ -113,39 +115,39 @@ export default function About() {
                 platforms.
               </p>
             </div>
-          </motion.div>
+          </div>
 
           {/* 4 Stat Cards */}
           {stats.map((stat, index) => (
-            <motion.div
+            <div
               key={stat.label}
-              className={`${cardBase} p-5 flex flex-col items-center justify-center text-center group`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              whileHover={{ y: -4, scale: 1.02 }}
-              viewport={{ once: true, amount: 0.15 }}
+              className={`hover:translate-y-[-4px] hover:scale-[1.02] transition-transform duration-200 ${cardBase} p-5 flex flex-col items-center justify-center text-center group`} {...anim({ from: { opacity: 0, y: 20 }, to: { opacity: 1, y: 0 }, scroll: true, ...{ duration: 0.5, delay: 0.2 + index * 0.1 } })}
+             
+             
+             
+             
+             
             >
               <stat.icon
                 className={`w-7 h-7 ${stat.color} mb-3 group-hover:scale-110 transition-transform`}
               />
-              <span className="text-xl sm:text-3xl font-bold gradient-text">
+              <span className="text-xl sm:text-3xl font-bold text-cyan-400">
                 {stat.value}
               </span>
               <span className="text-[13px] sm:text-sm text-slate-400 mt-1">
                 {stat.label}
               </span>
-            </motion.div>
+            </div>
           ))}
 
           {/* Location */}
-          <motion.div
-            className={`col-span-1 sm:col-span-2 ${cardBase} p-5 sm:p-6 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.06]`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            whileHover={{ y: -4 }}
-            viewport={{ once: true, amount: 0.15 }}
+          <div
+            className={`hover:translate-y-[-4px] transition-transform duration-200 col-span-1 sm:col-span-2 ${cardBase} p-5 sm:p-6 bg-cyan-500/[0.06]`} {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.5})}
+           
+           
+           
+           
+           
           >
             <div className="flex items-center gap-3">
               <MapPin className="w-5 h-5 text-cyan-400 flex-shrink-0" />
@@ -158,38 +160,38 @@ export default function About() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Current Role */}
-          <motion.div
-            className={`col-span-1 lg:col-span-2 ${cardBase} p-5 sm:p-6`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            whileHover={{ y: -4 }}
-            viewport={{ once: true, amount: 0.15 }}
+          <div
+            className={`hover:translate-y-[-4px] transition-transform duration-200 col-span-1 lg:col-span-2 ${cardBase} p-5 sm:p-6`} {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.6})}
+           
+           
+           
+           
+           
           >
             <div className="flex items-center gap-3">
               <Award className="w-5 h-5 text-amber-400 flex-shrink-0" />
               <div>
                 <h4 className="text-white font-semibold text-[14px] sm:text-base">
-                  Software Developer
+                  Software Engineer
                 </h4>
                 <p className="text-slate-400 text-[13px] sm:text-sm">
                   Building scalable products at Riseup Labs
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Specializations */}
-          <motion.div
-            className={`col-span-1 lg:col-span-2 ${cardBase} p-5 sm:p-6`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
-            whileHover={{ y: -4 }}
-            viewport={{ once: true, amount: 0.15 }}
+          <div
+            className={`hover:translate-y-[-4px] transition-transform duration-200 col-span-1 lg:col-span-2 ${cardBase} p-5 sm:p-6`} {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.7})}
+           
+           
+           
+           
+           
           >
             <div className="flex items-start gap-3">
               <Brain className="w-5 h-5 text-violet-400 flex-shrink-0 mt-0.5" />
@@ -209,15 +211,15 @@ export default function About() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Core Competencies - full width */}
-          {/* <motion.div
-            className={`col-span-2 lg:col-span-4 ${cardBase} p-6 sm:p-8 overflow-hidden relative`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.8 }}
-            viewport={{ once: true, amount: 0.15 }}
+          {/* <div
+            className={`col-span-2 lg:col-span-4 ${cardBase} p-6 sm:p-8 overflow-hidden relative`} {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.8})}
+           
+           
+           
+           
           >
             <div className="pointer-events-none absolute -top-20 -right-20 w-56 h-56 bg-cyan-500/10 rounded-full blur-3xl" />
             <div className="pointer-events-none absolute -bottom-24 -left-20 w-56 h-56 bg-violet-500/10 rounded-full blur-3xl" />
@@ -236,13 +238,13 @@ export default function About() {
 
             <div className="relative z-10 grid sm:grid-cols-2 gap-4">
               {skills.map((skill, index) => (
-                <motion.div
+                <div
                   key={skill.name}
-                  className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 sm:px-5 sm:py-5 hover:bg-white/[0.05] transition-colors duration-300"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
-                  viewport={{ once: true, amount: 0.2 }}
+                  className="rounded-xl border border-white/[0.08] bg-white/[0.03] px-4 py-4 sm:px-5 sm:py-5 hover:bg-white/[0.05] transition-colors duration-300" {...anim({ from: { opacity: 0, x: -20 }, to: { opacity: 1, x: 0 }, scroll: true, ...{ duration: 0.5, delay: 0.9 + index * 0.1 } })}
+                 
+                 
+                 
+                 
                 >
                   <div className="flex justify-between items-center mb-3">
                     <span className="text-sm sm:text-[15px] font-medium text-slate-200">{skill.name}</span>
@@ -251,20 +253,20 @@ export default function About() {
                     </span>
                   </div>
                   <div className="w-full bg-white/[0.06] rounded-full h-2 overflow-hidden">
-                    <motion.div
-                      className="relative bg-gradient-to-r from-cyan-400 via-sky-400 to-violet-500 h-2 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.35)]"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${skill.percentage}%` }}
-                      transition={{ duration: 1, delay: 1 + index * 0.1 }}
-                      viewport={{ once: true, amount: 0.2 }}
+                    <div
+                      className="relative bg-cyan-400 h-2 rounded-full shadow-[0_0_10px_rgba(34,211,238,0.35)]" {...anim({ from: { width: 0 }, to: { width: `${skill.percentage}%` }, scroll: true, ...{ duration: 1, delay: 1 + index * 0.1 } })}
+                     
+                     
+                     
+                     
                     >
                       <span className="absolute inset-0 bg-white/20 animate-pulse" />
-                    </motion.div>
+                    </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div> */}
+          </div> */}
         </div>
       </div>
     </section>
