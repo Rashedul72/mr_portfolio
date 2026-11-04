@@ -28,7 +28,7 @@ export default function Skills() {
     },
     {
       title: "Backend & APIs",
-      accentColor: "bg-emerald-500",
+      accentColor: "bg-cyan-500",
       accentGlow: "shadow-[0_0_35px_rgba(16,185,129,0.2)]",
       description: "Server-side development and database management",
       badgeIcon: "/icons/nodejs.webp",
@@ -53,7 +53,7 @@ export default function Skills() {
     },
     {
       title: "Tools, Cloud & Workflow",
-      accentColor: "bg-violet-500",
+      accentColor: "bg-cyan-500",
       accentGlow: "shadow-[0_0_35px_rgba(139,92,246,0.2)]",
       description: "Delivery, collaboration, and productivity stack",
       badgeIcon: "/icons/github.webp",
@@ -77,12 +77,12 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-14 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20"
+      className="py-20 sm:py-28 lg:py-32 bg-[#0a0b0d] relative scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
       <div className="absolute -top-16 left-1/2 -translate-x-1/2 w-[42rem] h-[42rem] bg-cyan-500/[0.08] blur-[140px] pointer-events-none" />
-      <div className="absolute -bottom-24 right-0 w-[36rem] h-[36rem] bg-violet-500/[0.08] blur-[130px] pointer-events-none" />
+      <div className="absolute -bottom-24 right-0 w-[36rem] h-[36rem] bg-cyan-500/[0.05] blur-[130px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
@@ -94,7 +94,7 @@ export default function Skills() {
          
         >
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+            className="text-balance text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
            
            
            
@@ -103,7 +103,7 @@ export default function Skills() {
             Skills & <span className="text-cyan-400">Technologies</span>
           </h2>
           <div
-            className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+            className="w-24 h-px bg-cyan-400/70 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
            
            
            
