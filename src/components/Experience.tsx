@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { anim } from '@/lib/anim';
+import Image from "next/image";
 import { ExternalLink, MapPin, Calendar, Award, Globe } from "lucide-react";
 
 const HIGHLIGHT_PHRASE = "Neoscoder (Akij Venture Group)";
@@ -44,6 +45,7 @@ export default function Experience() {
     {
       company: "Riseup Labs",
       website: "https://riseuplabs.com/",
+      logo: "/images/companies/riseup.png",
       location: "Dhaka, Bangladesh",
       role: "Software Engineer",
       period: "Jan 04, 2026 - Present",
@@ -53,15 +55,20 @@ export default function Experience() {
         "Integrated Stripe with dynamic subscriptions and built a full-stack admin panel for billing and user management.",
         "Optimized AI prompts for an AI SaaS product, improving accuracy and response efficiency.",
         "Joined Neoscoder (Akij Venture Group) as an augmented resource, contributing to RTM backend systems.",
-        "Optimized trade promotions for 12 lakh+ outlets using efficient data routing, reducing processing time.",
-        "Debugged microservices and resolved production issues to ensure system stability.",
-        "Performed root cause analysis (RCA) to improve reliability and reduce downtime.",
+        "Designed and built a NestJS trade-promotion service from scratch, serving an offline-first catalogue to the field sales app through a Redis-versioned cache that never publishes stale data.",
+        "Built promotion targeting that expands any of seven geographic levels into per-route assignments, with a retry-safe background job that auto-assigns promotions to new routes.",
+        "Made offline pre-order sync idempotent (request-hash conflict detection, safe edit replays) and fixed multi-pod race conditions with Postgres advisory locks and atomic state transitions.",
+        "Engineered queue-based Excel imports for a 7-level geographic hierarchy with per-row transactions, idempotent upserts and detailed error reports.",
+        "Debugged microservices, performed root cause analysis and resolved production issues to improve reliability.",
       ],
       technologies: [
         "Stripe",
         "Next.js",
         "Node.js",
         "TypeScript",
+        "NestJS",
+        "Redis",
+        "BullMQ",
         "Microservices",
         "PostgreSQL",
         "REST APIs",
@@ -70,6 +77,7 @@ export default function Experience() {
     {
       company: "Better E Mart",
       website: "https://betteremart.com/",
+      logo: "/images/companies/betteremart.png",
       location: "Chittagong, Bangladesh",
       role: "Lead Developer",
       period: "November 2024 – Oct 31, 2025",
@@ -94,6 +102,7 @@ export default function Experience() {
     {
       company: "SystemSage Solutions Sdn. Bhd",
       website: "https://systemsage.tech/",
+      logo: "/images/companies/systemsage.png",
       location: "Kuala Lumpur, Malaysia",
       role: "Software Developer",
       period: "October 2023 – November 2024",
@@ -123,6 +132,7 @@ export default function Experience() {
     {
       company: "Gifted Capital",
       website: "https://gifted-cap.com/",
+      logo: "/images/companies/gifted.png",
       location: "Kuala Lumpur, Malaysia",
       role: "Data Scientist Intern & Part-Timer",
       period: "September 2022 - April 2023",
@@ -144,6 +154,7 @@ export default function Experience() {
     {
       company: "Alva Productions",
       website: "https://www.alvaproductions.com.my/",
+      logo: "/images/companies/alva.png",
       location: "Kuala Lumpur, Malaysia",
       role: "Application Developer Intern",
       period: "September 2021 - December 2021",
@@ -164,11 +175,11 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20"
+      className="py-20 sm:py-28 lg:py-32 bg-[#0e1013] relative scroll-mt-16 sm:scroll-mt-20"
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-cyan-500/[0.04] rounded-full blur-[128px]" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
         {/* Moving stars */}
         {stars.map((star) => (
@@ -199,7 +210,7 @@ export default function Experience() {
          
         >
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+            className="text-balance text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
            
            
            
@@ -208,7 +219,7 @@ export default function Experience() {
             Professional <span className="text-cyan-400">Experience</span>
           </h2>
           <div
-            className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+            className="w-24 h-px bg-cyan-400/70 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
            
            
            
@@ -245,7 +256,7 @@ export default function Experience() {
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-6">
-                    <div className="w-[15px] h-[15px] rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0a3355]" />
+                    <div className="w-[15px] h-[15px] rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0e1013]" />
                   </div>
 
                   {/* Card */}
@@ -258,9 +269,20 @@ export default function Experience() {
                     >
                       {/* Header */}
                       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
-                        <h3 className="text-base sm:text-xl font-bold text-white">
-                          {exp.company}
-                        </h3>
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="relative w-11 h-11 flex-shrink-0 rounded-xl bg-white p-1.5 shadow-md">
+                            <Image
+                              src={exp.logo}
+                              alt={`${exp.company} logo`}
+                              fill
+                              sizes="44px"
+                              className="object-contain p-1.5"
+                            />
+                          </div>
+                          <h3 className="text-base sm:text-xl font-bold text-white">
+                            {exp.company}
+                          </h3>
+                        </div>
                         <span className="inline-flex items-center gap-1.5 bg-cyan-500 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-[0_0_12px_rgba(34,211,238,0.15)] w-fit whitespace-nowrap">
                           <Award className="w-3 h-3" />
                           {exp.role}

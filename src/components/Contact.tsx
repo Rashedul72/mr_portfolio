@@ -18,32 +18,32 @@ export default function Contact() {
       title: 'Phone',
       value: '+8801330803463',
       link: 'tel:+8801330803463',
-      color: 'text-emerald-400',
-      bgGrad: 'bg-emerald-500/15'
+      color: 'text-cyan-400',
+      bgGrad: 'bg-cyan-500/15'
     },
     {
       icon: MapPin,
       title: 'Location',
       value: 'Dhaka, Bangladesh',
       link: 'https://www.google.com/maps/search/?api=1&query=Dhaka,+Bangladesh',
-      color: 'text-violet-400',
-      bgGrad: 'bg-violet-500/15'
+      color: 'text-cyan-400',
+      bgGrad: 'bg-cyan-500/15'
     },
     {
       icon: Linkedin,
       title: 'LinkedIn',
       value: 'MD Rashedul Islam Junayed',
       link: 'https://www.linkedin.com/in/md-rashedul-islam-junayed-26bb4122a/',
-      color: 'text-blue-400',
-      bgGrad: 'bg-blue-500/15'
+      color: 'text-cyan-400',
+      bgGrad: 'bg-cyan-500/15'
     }
   ];
 
   return (
-    <section id="contact" className="py-14 sm:py-20 lg:py-24 bg-[#082c47] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="contact" className="py-20 sm:py-28 lg:py-32 bg-[#0a0b0d] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
       </div>
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
 
@@ -55,21 +55,21 @@ export default function Contact() {
          
          
         >
-          <div className="rounded-3xl bg-cyan-500/40 p-px overflow-hidden">
-            <div className="rounded-3xl bg-[#0a3355] p-6 sm:p-10 lg:p-16">
+          <div className="rounded-3xl bg-gradient-to-b from-white/25 via-white/[0.06] to-white/[0.03] p-px overflow-hidden">
+            <div className="rounded-3xl bg-[#0e1013] p-6 sm:p-10 lg:p-16">
 
               {/* Header */}
               <div className="text-center mb-9 sm:mb-10 lg:mb-14">
                 <h2
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+                  className="text-balance text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
                  
                  
                  
                 >
-                  Let&apos;s <span className="text-cyan-400">Connect</span>
+                  Let&apos;s build something <span className="text-cyan-400">reliable</span>
                 </h2>
                 <div
-                  className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+                  className="w-24 h-px bg-cyan-400/70 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
                  
                  
                  
@@ -123,7 +123,7 @@ export default function Contact() {
                 </p>
                 <a
                   href="mailto:muhammadrashedul8@gmail.com"
-                  className="inline-flex items-center gap-2 bg-cyan-500 text-white px-6 sm:px-8 py-3.5 rounded-xl text-[13px] sm:text-sm font-semibold transition-all duration-300 shadow-[0_0_25px_rgba(34,211,238,0.2)] hover:shadow-[0_0_40px_rgba(34,211,238,0.4)] hover:scale-[1.05] hover:translate-y-[-2px] active:scale-[0.95]"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 sm:px-9 py-3.5 text-[13px] sm:text-sm font-semibold text-[#0a0b0d] transition-all duration-300 hover:bg-cyan-200 active:scale-[0.97]"
                  
                  
                 >

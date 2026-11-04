@@ -1,35 +1,43 @@
 'use client';
 
 import { anim } from '@/lib/anim';
+import Signature from './Signature';
+
+const links = [
+  { label: 'About', href: '#about' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+];
 
 export default function Footer() {
   return (
-    <footer className="bg-[#061f35] text-white relative overflow-hidden">
-      <div className="absolute inset-0 dot-pattern opacity-40 pointer-events-none" />
-      <div className="absolute top-0 left-1/4 w-56 h-56 bg-cyan-500/[0.06] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-56 h-56 bg-violet-500/[0.06] rounded-full blur-[100px] pointer-events-none" />
-      <div className="h-[1px] bg-cyan-500/40" />
-
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10">
+    <footer className="relative overflow-hidden border-t border-white/[0.08] bg-[#08090b]">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div
-          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6" {...anim({"from": {"opacity": 0, "y": 30}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.6})}
-         
-         
-         
-         
+          className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
+          {...anim({ from: { opacity: 0, y: 24 }, to: { opacity: 1, y: 0 }, scroll: true, duration: 0.7 })}
         >
-          <div className="text-center sm:text-left">
-            <p className="text-[13px] text-slate-400 mt-1">
-              Building delightful, scalable digital products.
+          <div className="flex flex-col items-center gap-3 md:items-start">
+            <Signature size="text-4xl sm:text-5xl" />
+            <p className="max-w-xs text-center text-[13px] leading-relaxed text-slate-500 md:text-left">
+              Backend-focused software engineer building reliable, scalable products.
             </p>
           </div>
 
-          <div className="text-center sm:text-right">
-            
-            <p className="text-[13px] text-slate-500 mt-1">
-              © {new Date().getFullYear()} All rights reserved.
-            </p>
-          </div>
+          <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-7 gap-y-3 md:justify-end">
+            {links.map((l) => (
+              <a key={l.href} href={l.href} className="text-[13px] text-slate-400 transition-colors hover:text-white">
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-10 flex flex-col items-center justify-between gap-2 border-t border-white/[0.06] pt-6 text-[12px] text-slate-600 sm:flex-row">
+          <span>© {new Date().getFullYear()} MD Rashedul Islam Junayed. All rights reserved.</span>
+          <span className="eyebrow !text-slate-600">Dhaka · Bangladesh</span>
         </div>
       </div>
     </footer>

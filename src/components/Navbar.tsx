@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Signature from './Signature';
 import { anim } from '@/lib/anim';
 import { Menu, X, Home, User, Lightbulb, Briefcase, Folder, Layout, Mail } from 'lucide-react';
 
@@ -71,9 +72,10 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
       >
               <button
                 onClick={() => handleNavClick('home')}
-                className="text-lg sm:text-2xl font-bold text-cyan-400 hover:opacity-80 transition-opacity"
+                aria-label="Home"
+                className="hover:opacity-80 transition-opacity"
               >
-                MR
+                <Signature size="text-3xl sm:text-4xl" />
               </button>
             </div>
 

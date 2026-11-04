@@ -39,7 +39,7 @@ export default function LandingPages() {
   ];
 
   return (
-    <section id="landing-pages" className="py-14 sm:py-20 lg:py-24 bg-[#0a3355] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="landing-pages" className="py-20 sm:py-28 lg:py-32 bg-[#0e1013] relative scroll-mt-16 sm:scroll-mt-20">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
 
@@ -52,13 +52,13 @@ export default function LandingPages() {
          
          
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
+          <h2 className="text-balance text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] text-white mb-4" {...anim({"from": {"opacity": 0, "y": 20}, "to": {"opacity": 1, "y": 0}, "scroll": true, "duration": 0.5, "delay": 0.1})}
            
            
           >
             Client <span className="text-cyan-400">Landing Pages</span>
           </h2>
-          <div className="w-24 h-1 bg-cyan-400 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
+          <div className="w-24 h-px bg-cyan-400/70 mx-auto rounded-full" {...anim({"from": {"width": 0}, "to": {"width": 96}, "scroll": true, "duration": 0.8, "delay": 0.2})}
            
            
           />
@@ -94,7 +94,7 @@ export default function LandingPages() {
                   className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
                 {/* Dark overlay */}
-                <div className="absolute inset-0 bg-[#0a3355]/40" />
+                <div className="absolute inset-0 bg-[#0e1013]/40" />
 
                 {/* Hover overlay with icon */}
                 <div className="absolute inset-0 bg-cyan-500/[0.06] opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">

@@ -102,7 +102,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={rootRef} className="min-h-screen bg-[#082c47]">
+    <div ref={rootRef} className="relative z-[1] min-h-screen">
       <Navbar scrollToSection={scrollToSection} activeSection={activeSection} />
       <Hero scrollToSection={scrollToSection} />
       <About />
