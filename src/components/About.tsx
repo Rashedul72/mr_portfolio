@@ -17,7 +17,7 @@ const principles = [
 
 export default function About() {
   return (
-    <section id="about" className="relative scroll-mt-16 py-20 sm:py-28 lg:py-32 sm:scroll-mt-20">
+    <section id="about" className="relative scroll-mt-16 py-16 sm:py-28 lg:py-32 sm:scroll-mt-20">
       <div className="absolute left-0 right-0 top-0 h-px bg-white/[0.06]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

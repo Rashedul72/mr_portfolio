@@ -40,7 +40,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 sm:py-28 lg:py-32 bg-[#0a0b0d] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="contact" className="py-16 sm:py-28 lg:py-32 bg-[#0a0b0d] relative scroll-mt-20 sm:scroll-mt-20">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />
         <div className="absolute bottom-1/3 right-1/4 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[128px]" />

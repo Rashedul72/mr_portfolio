@@ -132,7 +132,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="relative scroll-mt-16 py-20 sm:py-28 lg:py-32 sm:scroll-mt-20">
+    <section id="projects" className="relative scroll-mt-16 py-16 sm:py-28 lg:py-32 sm:scroll-mt-20">
       <div className="absolute left-0 right-0 top-0 h-px bg-white/[0.06]" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -160,7 +160,7 @@ export default function Projects() {
             return (
               <article
                 key={project.title}
-                className="group grid items-center gap-8 py-12 first:pt-0 last:pb-0 lg:grid-cols-12 lg:gap-14 lg:py-20"
+                className="group grid items-center gap-6 py-10 first:pt-0 last:pb-0 lg:grid-cols-12 lg:gap-14 lg:py-20"
                 {...anim({ from: { opacity: 0, y: 40 }, to: { opacity: 1, y: 0 }, scroll: true, duration: 0.8 })}
               >
                 {/* Visual */}

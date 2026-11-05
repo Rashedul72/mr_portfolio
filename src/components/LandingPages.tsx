@@ -39,7 +39,7 @@ export default function LandingPages() {
   ];
 
   return (
-    <section id="landing-pages" className="py-20 sm:py-28 lg:py-32 bg-[#0e1013] relative scroll-mt-16 sm:scroll-mt-20">
+    <section id="landing-pages" className="py-16 sm:py-28 lg:py-32 bg-[#0e1013] relative scroll-mt-20 sm:scroll-mt-20">
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
 

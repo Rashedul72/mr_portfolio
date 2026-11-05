@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { anim } from '@/lib/anim';
 import Image from "next/image";
-import { ExternalLink, MapPin, Calendar, Award, Globe } from "lucide-react";
+import { ExternalLink, MapPin, Calendar, Award, Globe, Rocket } from "lucide-react";
 
 const HIGHLIGHT_PHRASE = "Neoscoder (Akij Venture Group)";
 
@@ -172,10 +172,124 @@ export default function Experience() {
     },
   ];
 
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLDivElement>(null);
+  const arrowRef = useRef<HTMLDivElement>(null);
+  const rocketRef = useRef<HTMLSpanElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const nodeRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const pathRef = useRef<SVGPathElement>(null);
+  const progressRef = useRef<SVGPathElement>(null);
+  const [reached, setReached] = useState(-1);
+  const [road, setRoad] = useState({ d: "", w: 0, h: 0 });
+
+  useEffect(() => {
+    let raf = 0;
+    const desktop = () => window.matchMedia("(min-width: 1024px)").matches;
+
+    // Node centres in timeline coordinates (transform-independent)
+    const nodePoints = () =>
+      nodeRefs.current.map((n, i) => {
+        const it = itemRefs.current[i];
+        if (!n || !it) return null;
+        return { x: it.offsetLeft + n.offsetLeft + n.offsetWidth / 2, y: it.offsetTop + n.offsetTop + n.offsetHeight / 2 };
+      });
+
+    const buildRoad = () => {
+      const box = timelineRef.current;
+      if (!box) return;
+      const pts = nodePoints().filter(Boolean) as { x: number; y: number }[];
+      if (pts.length < 2 || !desktop()) {
+        setRoad((r) => (r.d ? { d: "", w: 0, h: 0 } : r));
+        return;
+      }
+      let d = `M ${pts[0].x} ${pts[0].y}`;
+      for (let i = 1; i < pts.length; i++) {
+        const a = pts[i - 1];
+        const c = pts[i];
+        const k = (c.y - a.y) * 0.62;
+        d += ` C ${a.x} ${a.y + k} ${c.x} ${c.y - k} ${c.x} ${c.y}`;
+      }
+      setRoad((r) => (r.d === d && r.w === box.offsetWidth && r.h === box.offsetHeight ? r : { d, w: box.offsetWidth, h: box.offsetHeight }));
+    };
+
+    const update = () => {
+      raf = 0;
+      const box = timelineRef.current;
+      const fill = fillRef.current;
+      const arrow = arrowRef.current;
+      if (!box || !fill || !arrow) return;
+      const rect = box.getBoundingClientRect();
+      // the "reading line" sits ~60% down the viewport
+      const y = Math.min(Math.max(window.innerHeight * 0.6 - rect.top, 0), rect.height);
+      const pts = nodePoints();
+      const path = pathRef.current;
+      const prog = progressRef.current;
+
+      if (desktop() && path && prog && path.getAttribute("d")) {
+        const total = path.getTotalLength();
+        // find the point on the road at the reading line (y grows monotonically along it)
+        let lo = 0;
+        let hi = total;
+        for (let i = 0; i < 14; i++) {
+          const mid = (lo + hi) / 2;
+          if (path.getPointAtLength(mid).y < y) lo = mid;
+          else hi = mid;
+        }
+        const startY = pts[0]?.y ?? 0;
+        const len = y <= startY ? 0 : lo;
+        const pt = path.getPointAtLength(len);
+        prog.style.strokeDasharray = `${total}`;
+        prog.style.strokeDashoffset = `${total - len}`;
+        arrow.style.left = "0px";
+        arrow.style.transform = `translate(${pt.x - 16}px, ${pt.y - 16}px)`;
+        const p2 = path.getPointAtLength(Math.min(len + 4, total));
+        const p1 = path.getPointAtLength(Math.max(len - 4, 0));
+        const ang = (Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180) / Math.PI;
+        if (rocketRef.current) rocketRef.current.style.transform = `rotate(${ang + 45}deg)`;
+      } else {
+        fill.style.height = `${y}px`;
+        arrow.style.left = "7px";
+        arrow.style.transform = `translate(-50%, ${Math.max(y - 16, 0)}px)`;
+        if (rocketRef.current) rocketRef.current.style.transform = "rotate(135deg)";
+      }
+      let r = -1;
+      pts.forEach((pt, i) => {
+        if (pt && pt.y <= y + 4) r = i;
+      });
+      setReached((prev) => (prev === r ? prev : r));
+    };
+
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    const onResize = () => {
+      buildRoad();
+      onScroll();
+    };
+    buildRoad();
+    update();
+    const ro = new ResizeObserver(onResize);
+    if (timelineRef.current) ro.observe(timelineRef.current);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  // re-run the scroll update once the road geometry is in the DOM
+  useEffect(() => {
+    window.dispatchEvent(new Event("scroll"));
+  }, [road.d]);
+
   return (
     <section
       id="experience"
-      className="py-20 sm:py-28 lg:py-32 bg-[#0e1013] relative scroll-mt-16 sm:scroll-mt-20"
+      className="py-16 sm:py-28 lg:py-32 bg-[#0e1013] relative scroll-mt-20 sm:scroll-mt-20"
     >
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -238,25 +352,97 @@ export default function Experience() {
         </div>
 
         {/* Timeline */}
-        <div className="relative">
+        <div ref={timelineRef} className="relative">
           {/* Timeline line */}
-          <div className="absolute left-[7px] lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-cyan-500/30" />
+          {/* Mobile: straight line + progress */}
+          <div className="absolute left-[7px] top-0 bottom-0 w-px bg-white/10 lg:hidden" />
+          <div
+            ref={fillRef}
+            className="absolute left-[7px] top-0 w-px bg-gradient-to-b from-cyan-500/40 via-cyan-400 to-cyan-300 shadow-[0_0_10px_rgba(34,211,238,0.6)] lg:hidden"
+            style={{ height: 0 }}
+          />
+          {/* Desktop: winding roadmap that draws itself as you scroll */}
+          {road.d && (
+            <svg
+              aria-hidden
+              className="pointer-events-none absolute left-0 top-0 z-0 hidden overflow-visible lg:block"
+              width={road.w}
+              height={road.h}
+            >
+              <path ref={pathRef} d={road.d} fill="none" stroke="rgba(255,255,255,0.12)" strokeWidth="2" strokeDasharray="2 8" strokeLinecap="round" />
+              <path
+                ref={progressRef}
+                d={road.d}
+                fill="none"
+                stroke="url(#roadGlow)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                style={{ filter: "drop-shadow(0 0 6px rgba(34,211,238,0.7))", strokeDasharray: 1, strokeDashoffset: 1 }}
+              />
+              <defs>
+                <linearGradient id="roadGlow" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="#22d3ee" />
+                  <stop offset="100%" stopColor="#7dd3fc" />
+                </linearGradient>
+              </defs>
+            </svg>
+          )}
+          <div
+            ref={arrowRef}
+            aria-hidden
+            className="absolute top-0 z-[5] flex h-8 w-8 items-center justify-center"
+            style={{ transform: "translate(-50%, 0)", left: 7 }}
+          >
+            <span className="absolute inset-0 rounded-full bg-cyan-400/25 blur-md" />
+            <span className="absolute inset-0 animate-ping rounded-full bg-cyan-400/20 [animation-duration:2s] motion-reduce:animate-none" />
+            <span ref={rocketRef} className="relative flex h-8 w-8 items-center justify-center rounded-full border border-cyan-300/60 bg-[#0e1013] text-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.5)]">
+              <Rocket className="h-4 w-4" />
+            </span>
+          </div>
 
-          <div className="space-y-10 lg:space-y-16">
+          <div className="space-y-10 lg:space-y-32">
             {experiences.map((exp, index) => {
               const isLeft = index % 2 === 0;
               return (
                 <div
                   key={exp.company}
-                  className="relative pl-10 lg:pl-0" {...anim({ from: { opacity: 0, y: 40 }, to: { opacity: 1, y: 0 }, scroll: true, ...{ duration: 0.6, delay: index * 0.1 } })}
+                  ref={(el) => { itemRefs.current[index] = el; }}
+                  className="relative pl-10 lg:pl-0 lg:pt-8" {...anim({ from: { opacity: 0, y: 40 }, to: { opacity: 1, y: 0 }, scroll: true, ...{ duration: 0.6, delay: index * 0.1 } })}
                  
                  
                  
                  
                 >
-                  {/* Timeline dot */}
-                  <div className="absolute left-0 lg:left-1/2 lg:-translate-x-1/2 top-6">
-                    <div className="w-[15px] h-[15px] rounded-full bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.4)] ring-4 ring-[#0e1013]" />
+                  {/* Timeline dot (mobile) */}
+                  <div className="absolute left-0 top-6 lg:hidden">
+                    <div
+                      className={`w-[15px] h-[15px] rounded-full ring-4 ring-[#0e1013] transition-all duration-500 ${
+                        index <= reached
+                          ? "bg-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.6)] scale-110"
+                          : "bg-[#2a2f36]"
+                      }`}
+                    />
+                  </div>
+                  {/* Numbered stop (desktop): sits on the card's top edge, centred */}
+                  <div
+                    ref={(el) => { nodeRefs.current[index] = el; }}
+                    className="absolute top-8 z-20 hidden h-14 w-14 -translate-y-1/2 items-center justify-center lg:flex"
+                    style={{ left: isLeft ? "calc(25% - 1.25rem - 1.75rem)" : "calc(75% + 1.25rem - 1.75rem)" }}
+                  >
+                    <span
+                      className={`absolute inset-0 rounded-full border-2 border-dashed transition-colors duration-500 animate-spin [animation-duration:18s] motion-reduce:animate-none ${
+                        index <= reached ? "border-cyan-300" : "border-white/20"
+                      }`}
+                    />
+                    <span
+                      className={`flex h-10 w-10 items-center justify-center rounded-full font-mono text-[13px] font-semibold transition-all duration-500 ${
+                        index <= reached
+                          ? "bg-cyan-400 text-[#06222b] shadow-[0_0_24px_rgba(34,211,238,0.6)]"
+                          : "bg-[#14181d] text-slate-500"
+                      }`}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
                   </div>
 
                   {/* Card */}
@@ -264,7 +450,7 @@ export default function Experience() {
                     className={`lg:w-[calc(50%-2.5rem)] ${isLeft ? "lg:mr-auto" : "lg:ml-auto"}`}
                   >
                     <div
-                      className="glass rounded-2xl p-5 sm:p-6 lg:p-8 hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 hover:translate-y-[-4px]"
+                      className="glass relative z-10 rounded-2xl p-5 sm:p-6 lg:p-8 lg:bg-[#101317]/95! hover:bg-white/[0.06] hover:border-white/[0.12] transition-all duration-300 hover:translate-y-[-4px]"
                      
                     >
                       {/* Header */}
