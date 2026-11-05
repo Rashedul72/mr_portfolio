@@ -77,7 +77,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="py-20 sm:py-28 lg:py-32 bg-[#0a0b0d] relative scroll-mt-16 sm:scroll-mt-20"
+      className="py-16 sm:py-28 lg:py-32 bg-[#0a0b0d] relative scroll-mt-20 sm:scroll-mt-20"
     >
       <div className="absolute inset-0 grid-pattern pointer-events-none" />
       <div className="absolute top-0 left-0 right-0 h-px bg-white/[0.06]" />
@@ -157,11 +157,11 @@ export default function Skills() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   {category.skills.map((skill, skillIndex) => (
                     <div
                       key={skill.name}
-                      className="relative flex items-center gap-3 rounded-xl bg-white/[0.035] border border-white/[0.08] px-3.5 py-2.5 hover:bg-white/[0.07] hover:border-white/[0.16] transition-all duration-200" {...anim({ from: { opacity: 0, x: -20 }, to: { opacity: 1, x: 0 }, scroll: true, ...{
+                      className="relative flex min-w-0 items-center gap-1.5 sm:gap-3 rounded-xl bg-white/[0.035] border border-white/[0.08] px-2 py-2 sm:px-3.5 sm:py-2.5 hover:bg-white/[0.07] hover:border-white/[0.16] transition-all duration-200" {...anim({ from: { opacity: 0, x: -20 }, to: { opacity: 1, x: 0 }, scroll: true, ...{
                         duration: 0.4,
                         delay: index * 0.1 + skillIndex * 0.06,
                       } })}
@@ -170,7 +170,7 @@ export default function Skills() {
                      
                      
                     >
-                      <div className="relative h-9 w-9 shrink-0 rounded-lg bg-white/10 border border-white/[0.15] flex items-center justify-center overflow-hidden">
+                      <div className="relative h-7 w-7 sm:h-9 sm:w-9 shrink-0 rounded-lg bg-white/10 border border-white/[0.15] flex items-center justify-center overflow-hidden">
                         <Image
                           src={skill.icon}
                           alt={skill.name}
@@ -179,7 +179,7 @@ export default function Skills() {
                           className="object-contain"
                         />
                       </div>
-                      <span className="text-[13px] sm:text-sm font-medium text-slate-200 leading-tight tracking-tight">
+                      <span className="min-w-0 text-[11.5px] sm:text-sm font-medium text-slate-200 leading-tight tracking-tight">
                         {skill.name}
                       </span>
                     </div>

@@ -21,8 +21,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const PROFILE_IMAGE_URL = "/images/Junayed-without-bg.png";
-
 /** Production site — WhatsApp/Open Graph need a public absolute URL */
 const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -30,7 +28,7 @@ const SITE_URL = (
   "https://mr-portfolio-developer.netlify.app"
 ).replace(/\/$/, "");
 
-const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg?v=4`;
+const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg?v=5`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -41,8 +39,11 @@ export const metadata: Metadata = {
   description:
     "Portfolio of MD Rashedul Islam Junayed — backend-focused software engineer building offline-first APIs, caching layers, and scalable products with NestJS, PostgreSQL, Redis, and Next.js.",
   icons: {
-    icon: PROFILE_IMAGE_URL,
-    apple: PROFILE_IMAGE_URL,
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     type: "website",
