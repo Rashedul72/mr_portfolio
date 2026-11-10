@@ -14,13 +14,13 @@ export default function Signature({ className = '', size = 'text-4xl' }: Signatu
     <span
       className={`inline-flex flex-col items-start leading-normal select-none ${className}`}
       role="img"
-      aria-label="Rashedul Islam signature"
+      aria-label="MD Rashedul Islam Junayed signature"
     >
       <span
         aria-hidden
-        className={`${script.className} ${size} -rotate-3 bg-gradient-to-r from-cyan-300 via-white to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(34,211,238,0.35)] px-3 py-2 -mx-3 -my-2`}
+        className={`${script.className} ${size} whitespace-nowrap -rotate-3 bg-gradient-to-r from-cyan-300 via-white to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_10px_rgba(34,211,238,0.35)] px-3 py-2 -mx-3 -my-2`}
       >
-        Rashedul Islam
+        MD Rashedul Islam Junayed
       </span>
     </span>
   );

@@ -75,13 +75,13 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
                 aria-label="Home"
                 className="hover:opacity-80 transition-opacity"
               >
-                <Signature size="text-3xl sm:text-4xl" />
+                <Signature size="text-[22px] min-[360px]:text-[26px] sm:text-4xl" />
               </button>
             </div>
 
             {/* Desktop nav items */}
             <div
-              className="hidden md:flex items-center gap-0.5 bg-white/[0.03] rounded-xl p-1" {...anim({"from": {"opacity": 0, "y": -10}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.3})}
+              className="hidden lg:flex items-center gap-0.5 bg-white/[0.03] rounded-xl p-1" {...anim({"from": {"opacity": 0, "y": -10}, "to": {"opacity": 1, "y": 0}, "duration": 0.6, "delay": 0.3})}
       >
               {navItems.map((item, index) => {
                 const isActive = activeSection === item.id;
@@ -108,7 +108,7 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
 
             {/* Mobile toggle */}
             <button
-              className="md:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all active:scale-[0.9]"
+              className="lg:hidden p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all active:scale-[0.9]"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? 'Close menu' : 'Open menu'} {...anim({"from": {"opacity": 0, "x": 20}, "to": {"opacity": 1, "x": 0}, "duration": 0.6, "delay": 0.4})}
       >
@@ -118,7 +118,7 @@ export default function Navbar({ scrollToSection, activeSection = '' }: NavbarPr
         </div>
 
         {/* Mobile menu — floating panel inside the glass bar */}
-        <div ref={menuRef} className="md:hidden overflow-hidden" style={{ height: 0, opacity: 0 }} aria-hidden={!isOpen} inert={!isOpen}>
+        <div ref={menuRef} className="lg:hidden overflow-hidden" style={{ height: 0, opacity: 0 }} aria-hidden={!isOpen} inert={!isOpen}>
           <div className="mx-2 mb-2 rounded-xl bg-white/[0.03] border border-white/[0.06]">
             <div className="py-3 px-2 space-y-0.5">
               {navItems.map((item) => {

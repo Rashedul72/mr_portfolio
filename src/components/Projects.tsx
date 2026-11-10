@@ -10,7 +10,7 @@ export default function Projects() {
       title: 'KnowledgeBeez',
       category: 'EdTech platform',
       description: 'A full-stack edtech platform with a multi-currency course catalog, SSLCommerz and Razorpay checkout, learner accounts with progress, quizzes, and verifiable certificates, CMS-driven marketing and blogs, and a role-based admin dashboard — live with real enrollments.',
-      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'SSLCommerz', 'Razorpay', 'Cloudflare R2', 'VPS'],
+      technologies: ['Next.js', 'React', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'SSLCommerz', 'Razorpay', 'Cloudflare R2', 'VPS'],
       image: '/images/knowledgebeez.webp',
       mockup: '/images/mockups/knowledgebeez.webp', // finished mockup picture; add one per project as they are made
       chips: [{icon:GraduationCap,title:'Course Catalog',sub:'Multi-currency courses'},{icon:Award,title:'Certificates',sub:'Verifiable & shareable'}],
@@ -22,7 +22,7 @@ export default function Projects() {
       title: 'Tomatungi Resort',
       category: 'Hospitality & booking',
       description: 'A full rebuild of the resort platform with modern booking, SSLCommerz payments, guest accounts, bilingual experience, and a complete admin dashboard — now live with real guest bookings on the existing domain.',
-      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'SSLCommerz', 'Coolify'],
+      technologies: ['Next.js', 'React', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'SSLCommerz', 'Coolify'],
       image: '/images/tomatungi.webp',
       mockup: '/images/mockups/tomatungi.webp',
       chips: [{icon:CalendarCheck,title:'Online Booking',sub:'Cottages & packages'},{icon:Languages,title:'Bilingual',sub:'English & বাংলা'}],
@@ -34,7 +34,7 @@ export default function Projects() {
       title: 'Hiramix E-Commerce',
       category: 'Retail & wholesale e-commerce',
       description: 'Retail and wholesale e-commerce with product search, wishlist, vouchers, loyalty points, payments, delivery integrations, multilingual support, inventory, invoicing, and admin operations.',
-      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'Razorpay', 'Socket.IO', 'Coolify'],
+      technologies: ['Next.js', 'React', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'Razorpay', 'Socket.IO', 'Coolify'],
       image: '/images/hiramix.my.webp',
       mockup: '/images/mockups/hiramix.my.webp',
       chips: [{icon:ShoppingCart,title:'Online Shopping',sub:'Premium foods & essentials'},{icon:Lock,title:'Secure Checkout',sub:'Cards, FPX & GrabPay'}],
@@ -45,7 +45,7 @@ export default function Projects() {
       title: 'Hiramix Corporate',
       category: 'Corporate platform',
       description: 'Corporate portfolio platform with product and brand management, careers, candidate management, wholesale information, content management, and a complete admin dashboard.',
-      technologies: ['Next.js', 'React.js', 'Node.js', 'Express.js', 'PostgreSQL', 'Prisma', 'Razorpay', 'Socket.IO', 'Coolify'],
+      technologies: ['Next.js', 'React', 'Node.js', 'Express', 'PostgreSQL', 'Prisma', 'Razorpay', 'Socket.IO', 'Coolify'],
       image: '/images/hiramix.com.my.webp',
       mockup: '/images/mockups/hiramix.com.my.webp',
       chips: [{icon:Truck,title:'Wholesale & Distribution',sub:'Retail & business partners'},{icon:Briefcase,title:'Careers',sub:'Apply online'}],
@@ -56,7 +56,7 @@ export default function Projects() {
       title: 'Kryzotech Solutions',
       category: 'Company website',
       description: 'Software development company site — a sister concern of Kryzotech BD — showcasing services and company presence on a production-ready Next.js platform.',
-      technologies: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'JWT', 'Cloudflare R2', 'EPS Payment'],
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'JWT', 'Cloudflare R2', 'EPS Payment'],
       image: '/images/solutions_kryzotechbd.webp',
       mockup: '/images/mockups/solutions_kryzotechbd.webp',
       chips: [{icon:Code2,title:'Software Services',sub:'Web, apps & custom builds'},{icon:Layers,title:'Production-ready',sub:'Next.js platform'}],
@@ -67,7 +67,7 @@ export default function Projects() {
       title: 'Kryzotech',
       category: 'Learning platform',
       description: 'A complete learning platform covering course discovery, workshops, enrollment, payments, learner management, certificates, content operations, and live support in one production-ready system.',
-      technologies: ['Next.js', 'React 19', 'TypeScript', 'Tailwind CSS', 'JWT', 'Cloudflare R2', 'EPS Payment', 'jsPDF', 'Quill'],
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'JWT', 'Cloudflare R2', 'EPS Payment', 'jsPDF', 'Quill'],
       image: '/images/kryzotechbd.webp',
       mockup: '/images/mockups/kryzotechbd.webp',
       chips: [{icon:GraduationCap,title:'Courses & Workshops',sub:'Discovery to enrollment'},{icon:Award,title:'Certificates',sub:'Learner management'}],
@@ -78,7 +78,7 @@ export default function Projects() {
       title: 'SmartHRflow',
       category: 'AI hiring SaaS',
       description: 'An AI-powered HR hiring platform that reduces recruitment steps by 60% through intelligent CV parsing, automated assessments, and streamlined candidate management.',
-      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Nest.js', 'Vercel', 'OpenAI API'],
+      technologies: ['Next.js', 'TypeScript', 'Supabase', 'NestJS', 'Vercel', 'OpenAI API'],
       image: '/images/smartHRflowV2.png',
       mockup: '/images/mockups/smartHRflowV2.webp',
       chips: [{icon:Sparkles,title:'AI CV Parsing',sub:'Instant candidate profiles'},{icon:Network,title:'60% Fewer Steps',sub:'Automated assessments'}],
@@ -89,7 +89,7 @@ export default function Projects() {
       title: 'Better E Net',
       category: 'Networking & IT services',
       description: 'A comprehensive networking and IT services platform with service management, network monitoring, and technical support.',
-      technologies: ['React', 'Next.js', 'TypeScript', 'MongoDB', 'Express.js', 'Node.js'],
+      technologies: ['React', 'Next.js', 'TypeScript', 'MongoDB', 'Express', 'Node.js'],
       image: '/images/betterenet.webp',
       mockup: '/images/mockups/betterenet.webp',
       chips: [{icon:Network,title:'Network Monitoring',sub:'Live service status'},{icon:ShieldCheck,title:'Tech Support',sub:'IT services management'}],
@@ -110,8 +110,8 @@ export default function Projects() {
     {
       title: 'Kumira Guptachara Boat Ticketing',
       category: 'Online ticketing',
-      description: 'A cutting-edge application demonstrating expertise in full-stack development and modern web technologies.',
-      technologies: ['Next.js', 'SSL COMMERZ', 'MongoDB', 'Tailwind CSS', 'Framer Motion'],
+      description: 'Online ticket booking for the Kumira–Guptachara boat service: passengers search by station, destination, date and time, then pay through SSLCommerz. Fares cover speed, service and mal boats, with a per-kg charge for baggage over 20 kg.',
+      technologies: ['Next.js', 'SSLCommerz', 'MongoDB', 'Tailwind CSS', 'Framer Motion'],
       image: '/images/kumira.webp',
       mockup: '/images/mockups/kumira.webp',
       chips: [{icon:Ticket,title:'Boat Ticketing',sub:'Book in minutes'},{icon:CreditCard,title:'Secure Payments',sub:'SSLCommerz'}],
@@ -121,7 +121,7 @@ export default function Projects() {
     {
       title: 'Jafson Trading & Marine Services',
       category: 'Corporate website',
-      description: 'An innovative project showcasing advanced web development skills and modern technology stack implementation.',
+      description: 'Corporate website for Jafson Trading & Marine Services, a marine trading and logistics company, presenting its services, gallery and contact details.',
       technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB'],
       image: '/images/jafson.webp',
       mockup: '/images/mockups/jafson.webp',
@@ -142,7 +142,7 @@ export default function Projects() {
           {...anim({ from: { opacity: 0, y: 30 }, to: { opacity: 1, y: 0 }, scroll: true, duration: 0.7 })}
         >
           <div>
-            <p className="eyebrow mb-4">Selected work · {projects.length} projects</p>
+            <p className="eyebrow mb-4">Selected work · {projects.length} products</p>
             <h2 className="text-balance text-[clamp(2.2rem,5vw,4rem)] font-semibold leading-[1.05] text-white">
               Products shipped to <span className="text-cyan-400">production</span>
             </h2>
@@ -155,8 +155,6 @@ export default function Projects() {
         <div className="divide-y divide-white/[0.07]">
           {projects.map((project, index) => {
             const flip = index % 2 !== 0;
-            const shown = project.technologies.slice(0, 6);
-            const extra = project.technologies.length - shown.length;
             return (
               <article
                 key={project.title}
@@ -203,14 +201,11 @@ export default function Projects() {
                   <p className="mt-4 text-[14px] leading-relaxed text-slate-400 sm:text-[15px]">{project.description}</p>
 
                   <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technology stack">
-                    {shown.map((tech) => (
+                    {project.technologies.map((tech) => (
                       <li key={tech} className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[11px] font-medium text-slate-300">
                         {tech}
                       </li>
                     ))}
-                    {extra > 0 && (
-                      <li className="rounded-full px-2 py-1 text-[11px] text-slate-500">+{extra} more</li>
-                    )}
                   </ul>
 
                   <a

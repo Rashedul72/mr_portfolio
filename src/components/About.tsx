@@ -3,8 +3,8 @@
 import { anim } from '@/lib/anim';
 
 const facts = [
-  { label: 'Experience', value: '4+ years' },
-  { label: 'Projects shipped', value: '15+' },
+  { label: 'Experience', value: '3+ years' },
+  { label: 'Products shipped', value: '11' },
   { label: 'Based in', value: 'Dhaka, Bangladesh' },
   { label: 'Focus', value: 'Backend systems' },
 ];
@@ -43,7 +43,7 @@ export default function About() {
               </p>
               <p>
                 I build full-stack products with Next.js and React too, from e-commerce and booking platforms to SaaS
-                billing with Stripe, with earlier experience in IoT and AI-driven applications.
+                products, with earlier experience in IoT and AI-driven applications.
               </p>
             </div>
           </div>

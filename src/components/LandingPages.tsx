@@ -22,11 +22,6 @@ export default function LandingPages() {
       url: 'https://bdjhelper.netlify.app/'
     },
     {
-      name: 'LamsaNet',
-      image: '/images/lamsanet.png',
-      url: 'https://lasmanet-fork-dev.netlify.app/'
-    },
-    {
       name: 'Headline Widget Design Studio',
       image: '/images/headline.png',
       url: 'https://widget-design-studio.netlify.app/'
@@ -89,7 +84,7 @@ export default function LandingPages() {
               <div className="relative h-56 sm:h-64 lg:h-72 overflow-hidden">
                 <Image
                   src={page.image}
-                  alt={page.name}
+                  alt=""
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
                 />
