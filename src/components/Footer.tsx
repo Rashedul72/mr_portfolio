@@ -8,6 +8,7 @@ const links = [
   { label: 'Skills', href: '#skills' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
+  { label: 'Landing Pages', href: '#landing-pages' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -20,7 +21,7 @@ export default function Footer() {
           {...anim({ from: { opacity: 0, y: 24 }, to: { opacity: 1, y: 0 }, scroll: true, duration: 0.7 })}
         >
           <div className="flex flex-col items-center gap-3 md:items-start">
-            <Signature size="text-4xl sm:text-5xl" />
+            <Signature size="text-3xl min-[400px]:text-4xl sm:text-5xl" />
             <p className="max-w-xs text-center text-[13px] leading-relaxed text-slate-500 md:text-left">
               Backend-focused software engineer building reliable, scalable products.
             </p>

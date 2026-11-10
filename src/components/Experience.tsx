@@ -48,30 +48,25 @@ export default function Experience() {
       logo: "/images/companies/riseup.png",
       location: "Dhaka, Bangladesh",
       role: "Software Engineer",
-      period: "Jan 04, 2026 - Present",
+      period: "Jan 2026 – Present",
       description:
-        "Building scalable SaaS and backend systems with a focus on billing, performance, and reliability.",
+        "Augmented to Neoscoder (Akij Venture Group): backend of an FMCG route-to-market / sales-force automation platform on NestJS, Fastify, PostgreSQL, Drizzle, Redis and BullMQ, deployed across multiple pods.",
       achievements: [
-        "Integrated Stripe with dynamic subscriptions and built a full-stack admin panel for billing and user management.",
-        "Optimized AI prompts for an AI SaaS product, improving accuracy and response efficiency.",
-        "Joined Neoscoder (Akij Venture Group) as an augmented resource, contributing to RTM backend systems.",
-        "Designed and built a NestJS trade-promotion service from scratch, serving an offline-first catalogue to the field sales app through a Redis-versioned cache that never publishes stale data.",
-        "Built promotion targeting that expands any of seven geographic levels into per-route assignments, with a retry-safe background job that auto-assigns promotions to new routes.",
-        "Made offline pre-order sync idempotent (request-hash conflict detection, safe edit replays) and fixed multi-pod race conditions with Postgres advisory locks and atomic state transitions.",
-        "Engineered queue-based Excel imports for a 7-level geographic hierarchy with per-row transactions, idempotent upserts and detailed error reports.",
-        "Debugged microservices, performed root cause analysis and resolved production issues to improve reliability.",
+        "Designed and built a NestJS trade-promotion microservice from scratch as primary author (schema, APIs, caching, queues, Excel import), serving an offline-first catalogue to the field sales app.",
+        "Built a Redis-versioned catalogue cache bumped only after commit, so slow rebuilds can't overwrite newer data; falls back to Postgres if Redis fails, and clients poll a version endpoint to skip refetches.",
+        "Fixed a trip-number race across Kubernetes pods with transaction-scoped Postgres advisory locks, and made memo locking a single atomic conditional update.",
+        "Made offline pre-order sync idempotent (request-hash conflict detection, safe edit replay), and built a retry-safe job that assigns promotions to new routes in one set-based SQL query.",
+        "Built a distributor investment early-warning engine with exact BigInt money arithmetic, and a queue-based Excel import for a 7-level geo hierarchy with per-row transactions.",
       ],
       technologies: [
-        "Stripe",
-        "Next.js",
-        "Node.js",
-        "TypeScript",
         "NestJS",
+        "Fastify",
+        "TypeScript",
+        "PostgreSQL",
+        "Drizzle",
         "Redis",
         "BullMQ",
-        "Microservices",
-        "PostgreSQL",
-        "REST APIs",
+        "Docker",
       ],
     },
     {
@@ -80,53 +75,42 @@ export default function Experience() {
       logo: "/images/companies/betteremart.png",
       location: "Chittagong, Bangladesh",
       role: "Lead Developer",
-      period: "November 2024 – Oct 31, 2025",
-      description:
-        "Leading e-commerce platform development with integrated dashboard and mobile solutions.",
+      period: "Nov 2024 – Dec 2025",
       achievements: [
-        "Led the development of an e-commerce website with an integrated dashboard, overseeing both the technical aspects and team coordination.",
-        "Conducted market analysis to identify consumer demand for imported goods, ensuring alignment with customer needs.",
-        "Currently working on mobile application development for both iOS and Android platforms using React Native with Expo, aiming to provide a seamless shopping experience across devices.",
+        "Led a team of 4 developers: owned system design, broke features into tasks and assigned them, and ran code reviews before every merge.",
+        "Built the Better E Mart e-commerce platform for web and mobile with a modular, API-driven architecture covering catalogue, checkout, POS and analytics.",
+        "Integrated payment-gateway, POS and analytics APIs, and set up CI/CD pipelines for automated deployment.",
       ],
       technologies: [
         "React",
         "Next.js",
         "React Native",
         "Expo",
-        "Express.js",
+        "Express",
         "MongoDB",
         "Cloudflare",
-        "Image Bucket",
       ],
     },
     {
-      company: "SystemSage Solutions Sdn. Bhd",
+      company: "SystemSage Solutions Sdn. Bhd.",
       website: "https://systemsage.tech/",
       logo: "/images/companies/systemsage.png",
       location: "Kuala Lumpur, Malaysia",
-      role: "Software Developer",
-      period: "October 2023 – November 2024",
-      description:
-        "IoT and AI-driven agricultural technology solutions for sustainable farming.",
+      role: "Software Developer (Remote)",
+      period: "Oct 2023 – Oct 2024",
       achievements: [
-        "Developed an IoT-based agricultural system integrating industrial-grade sensors for real-time monitoring and automation.",
-        "Implemented AI-driven analytics and cloud computing to optimize crop yields and resource management.",
-        "Incorporated geofencing technology for improved farm boundary management and automated operations.",
-        "Utilized model training for detecting palm fruit ripeness to enhance harvesting efficiency and quality control.",
+        "Built IoT smart-farming systems with Node.js and Firebase, ingesting real-time sensor data through AWS IoT Core, with live monitoring dashboards.",
+        "Implemented geofencing and crop-prediction analytics; co-authored the resulting research paper (GEn-CITy 2024).",
+        "Deployed services on AWS and Azure with CI/CD.",
       ],
       technologies: [
-        "IoT Sensors",
-        "Python",
-        "AI/ML",
-        "Cloud Computing",
+        "Node.js",
+        "Firebase",
+        "AWS IoT Core",
+        "AWS",
+        "Azure",
         "Geofencing",
-        "Data Analytics",
-        "Arduino",
-        "Raspberry Pi",
-        "ESP32",
-        "ESP8266",
-        "NodeMCU",
-        "MQTT",
+        "CI/CD",
       ],
     },
     {
@@ -134,12 +118,12 @@ export default function Experience() {
       website: "https://gifted-cap.com/",
       logo: "/images/companies/gifted.png",
       location: "Kuala Lumpur, Malaysia",
-      role: "Data Scientist Intern & Part-Timer",
-      period: "September 2022 - April 2023",
+      role: "Data Science Intern",
+      period: "Sep 2022 – Apr 2023",
       description:
         "Financial technology solutions for global IPO access and capital markets.",
       achievements: [
-        "Leave Approval Form: Developed a system for employees to submit leave requests, automatically approved if submitted 7 days in advance, and pending boss approval if within 6 days.",
+        "Leave Approval Form: Developed a system for employees to submit leave requests, automatically approved if submitted 7 days in advance, and pending manager approval if within 6 days.",
         "Auto-Generated Calendar: Created a tool allowing users to download a personalized company calendar by entering financial details, which is then emailed to both the user and business owner.",
         "Stock Trading Data Download: Built a feature that enables users to download Apple stock data in CSV format by specifying start and end dates, with automatic email notifications.",
       ],
@@ -157,7 +141,7 @@ export default function Experience() {
       logo: "/images/companies/alva.png",
       location: "Kuala Lumpur, Malaysia",
       role: "Application Developer Intern",
-      period: "September 2021 - December 2021",
+      period: "Sep 2021 – Dec 2021",
       description:
         "Award-winning media company specializing in game development and mobile applications.",
       achievements: [
@@ -493,15 +477,28 @@ export default function Experience() {
                           <MapPin className="w-3.5 h-3.5" />
                           {exp.location}
                         </span>
+                        <span className="sr-only"> · </span>
                         <span className="flex items-center gap-1">
                           <Calendar className="w-3.5 h-3.5" />
                           {exp.period}
                         </span>
                       </div>
 
-                      <p className="text-white/80 mb-4 italic text-[13px] sm:text-sm">
-                        &quot;{exp.description}&quot;
-                      </p>
+                      {exp.description && (
+                        <p className="text-white/80 mb-4 italic text-[13px] sm:text-sm">
+                          &quot;
+                          {exp.description.includes(HIGHLIGHT_PHRASE) ? (
+                            <>
+                              {exp.description.split(HIGHLIGHT_PHRASE)[0]}
+                              <strong className="not-italic">{HIGHLIGHT_PHRASE}</strong>
+                              {exp.description.split(HIGHLIGHT_PHRASE)[1]}
+                            </>
+                          ) : (
+                            exp.description
+                          )}
+                          &quot;
+                        </p>
+                      )}
 
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-1.5 mb-4">
@@ -521,17 +518,7 @@ export default function Experience() {
                           <div key={i} className="flex items-start gap-2">
                             <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0 shadow-[0_0_6px_rgba(34,211,238,0.4)]" />
                             <p className="text-[13px] sm:text-sm text-white/90 leading-relaxed">
-                              {achievement.includes(HIGHLIGHT_PHRASE) ? (
-                                <>
-                                  {achievement.split(HIGHLIGHT_PHRASE)[0]}
-                                  <strong>
-                                    <em>{HIGHLIGHT_PHRASE}</em>
-                                  </strong>
-                                  {achievement.split(HIGHLIGHT_PHRASE)[1]}
-                                </>
-                              ) : (
-                                achievement
-                              )}
+                              {achievement}
                             </p>
                           </div>
                         ))}

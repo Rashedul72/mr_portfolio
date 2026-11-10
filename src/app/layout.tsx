@@ -33,8 +33,8 @@ const OG_IMAGE = `${SITE_URL}/og-portfolio.jpg?v=5`;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Junayed | Engineering Reliable Systems",
-    template: "%s · Junayed",
+    default: "MD Rashedul Islam Junayed | Backend Engineer",
+    template: "%s | MD Rashedul Islam Junayed",
   },
   description:
     "Portfolio of MD Rashedul Islam Junayed — backend-focused software engineer building offline-first APIs, caching layers, and scalable products with NestJS, PostgreSQL, Redis, and Next.js.",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "MD Rashedul Islam Junayed",
-    title: "Junayed | Engineering Reliable Systems",
+    title: "MD Rashedul Islam Junayed | Backend Engineer",
     description:
       "Backend-focused software engineer — NestJS, PostgreSQL, Redis, Next.js. Offline-first APIs, queues, and products that scale.",
     images: [
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Junayed | Engineering Reliable Systems",
+    title: "MD Rashedul Islam Junayed | Backend Engineer",
     description:
       "Backend-focused software engineer — NestJS, PostgreSQL, Redis, Next.js. Offline-first APIs, queues, and products that scale.",
     images: [OG_IMAGE],

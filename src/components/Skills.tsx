@@ -1,6 +1,7 @@
 'use client';
 
 import Image from "next/image";
+import { Monitor, Server, Wrench } from "lucide-react";
 import { anim } from '@/lib/anim';
 
 export default function Skills() {
@@ -10,7 +11,7 @@ export default function Skills() {
       accentColor: "bg-cyan-500",
       accentGlow: "shadow-[0_0_35px_rgba(34,211,238,0.2)]",
       description: "Modern web technologies and frameworks",
-      badgeIcon: "/icons/react.webp",
+      BadgeIcon: Monitor,
       skills: [
         { name: "React", icon: "/icons/react.webp" },
         { name: "Next.js", icon: "/icons/nextjs.webp" },
@@ -31,10 +32,10 @@ export default function Skills() {
       accentColor: "bg-cyan-500",
       accentGlow: "shadow-[0_0_35px_rgba(16,185,129,0.2)]",
       description: "Server-side development and database management",
-      badgeIcon: "/icons/nodejs.webp",
+      BadgeIcon: Server,
       skills: [
         { name: "Node.js", icon: "/icons/nodejs.webp" },
-        { name: "Express.js", icon: "/icons/express.webp" },
+        { name: "Express", icon: "/icons/express.webp" },
         { name: "NestJS", icon: "/icons/nest.webp" },
         { name: "MongoDB", icon: "/icons/mongo.webp" },
         { name: "Mongoose", icon: "/icons/mongoose.webp" },
@@ -56,7 +57,7 @@ export default function Skills() {
       accentColor: "bg-cyan-500",
       accentGlow: "shadow-[0_0_35px_rgba(139,92,246,0.2)]",
       description: "Delivery, collaboration, and productivity stack",
-      badgeIcon: "/icons/github.webp",
+      BadgeIcon: Wrench,
       skills: [
         { name: "Git", icon: "/icons/git.webp" },
         { name: "GitHub", icon: "/icons/github.webp" },
@@ -139,13 +140,7 @@ export default function Skills() {
               <div className="p-5 sm:p-7 lg:p-8">
                 <div className="mb-5 sm:mb-6 flex items-start gap-3">
                   <div className="h-11 w-11 shrink-0 rounded-xl border border-white/[0.14] bg-white/[0.06] flex items-center justify-center">
-                    <Image
-                      src={category.badgeIcon}
-                      alt={category.title}
-                      width={22}
-                      height={22}
-                      className="object-contain"
-                    />
+                    <category.BadgeIcon aria-hidden className="h-[22px] w-[22px] text-cyan-300" />
                   </div>
                   <div>
                     <h3 className="text-base sm:text-xl font-bold text-white tracking-tight">
